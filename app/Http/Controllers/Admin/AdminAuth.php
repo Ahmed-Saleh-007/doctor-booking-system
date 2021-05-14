@@ -16,7 +16,7 @@ class AdminAuth extends Controller
 
     public function login()
     {
-        return view('admin.login');
+        return view('admin.auth.login');
     }
 
     //check admin login function
@@ -44,7 +44,7 @@ class AdminAuth extends Controller
 
     public function forgotPassword()
     {
-        return view('admin.forgot_password');
+        return view('admin.auth.forgot_password');
     }
 
     //forget password message send
@@ -72,7 +72,7 @@ class AdminAuth extends Controller
     {
         $check_token = DB::table('password_resets')->where('token', $token)->where('created_at', '>', Carbon::now()->subHours(2))->first();
 		if (!empty($check_token)) {
-			return view('admin.reset_password', ['data' => $check_token]);
+			return view('admin.auth.reset_password', ['data' => $check_token]);
 		} else {
 			return redirect(aurl('forgot/password'));
 		}    
