@@ -25,7 +25,7 @@
 
         <!-- rtl Theme style -->
         
-        {{-- @if (direction() == 'rtl')
+        @if (direction() == 'rtl')
         <link rel="stylesheet" href="{{url('')}}/design/adminlte/dist/css/bootstrap-rtl.css">
         <link rel="stylesheet" href="{{url('')}}/design/adminlte/dist/css/rtl.css">
         <link href="https://fonts.googleapis.com/css?family=Cairo:300,400&amp;subset=arabic,latin-ext" rel="stylesheet">
@@ -37,11 +37,7 @@
                 text-align: left !important;
             }
 		</style>
-        @endif --}}
-        <!--
-        <link rel="stylesheet" href="{{url('')}}/design/adminlte/dist/css/bootstrap-rtl.css">
-        <link rel="stylesheet" href="{{url('')}}/design/adminlte/dist/css/rtl.css">
-        -->
+        @endif
 
         <!-- overlayScrollbars -->
         <link rel="stylesheet" href="{{url('')}}/design/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">

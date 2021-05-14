@@ -22,12 +22,12 @@
                         </div>
                         <div class="info">
                             <a href="#" class="d-block">
-                                {{-- @if (lang() == 'en')
+                                @if (lang() == 'en')
                                 {{ admin()->user()->name_en }}
                                 @else
                                 {{ admin()->user()->name_ar }}
-                                @endif --}}
-                                admin
+                                @endif
+                                
                             </a>
                         </div>
                     </div>

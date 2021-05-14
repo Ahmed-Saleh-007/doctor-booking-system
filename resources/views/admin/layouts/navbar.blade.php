@@ -114,16 +114,16 @@
                         </div>
                     </li>
                     <!-- lang setting-->
-                    {{-- <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="nav-link" data-toggle="dropdown" href="#">
                             <i class="fa fa-globe"></i>
                             <span class="">{{lang()}}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right"style="width:auto;">
-                            <a class="dropdown-item" href="{{ aurl('lang/ar') }}"><i class="fa fa-flag"></i> عربى</a>
-                            <a class="dropdown-item" href="{{ aurl('lang/en') }}"><i class="fa fa-flag"></i> English</a>
+                            <a class="dropdown-item" href="{{ url('lang/ar') }}"><i class="fa fa-flag"></i> عربى</a>
+                            <a class="dropdown-item" href="{{ url('lang/en') }}"><i class="fa fa-flag"></i> English</a>
                         </div>
-                    </li> --}}
+                    </li>
                     <!-- User Account -->
                     <li class="nav-item dropdown user user-menu">
                         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -142,8 +142,8 @@
                                 <img src="{{ Storage::url(admin()->user()->image) }}" style="" class="img-circle" alt="User Image"/>
                                 @else
                                 <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image">
-                                @endif
-
+                                @endif --}}
+                                <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image">
                                 <p>
                                     @if (lang() == 'en')
                                     {{ admin()->user()->name_en }}
@@ -152,7 +152,7 @@
                                     @endif
                                     
                                     <small>@lang('admin.Member Since') {{admin()->user()->created_at->format('d/m/Y')}}</small>
-                                </p> --}}
+                                </p>
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">
