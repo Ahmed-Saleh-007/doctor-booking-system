@@ -79,11 +79,8 @@
 						$(this).prop('checked', true);
 					}
 				});
-			 }
-			 
-			$(document).on('click', '.del_all', function () {
-				$('#delete_all').submit();
-			});
+			}
+			
 			$(document).on('click', '.delBtn', function () {
 				var item_checked = $('input.item_checkbox').filter(':checked').length;
 				if (item_checked > 0) {
@@ -129,11 +126,7 @@
                 e.preventDefault();
                 toggleFullscreen();
             });
-            /*
-            document.getElementById('exampleImage').addEventListener('click', function() {
-                toggleFullscreen(this);
-            });
-            */
+            
             $('#btnFullscreen').on('click', function () {	
                 $(this).children('i').toggleClass("fa-expand fa-compress");
 			});
