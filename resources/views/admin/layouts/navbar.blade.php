@@ -7,7 +7,7 @@
                         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        {{-- <a href="{{route('admin.dashboard')}}" class="nav-link">@lang('admin.Home')</a> --}}
+                        <a href="{{route('admin.dashboard')}}" class="nav-link">@lang('admin.Home')</a>
                     </li>
                 </ul>
 
@@ -179,7 +179,7 @@
                                         <a href="#" class="btn btn-primary btn-flat">Lock</a>
                                     </div>
                                     <div class="col-sm-4 text-center">
-                                        {{-- <a href="{{aurl('logout')}}" class="btn btn-primary btn-flat">@lang('admin.Logout')</a> --}}
+                                        <a href="{{aurl('logout')}}" class="btn btn-primary btn-flat">@lang('admin.Logout')</a>
                                     </div>
                                 </div>
                             </li>
