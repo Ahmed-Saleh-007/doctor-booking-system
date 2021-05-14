@@ -54,7 +54,7 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        return view('admin.admins.ajax_show', compact('admin'));
+        return view('admin.admins.ajax.show', compact('admin'));
     }
 
     /**
@@ -65,7 +65,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        return view('admin.admins.ajax_edit', compact('admin'));
+        return view('admin.admins.ajax.edit', compact('admin'));
     }
 
     /**
