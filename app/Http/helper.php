@@ -56,3 +56,13 @@ if (!function_exists('datatableLang')) {
         ];
     }
 }
+
+if (!function_exists('savePhoto')) {
+
+    function savePhoto($path, $image)
+    {
+        $fullPath = $path . date('Y') . '/' . date('m') . '/' . date('d');
+        $newName = time() . '-' . rand(0, 9999) . '.' . $image->getClientOriginalExtension();
+        return $image->storeAs($fullPath , $newName);
+    }
+}

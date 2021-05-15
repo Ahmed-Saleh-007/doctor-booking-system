@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\StoreAdminRequest;
 use App\Http\Requests\Admin\UpdateAdminRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -42,6 +43,7 @@ class AdminController extends Controller
     {
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
+        $data['image'] = $request->hasFile('image') ? savePhoto('images/admins/', $request->image) : null;
         Admin::create($data);
         return response()->json(['success' => trans('admin.record_added')]);
     }
@@ -83,6 +85,12 @@ class AdminController extends Controller
         }else {
             $data['password'] = $admin->password;
         }
+        if ($request->hasFile('image')) {
+            if (!empty($admin->image)) {
+                Storage::delete($admin->image);
+            }
+            $data['image'] = savePhoto('images/admins/', $request->image);
+        }
         $admin->update($data);
         return response()->json(['success' => trans('admin.updated_record')]);
     }
@@ -95,12 +103,17 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
+        !empty($admin->image) ? Storage::delete($admin->image) : '';
         $admin->delete();
         return response()->json(['success' => trans('admin.deleted_record')]);
     }
 
     public function destroyAll()
     {
+        foreach (request('item') as $id) {
+            $admin = Admin::find($id);
+            !empty($admin->image) ? Storage::delete($admin->image) : '';
+        }
         Admin::destroy(request('item'));
 		return response()->json(['success' => trans('admin.deleted_record')]);
     }

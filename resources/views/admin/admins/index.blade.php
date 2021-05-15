@@ -45,6 +45,20 @@
                 {!! Form::password('password', ['class' => 'form-control', 'data-strength' => '']) !!}
                 <h6 id="pass-msg" style="display:none; color:#dd4b39;">{{ trans('admin.password_massage') }}</h6>
             </div>
+            <div class="form-group">
+                <h4>{{trans('admin.image')}}</h4>
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input type='file' id="imageUpload-create" name="image"/>
+                        <label for="imageUpload-create">
+                            <i class="fa fa-pencil-alt"></i>
+                        </label>
+                    </div>
+                    <div class="avatar-preview">
+                        <div id="imagePreview-create" style="background-image: url({{ url('/design/adminlte/dist/img/avatar5.png')}});"></div>
+                    </div>
+                </div>
+            </div>
             {!! Form::submit(trans('admin.add'), ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
             

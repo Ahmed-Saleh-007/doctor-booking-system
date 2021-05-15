@@ -131,19 +131,34 @@
                 $(this).children('i').toggleClass("fa-expand fa-compress");
 			});
 
-            function readURL(input) {
+            function readURLCreate(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
                     reader.onload = function(e) {
-                        $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                        $('#imagePreview').hide();
-                        $('#imagePreview').fadeIn(650);
+                        $('#imagePreview-create').css('background-image', 'url('+e.target.result +')');
+                        $('#imagePreview-create').hide();
+                        $('#imagePreview-create').fadeIn(650);
                     }
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-            $("#imageUpload").change(function() {
-                readURL(this);
+            $("#imageUpload-create").change(function() {
+                readURLCreate(this);
+            });
+
+            function readURLEdit(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#imagePreview-edit').css('background-image', 'url('+e.target.result +')');
+                        $('#imagePreview-edit').hide();
+                        $('#imagePreview-edit').fadeIn(650);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $(document).on('change', '#imageUpload-edit', function() {
+                readURLEdit(this);
             });
         </script>
         @stack('js')
