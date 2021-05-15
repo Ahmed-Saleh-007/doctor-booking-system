@@ -66,7 +66,7 @@ return [
 	'updated_record'				=> 'Record has been updated',
 	'deleted_record'				=> 'Record(s) has been deleted',
 	'save'							=> 'Save',
-	'delete_this'                  	=> 'Do you want to delete :name ?',
+	'delete_this'                  	=> 'Do you want to delete this record ?',
 	'settings'						=> 'Settings',
 	'sitename_ar'                  	=> 'Arabic name',
 	'sitename_en'                  	=> 'English name',

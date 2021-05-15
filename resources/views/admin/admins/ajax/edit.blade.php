@@ -31,7 +31,7 @@
         </div>
         <div class="avatar-preview">
             @if(!empty($admin->image))
-            <div id="imagePreview-edit" style="background-image: url({{ Storage::url($admin->image) }});"></div>
+            <div id="imagePreview-edit" style="background-image: url({{ url('storage/' . $admin->image) }});"></div>
             @else
             <div id="imagePreview-edit" style="background-image: url({{ url('/design/adminlte/dist/img/avatar5.png')}});"></div>
             @endif

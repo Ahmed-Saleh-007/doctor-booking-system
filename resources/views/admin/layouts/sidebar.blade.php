@@ -12,12 +12,11 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            {{-- @if (!empty(admin()->user()->image))
-                            <img src="{{ Storage::url(admin()->user()->image) }}" style="width: 35px; height: 35px;" class="img-circle elevation-2" alt="User Image"/>
+                            @if (!empty(admin()->user()->image))
+                            <img src="{{ url('storage/' . admin()->user()->image) }}" style="width: 35px; height: 35px;" class="img-circle elevation-2" alt="User Image"/>
                             @else
                             <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
-                            @endif --}}
-                            <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+                            @endif
 
                         </div>
                         <div class="info">
@@ -37,7 +36,7 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                                 with font-awesome or any other icon font library -->
-                            {{-- <li class="nav-item has-treeview menu-open">
+                            <li class="nav-item has-treeview menu-open">
                                 <a href="#" class="nav-link active">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
@@ -85,7 +84,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li> --}}
+                            </li>
 
 
                         </ul>
