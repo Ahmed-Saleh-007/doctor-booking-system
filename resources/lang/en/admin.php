@@ -81,4 +81,6 @@ return [
 	'name_en'                      	=> 'Name (En)',
 	'name_ar'                      	=> 'Name (Ar)',
     'Home'							=> 'Home',
+    'countries'                     => 'Countries',
+    'code'                          => 'Code',
 ];

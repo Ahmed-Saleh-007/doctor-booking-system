@@ -26,7 +26,7 @@
                                 @else
                                 {{ admin()->user()->name_ar }}
                                 @endif
-                                
+
                             </a>
                         </div>
                     </div>
@@ -86,6 +86,12 @@
                                 </ul>
                             </li>
 
+                            <li class="nav-item">
+                                <a href="{{ aurl('countries') }}" class="nav-link">
+                                    <i class="far fa-flag nav-icon"></i>
+                                    <p>{{ trans('admin.countries') }}</p>
+                                </a>
+                            </li>
 
                         </ul>
                     </nav>

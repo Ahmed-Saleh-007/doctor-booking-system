@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\Admin\AdminAuth;
 use App\Http\Controllers\Admin\AdminController;
-
+use App\Http\Controllers\Admin\CountryController;
 
 Route::prefix('admin')->group(function () {
 
@@ -24,7 +24,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('/admins', AdminController::class)->except(['create', 'update']);
         Route::post('/admins/{admin}/update', [AdminController::class, 'update'])->name('admins.update');
         Route::delete('/admins/destroy/all', [AdminController::class, 'destroyAll'])->name('admins.destroyAll');
-        
+
+        //=====================================Countries Routes=======================================================//
+        Route::resource('/countries', CountryController::class)->except(['create', 'update']);
+        Route::post('/countries/{country}/update', [CountryController::class, 'update'])->name('countries.update');
+        Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
+        //============================================================================================================//
 
         Route::get('/', function () {
             return view('admin.dashboard');
@@ -33,8 +38,6 @@ Route::prefix('admin')->group(function () {
         Route::get('logout', [AdminAuth::class, 'logout'])->name('admin.logout');
 
     });
-
-    
 
 });
 

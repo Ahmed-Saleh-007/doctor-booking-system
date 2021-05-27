@@ -150,7 +150,7 @@
                                     @else
                                     {{ admin()->user()->name_ar }}
                                     @endif
-                                    
+
                                     <small>@lang('admin.Member Since') {{admin()->user()->created_at->format('d/m/Y')}}</small>
                                 </p>
                             </li>

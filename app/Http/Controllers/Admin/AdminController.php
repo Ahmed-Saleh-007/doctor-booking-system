@@ -79,6 +79,7 @@ class AdminController extends Controller
      */
     public function update(UpdateAdminRequest $request, Admin $admin)
     {
+
         $data = $request->all();
         if ($request->filled('password')) {
             $data['password'] = Hash::make($data['password']);
