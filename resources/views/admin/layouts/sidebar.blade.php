@@ -86,6 +86,12 @@
                                 </ul>
                             </li>
 
+                            <li class="nav-item">
+                                <a href="{{ aurl('countries') }}" class="nav-link">
+                                    <i class="far fa-flag nav-icon"></i>
+                                    <p>{{ trans('admin.countries') }}</p>
+                                </a>
+                            </li>
 
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
@@ -101,7 +107,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ aurl('admins') }}" class="nav-link">
+                                        <a href="{{ aurl('doctor-degree') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>{{ trans('doctor.doctor-degree') }}</p>
                                         </a>

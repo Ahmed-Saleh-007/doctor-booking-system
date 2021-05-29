@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DoctorDegree extends Model
+class Country extends Model
 {
     use HasFactory;
 
-    protected $table = 'doctor_degrees';
+    protected $table = 'countries';
+
     protected $fillable = [
         'name_en',
         'name_ar',
-        'description'
+        'code'
     ];
 }
