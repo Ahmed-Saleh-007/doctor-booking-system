@@ -26,7 +26,7 @@
                                 @else
                                 {{ admin()->user()->name_ar }}
                                 @endif
-                                
+
                             </a>
                         </div>
                     </div>
@@ -85,6 +85,30 @@
                                     </li>
                                 </ul>
                             </li>
+
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        {{ trans('doctor.doctor') }}
+                                        @if (direction() == 'rtl')
+                                        <i class="right fas fa-angle-right"></i>
+                                        @else
+                                        <i class="right fas fa-angle-left"></i>
+                                        @endif
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ aurl('admins') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ trans('doctor.doctor-degree') }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
 
 
                         </ul>

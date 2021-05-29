@@ -4,10 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\Admin\AdminAuth;
 use App\Http\Controllers\Admin\AdminController;
-
+use App\Http\Controllers\DoctorDegreeController;
 
 Route::prefix('admin')->group(function () {
-
     Config::set('auth.defines', 'admin');
 
     //Auth Routes
@@ -24,17 +23,14 @@ Route::prefix('admin')->group(function () {
         Route::resource('/admins', AdminController::class)->except(['create', 'update']);
         Route::post('/admins/{admin}/update', [AdminController::class, 'update'])->name('admins.update');
         Route::delete('/admins/destroy/all', [AdminController::class, 'destroyAll'])->name('admins.destroyAll');
-        
+
+        //doctor-degree crud routes
+        Route::resource('/doctor-degree', DoctorDegreeController::class)->except(['create', 'update']);
 
         Route::get('/', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
 
         Route::get('logout', [AdminAuth::class, 'logout'])->name('admin.logout');
-
     });
-
-    
-
 });
-
