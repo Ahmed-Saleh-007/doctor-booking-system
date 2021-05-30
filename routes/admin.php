@@ -6,9 +6,10 @@ use App\Http\Controllers\Admin\AdminAuth;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\SpecialistController;
 use App\Http\Controllers\SubSpecialistController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\DoctorDegreeController;
 
 Route::prefix('admin')->group(function () {
-
     Config::set('auth.defines', 'admin');
 
     //Auth Routes
@@ -36,12 +37,27 @@ Route::prefix('admin')->group(function () {
         Route::resource('/sub-specialists', SubSpecialistController::class)->except(['create', 'update']);
         Route::post('/sub-specialists/{special}/update', [SubSpecialistController::class, 'update'])->name('subspecialists.update');
         Route::delete('/sub-specialists/destroy/all', [SubSpecialistController::class, 'destroyAll'])->name('subspecialists.destroyAll');
-        Route::resource('/sub-specialists', SubSpecialistController::class)->except(['create', 'update']);;
+        Route::resource('/sub-specialists', SubSpecialistController::class)->except(['create', 'update']);
         
+        //doctor-degree crud routes
+        Route::resource('/doctor-degree', DoctorDegreeController::class)->except(['create', 'update']);
+        Route::post('/doctor-degree/{id}/update', [DoctorDegreeController::class, 'update'])->name('doctor-degree.update');
+        Route::delete('/doctor-degree/destroy/all', [DoctorDegreeController::class, 'destroyAll'])->name('doctor-degree.destroyAll');
+        
+        //=====================================Countries Routes=========================================================//
+        Route::resource('/countries', CountryController::class)->except(['create', 'update']);
+        Route::post('/countries/{country}/update', [CountryController::class, 'update'])->name('countries.update');
+        Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
+        //==============================================================================================================//
+
         Route::get('/', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
 
         Route::get('logout', [AdminAuth::class, 'logout'])->name('admin.logout');
     });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 76b3291b385d5218e263201e53df601dfa13123a

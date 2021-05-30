@@ -25,6 +25,10 @@
                                 @else
                                     {{ admin()->user()->name_ar }}
                                 @endif
+<<<<<<< HEAD
+=======
+
+>>>>>>> 76b3291b385d5218e263201e53df601dfa13123a
                             </a>
                         </div>
                     </div>
@@ -84,12 +88,27 @@
                                 </ul>
                             </li>
 
+<<<<<<< HEAD
                             <!-- Spcailists and Sub Specialists Dashboard -->
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="fa fa-stethoscope" aria-hidden="true"></i>
                                     <p>
                                         Specailists
+=======
+                            <li class="nav-item">
+                                <a href="{{ aurl('countries') }}" class="nav-link">
+                                    <i class="far fa-flag nav-icon"></i>
+                                    <p>{{ trans('admin.countries') }}</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        {{ trans('doctor.doctor') }}
+>>>>>>> 76b3291b385d5218e263201e53df601dfa13123a
                                         @if (direction() == 'rtl')
                                         <i class="right fas fa-angle-right"></i>
                                         @else
@@ -99,6 +118,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
+<<<<<<< HEAD
                                         <a href="{{ aurl('specialists') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p> Specailists </p>
@@ -108,10 +128,21 @@
                                         <a href="{{ aurl('sub-specialists') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p> Sub Specailists </p>
+=======
+                                        <a href="{{ aurl('doctor-degree') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ trans('doctor.doctor-degree') }}</p>
+>>>>>>> 76b3291b385d5218e263201e53df601dfa13123a
                                         </a>
                                     </li>
                                 </ul>
                             </li>
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 76b3291b385d5218e263201e53df601dfa13123a
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
