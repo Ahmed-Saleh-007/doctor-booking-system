@@ -35,7 +35,6 @@ Route::prefix('admin')->group(function () {
         Route::post('/countries/{country}/update', [CountryController::class, 'update'])->name('countries.update');
         Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
         //============================================================================================================//
-
         Route::get('/', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
