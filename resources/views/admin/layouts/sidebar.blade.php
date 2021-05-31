@@ -13,20 +13,18 @@
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
                             @if (!empty(admin()->user()->image))
-                            <img src="{{ url('storage/' . admin()->user()->image) }}" style="width: 35px; height: 35px;" class="img-circle elevation-2" alt="User Image"/>
+                                <img src="{{ url('storage/' . admin()->user()->image) }}" style="width: 35px; height: 35px;" class="img-circle elevation-2" alt="User Image"/>
                             @else
-                            <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+                                <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
                             @endif
-
                         </div>
                         <div class="info">
                             <a href="#" class="d-block">
                                 @if (lang() == 'en')
-                                {{ admin()->user()->name_en }}
+                                    {{ admin()->user()->name_en }}
                                 @else
-                                {{ admin()->user()->name_ar }}
+                                    {{ admin()->user()->name_ar }}
                                 @endif
-                                
                             </a>
                         </div>
                     </div>
@@ -42,9 +40,9 @@
                                     <p>
                                         {{ trans('admin.dashboard') }}
                                         @if (direction() == 'rtl')
-                                        <i class="right fas fa-angle-right"></i>
+                                            <i class="right fas fa-angle-right"></i>
                                         @else
-                                        <i class="right fas fa-angle-left"></i>
+                                            <i class="right fas fa-angle-left"></i>
                                         @endif
                                     </p>
                                 </a>
@@ -86,7 +84,65 @@
                                 </ul>
                             </li>
 
+                            <!-- Spcailists and Sub Specialists Dashboard -->
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-stethoscope" aria-hidden="true"></i>
+                                    <p>
+                                        Specailists
+                                        @if (direction() == 'rtl')
+                                            <i class="right fas fa-angle-right"></i>
+                                        @else
+                                            <i class="right fas fa-angle-left"></i>
+                                        @endif
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ aurl('specialists') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p> Specailists </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ aurl('sub-specialists') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p> Sub Specailists </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
+                            <!-- Countries Dashboard -->
+                            <li class="nav-item">
+                                <a href="{{ aurl('countries') }}" class="nav-link">
+                                    <i class="far fa-flag nav-icon"></i>
+                                    <p>{{ trans('admin.countries') }}</p>
+                                </a>
+                            </li>
+
+                            <!-- Doctors Dashboard -->
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        {{ trans('doctor.doctor') }}
+                                        @if (direction() == 'rtl')
+                                        <i class="right fas fa-angle-right"></i>
+                                        @else
+                                        <i class="right fas fa-angle-left"></i>
+                                        @endif
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ aurl('doctor-degree') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ trans('doctor.doctor-degree') }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
