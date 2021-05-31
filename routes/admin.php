@@ -52,7 +52,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/countries', CountryController::class)->except(['create', 'update']);
         Route::post('/countries/{country}/update', [CountryController::class, 'update'])->name('countries.update');
         Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
-        //==============================================================================================================//
+        //============================================================================================================//
 
         Route::get('/', function () {
             return view('admin.dashboard');
