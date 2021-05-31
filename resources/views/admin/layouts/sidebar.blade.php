@@ -121,6 +121,14 @@
                                 </a>
                             </li>
 
+                            <!-- Cities Dashboard -->
+                            <li class="nav-item">
+                                <a href="{{ aurl('cities') }}" class="nav-link">
+                                    <i class="far fa-flag nav-icon text-green"></i>
+                                    <p>{{ trans('admin.cities') }}</p>
+                                </a>
+                            </li>
+
                             <!-- Doctors Dashboard -->
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">

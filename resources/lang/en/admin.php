@@ -83,4 +83,7 @@ return [
     'Home'							=> 'Home',
     'countries'                     => 'Countries',
     'code'                          => 'Code',
+    'cities'                        => 'Cities',
+    'country'                       => 'Country',
+    'city_code'                     => 'Code',
 ];
