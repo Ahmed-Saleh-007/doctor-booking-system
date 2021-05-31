@@ -73,10 +73,9 @@
     $(document).ready(function(){  
         $(document).on('submit', '#update_form', function(event){
             event.preventDefault();
-            console.log(new FormData(this)); 
             $.ajax({
                 url: '{{aurl("")}}/sub-specialists/' + $('#ajax_edit_content #id').val() + '/update',
-                method:"post",
+                method:"POST",
                 data: new FormData(this),
                 contentType: false,
                 cache:false,
@@ -160,5 +159,4 @@
         $('#ajax_create_content #name_ar').val('');
         $('#ajax_create_content #ajax_create_errors').html('');   
     }
-
 </script>

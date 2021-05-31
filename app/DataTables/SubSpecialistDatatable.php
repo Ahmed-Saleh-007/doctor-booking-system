@@ -87,8 +87,7 @@ class SubSpecialistDatatable extends DataTable
      */
     protected function getColumns()
     {
-        if (lang() == 'ar') {
-            return [
+        return [
             [
                 'name'          => 'checkbox',
                 'data'          => 'checkbox',
@@ -111,7 +110,7 @@ class SubSpecialistDatatable extends DataTable
                 'title' => 'En-Name',
             ], [
                 'name'  => 'spec_id',
-                'data'  => 'specialist.ar_name',
+                'data'  => 'specialist.' . session('lang') . '_' . 'name',
                 'title' => 'Main Specialist'
             ], [
                 'name'  => 'created_at',
@@ -132,52 +131,6 @@ class SubSpecialistDatatable extends DataTable
             ],
 
         ];
-        } else{
-            return [
-                [
-                    'name'          => 'checkbox',
-                    'data'          => 'checkbox',
-                    'title'         => '<input type="checkbox" class="check_all" onclick="check_all()" style="width:20px"/>',
-                    'exportable'    => false,
-                    'printable'     => false,
-                    'orderable'     => false,
-                    'searchable'    => false,
-                ], [
-                    'name'  => 'id',
-                    'data'  => 'id',
-                    'title' => trans('admin.admin_id'),
-                ], [
-                    'name'  => 'ar_name',
-                    'data'  => 'ar_name',
-                    'title' => 'Ar-Name',
-                ], [
-                    'name'  => 'en_name',
-                    'data'  => 'en_name',
-                    'title' => 'En-Name',
-                ], [
-                    'name'  => 'spec_id',
-                    'data'  => 'specialist.en_name',
-                    'title' => 'Main Specialist'
-                ], [
-                    'name'  => 'created_at',
-                    'data'  => 'created_at',
-                    'title' => trans('admin.created_at'),
-                ], [
-                    'name'  => 'updated_at',
-                    'data'  => 'updated_at',
-                    'title' => trans('admin.updated_at'),
-                ], [
-                    'name'       => 'actions',
-                    'data'       => 'actions',
-                    'title'      => trans('admin.actions'),
-                    'exportable' => false,
-                    'printable'  => false,
-                    'orderable'  => false,
-                    'searchable' => false,
-                ],
-
-            ];
-        }
     }
 
     /**

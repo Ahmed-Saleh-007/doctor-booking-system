@@ -1,15 +1,15 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 use App\Models\SubSpecialist;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\DataTables\SubSpecialistDatatable;
+use App\Http\Requests\Admin\StoreSubSpecialistRequest;
+use App\Http\Requests\Admin\UpdateSubSpecialistRequest;
 
 class SubSpecialistController extends Controller
 {
     //Retrieve All SubSpecialists
     public function index(SubSpecialistDatatable $sub_specialist) {
-
         return $sub_specialist->render('admin.sub_specialists.index', ['title' => 'SubSpecialist Control']);
     }
 
@@ -20,47 +20,31 @@ class SubSpecialistController extends Controller
         return response()->json(['success' => trans('admin.record_added')]);
     }
 
-    //Show a Certain SubSpecialist
-    public function show(SubSpecialist $sub_specialist)
-    {
+    //Show a Specified SubSpecialist
+    public function show(SubSpecialist $sub_specialist) {
         return view('admin.sub_specialists.ajax.show', ['sub_specialist' => $sub_specialist]);
     }
 
-     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SubSpecialist $sub_specialist)
-    {
+    //Edit Form for a Specified Specialist
+    public function edit(SubSpecialist $sub_specialist) {
         return view('admin.sub_specialists.ajax.edit', compact('sub_specialist'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateSubSpecialistRequest $request, Subspecialist $sub_specialist)
-    {
+    //Update a Specified SubSpecialist
+    public function update(UpdateSubSpecialistRequest $request, SubSpecialist $sub_specialist) {
         $data = $request->all();
         $sub_specialist->update($data);
         return response()->json(['success' => trans('admin.updated_record')]);
     }
 
-    //Delete Certain SubSpecialist
-    public function destroy(SubSpecialist $sub_specialist)
-    {
+    //Delete Specified SubSpecialist
+    public function destroy(SubSpecialist $sub_specialist) {
         $sub_specialist->delete();
         return response()->json(['success' => trans('admin.deleted_record')]);
     }
 
     //Delete All SubSpecialists
-    public function destroyAll()
-    {
+    public function destroyAll() {
         foreach (request('item') as $id) {
             $sub_specialist = SubSpecialist::find($id);
         }

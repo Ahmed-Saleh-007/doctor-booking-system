@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\SubSpecialist;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDepartmentRequest extends FormRequest
+class UpdateSubSpecialistRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class StoreDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'en-name'  => 'required',
-            'ar-name'  => 'required',
+            'en_name'  => 'required',
+            'ar_name'  => 'required',
             'spec_id'  => 'required',
         ];
     }

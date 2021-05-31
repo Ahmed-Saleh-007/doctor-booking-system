@@ -10,9 +10,9 @@ class SubSpecialist extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ar-name',
-        'en-name',
-        'dept_id',
+        'ar_name',
+        'en_name',
+        'spec_id',
     ];
 
     //Relationship of SubSpecialists with SubSpecialist

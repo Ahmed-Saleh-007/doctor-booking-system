@@ -1,17 +1,15 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 use App\Models\Specialist;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\DataTables\SpecialistDatatable;
-use App\Http\Requests\StoreSpecialistRequest;
-use App\Http\Requests\UpdateSpecialistRequest;
+use App\Http\Requests\Admin\StoreSpecialistRequest;
+use App\Http\Requests\Admin\UpdateSpecialistRequest;
 
 class SpecialistController extends Controller
 {
     //Retrieve All Departments
     public function index(SpecialistDatatable $specialist) {
-
         return $specialist->render('admin.specialists.index', ['title' => 'Specialist Control']);
     }
 
@@ -24,44 +22,29 @@ class SpecialistController extends Controller
 
     //Show Certain Specialist
     public function show(Specialist $specialist) {
-        return view('admin.specialists.ajax.show', ['specialist' => $specialist]);
+        return view('admin.specialists.ajax.show', compact('specialist'));
     }
 
-     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Specialist $specialist)
-    {
+    //Edit Form for Specified Specialist
+    public function edit(Specialist $specialist) {
         return view('admin.specialists.ajax.edit', compact('specialist'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateSpecialistRequest $request, Specialist $specialist)
-    {
+    //Update Specified Specialist
+    public function update(UpdateSpecialistRequest $request, Specialist $specialist) {
         $data = $request->all();
         $specialist->update($data);
         return response()->json(['success' => trans('admin.updated_record')]);
     }
 
-    //Delete Certain Specialist
-    public function destroy(Specialist $specialist)
-    {
+    //Delete Specified Specialist
+    public function destroy(Specialist $specialist) {
         $specialist->delete();
         return response()->json(['success' => trans('admin.deleted_record')]);
     }
 
     //Delete All Specialists
-    public function destroyAll()
-    {
+    public function destroyAll() {
         foreach (request('item') as $id) {
             $specialist = Specialist::find($id);
         }

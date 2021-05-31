@@ -10,7 +10,7 @@
         $('#store_form').on('submit', function(event){
             event.preventDefault();  
             $.ajax({
-                url: '{{route('specialists.store')}}',
+                url: "{{route('specialists.store')}}",
                 method:"POST",
                 data: new FormData(this),
                 contentType: false,
@@ -77,7 +77,7 @@
             console.log(new FormData(this)); 
             $.ajax({
                 url: '{{aurl("")}}/specialists/' + $('#ajax_edit_content #id').val() + '/update',
-                method:"put",
+                method:"POST",
                 data: new FormData(this),
                 contentType: false,
                 cache:false,

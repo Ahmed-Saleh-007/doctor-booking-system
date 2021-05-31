@@ -26,23 +26,22 @@
 
             <div id="ajax_create_errors"></div>
 
-            {!! Form::open(['id' => 'store_form', 'files' => true]) !!}
+            {!! Form::open(['id' => 'store_form']) !!}
                 <div class="form-group">
                     {!! Form::label('name_en', trans('admin.name_en')) !!}
-                    {!! Form::text('name_en', old('name_en'), ['class' => 'form-control']) !!}
+                    {!! Form::text('en_name', old('en_name'), ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('name_ar', trans('admin.name_ar')) !!}
-                    {!! Form::text('name_ar', old('name_ar'), ['class' => 'form-control']) !!}
+                    {!! Form::text('ar_name', old('ar_name'), ['class' => 'form-control']) !!}
                 </div>
             @if (lang() == 'ar')
                 <div class="form-group">
-                    {!! Form::select('specialist', App\Models\Specialist::pluck('ar_name'), null, ['placeholder' => 'اختار التخصص...']) !!}
+                    {!! Form::select('spec_id', App\Models\Specialist::pluck('ar_name', 'id'), ['placeholder' => 'اختار التخصص...']) !!}
                 </div>                
             @else
-                    {!! Form::select('specialist', App\Models\Specialist::pluck('en_name'), null, ['placeholder' => 'Pick a Specialis...']) !!}
+                    {!! Form::select('spec_id', App\Models\Specialist::pluck('en_name', 'id'), ['placeholder' => 'Pick a Specialis...']) !!}
             @endif
-            
             {!! Form::submit(trans('admin.add'), ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
         </div>

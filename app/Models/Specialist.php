@@ -10,8 +10,8 @@ class Specialist extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ar-name',
-        'en-name'
+        'ar_name',
+        'en_name',
     ];
 
     //Relationship of Specialist with SubSpecialists

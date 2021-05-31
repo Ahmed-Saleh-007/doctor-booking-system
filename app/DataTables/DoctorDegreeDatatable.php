@@ -46,8 +46,6 @@ class DoctorDegreeDatatable extends DataTable
         return $this->builder()
         ->columns($this->getColumns())
         ->minifiedAjax()
-        //->addAction(['width' => '80px'])
-        //->parameters($this->getBuilderParameters());
         ->parameters([
             'dom'        => 'Blfrtip',
             'lengthMenu' => [[10, 25, 50, 100], [10, 25, 50, 100]],
