@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
-use DB;
-use File;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 
 class SubSpecialistSeeder extends Seeder
