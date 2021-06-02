@@ -2,16 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AdminAuth;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\SpecialistController;
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\DoctorDegreeController;
 use App\Http\Controllers\Admin\SubSpecialistController;
 
 Route::prefix('admin')->group(function () {
-    
+
     Config::set('auth.defines', 'admin');
 
     //Auth Routes
@@ -30,30 +33,47 @@ Route::prefix('admin')->group(function () {
         Route::post('/admins/{admin}/update', [AdminController::class, 'update'])->name('admins.update');
         Route::delete('/admins/destroy/all', [AdminController::class, 'destroyAll'])->name('admins.destroyAll');
         //=====================================================================================================//
-        
+
         //===========================================Specialists Crud Routes==================================================//
         Route::resource('/specialists', SpecialistController::class)->except(['create', 'update']);
         Route::post('/specialists/{specialist}/update', [SpecialistController::class, 'update'])->name('specialists.update');
         Route::delete('/specialists/destroy/all', [SpecialistController::class, 'destroyAll'])->name('specialists.destroyAll');
         //====================================================================================================================//
-        
+
         //============================================SubSpecialists Crud Routes========================================================//
         Route::resource('/sub-specialists', SubSpecialistController::class)->except(['create', 'update']);
         Route::post('/sub-specialists/{sub_specialist}/update', [SubSpecialistController::class, 'update'])->name('subspecialists.update');
         Route::delete('/sub-specialists/destroy/all', [SubSpecialistController::class, 'destroyAll'])->name('subspecialists.destroyAll');
         //==============================================================================================================================//
-        
+
         //================================================doctor-degree crud routes=================================================//
         Route::resource('/doctor-degree', DoctorDegreeController::class)->except(['create', 'update']);
         Route::post('/doctor-degree/{id}/update', [DoctorDegreeController::class, 'update'])->name('doctor-degree.update');
         Route::delete('/doctor-degree/destroy/all', [DoctorDegreeController::class, 'destroyAll'])->name('doctor-degree.destroyAll');
         //==========================================================================================================================//
-        
+
         //================================================Countries Routes================================================//
         Route::resource('/countries', CountryController::class)->except(['create', 'update']);
         Route::post('/countries/{country}/update', [CountryController::class, 'update'])->name('countries.update');
         Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
-        //============================================================================================================//
+        //================================================================================================================//
+
+        //====================================================Cities Routes===============================================//
+        Route::resource('/cities', CityController::class)->except(['create', 'update']);
+        Route::post('/cities/{city}/update', [CityController::class, 'update'])->name('cities.update');
+        Route::delete('/cities/destroy/all', [CityController::class, 'destroyAll'])->name('cities.destroyAll');
+        //================================================================================================================//
+
+        //=================================================Districts Routes===============================================//
+        Route::resource('/districts', DistrictController::class)->except(['create', 'update']);
+        Route::post('/districts/{district}/update', [DistrictController::class, 'update'])->name('districts.update');
+        Route::delete('/districts/destroy/all', [DistrictController::class, 'destroyAll'])->name('districts.destroyAll');
+        //================================================================================================================//
+
+        //=================================================Settings Routes===============================================//
+        Route::get('settings', [SettingController::class, 'setting']);
+        Route::post('settings', [SettingController::class, 'settingSave']);
+        //================================================================================================================//
 
         //================================================Patients crud routes=================================================//
         Route::resource('patients', PatientController::class)->except(['create', 'update']);

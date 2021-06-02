@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Models\Country;
+use App\Models\City;
 use Yajra\DataTables\Services\DataTable;
 
-class CountryDatatable extends DataTable
+class CityDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -32,12 +32,12 @@ class CountryDatatable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Country $model
+     * @param \App\Models\City $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query()
     {
-        return Country::query();
+        return City::query();
     }
 
     /**
@@ -109,6 +109,11 @@ class CountryDatatable extends DataTable
 				'data'  => 'code',
 				'title' => trans('admin.code'),
 			], [
+				'name'  => 'country_id',
+				'data'  => 'country_id',
+				'title' => trans('admin.country'),
+			]
+            , [
 				'name'  => 'created_at',
 				'data'  => 'created_at',
 				'title' => trans('admin.created_at'),
@@ -136,6 +141,6 @@ class CountryDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Country_' . date('YmdHis');
+        return 'City_' . date('YmdHis');
     }
 }
