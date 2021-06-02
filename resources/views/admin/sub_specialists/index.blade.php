@@ -37,11 +37,11 @@
                 </div>
             @if (lang() == 'ar')
                 <div class="form-group">
-                    {!! Form::select('spec_id', App\Models\Specialist::pluck('ar_name', 'id'), ['placeholder' => 'اختار التخصص...', 'class' => 'form-control']) !!}
+                    {!! Form::select('spec_id', App\Models\Specialist::pluck('ar_name', 'id'), old('ar_name'), ['placeholder' => 'اختار التخصص...', 'class' => 'form-control']) !!}
                 </div>
             @else
                 <div class="form-group">
-                    {!! Form::select('spec_id', App\Models\Specialist::pluck('en_name', 'id'), [ 'class' => 'form-control', 'placeholder' => 'Pick a Specialis...']) !!}
+                    {!! Form::select('spec_id', App\Models\Specialist::pluck('en_name', 'id'), old('en_name'),  [ 'class' => 'form-control', 'placeholder' => 'Pick a Specialis...']) !!}
                 </div>
             @endif
             {!! Form::submit(trans('admin.add'), ['class' => 'btn btn-primary']) !!}
