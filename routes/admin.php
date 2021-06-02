@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\Admin\AdminAuth;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\SpecialistController;
-use App\Http\Controllers\Admin\SubSpecialistController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\PatientController;
+use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\Admin\DoctorDegreeController;
+use App\Http\Controllers\Admin\SubSpecialistController;
 
 Route::prefix('admin')->group(function () {
     
@@ -53,6 +54,12 @@ Route::prefix('admin')->group(function () {
         Route::post('/countries/{country}/update', [CountryController::class, 'update'])->name('countries.update');
         Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
         //============================================================================================================//
+
+        //================================================Patients crud routes=================================================//
+        Route::resource('patients', PatientController::class)->except(['create', 'update']);
+        Route::post('/patients/{patient}/update', [PatientController::class, 'update'])->name('patients.update');
+        Route::delete('/patients/destroy/all', [PatientController::class, 'destroyAll'])->name('patients.destroyAll');
+        //==========================================================================================================================//
 
         Route::get('/', function () {
             return view('admin.dashboard');
