@@ -13,8 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['maintenance'])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
+
+Route::get('maintenance', function () {
+    
+    if (setting()->status == 'open') {
+        return redirect('/');
+    } else {
+        return view('maintenance');
+    }
 });
 
 Route::get('lang/{lang}', function ($lang) {

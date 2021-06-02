@@ -75,7 +75,7 @@ return [
     'keywords'                     	=> 'الكلمات الدليلية',
     'status'                       	=> 'الحالة',
     'open'                         	=> 'مفتوح',
-    'message_maintenance'          	=> 'رسالة الصيانة',
+    'maintenance_message'          	=> 'رسالة الصيانة',
     'name_en'                      	=> 'الاسم بالانجليزية',
     'name_ar'                      	=> 'الاسم بالعربيه',
     'Home'							=> 'الرئيسيه',

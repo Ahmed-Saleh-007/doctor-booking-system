@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AdminAuth;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\SpecialistController;
@@ -66,6 +67,11 @@ Route::prefix('admin')->group(function () {
         Route::resource('/districts', DistrictController::class)->except(['create', 'update']);
         Route::post('/districts/{district}/update', [DistrictController::class, 'update'])->name('districts.update');
         Route::delete('/districts/destroy/all', [DistrictController::class, 'destroyAll'])->name('districts.destroyAll');
+        //================================================================================================================//
+
+        //=================================================Settings Routes===============================================//
+        Route::get('settings', [SettingController::class, 'setting']);
+        Route::post('settings', [SettingController::class, 'settingSave']);
         //================================================================================================================//
 
         Route::get('/', function () {

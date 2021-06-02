@@ -77,7 +77,7 @@ return [
 	'keywords'                     	=> 'Keywords',
 	'status'                       	=> 'Status',
 	'open'                         	=> 'Open',
-	'message_maintenance'          	=> 'Maintenance message',
+	'maintenance_message'          	=> 'Maintenance message',
 	'name_en'                      	=> 'Name (En)',
 	'name_ar'                      	=> 'Name (Ar)',
     'Home'							=> 'Home',
