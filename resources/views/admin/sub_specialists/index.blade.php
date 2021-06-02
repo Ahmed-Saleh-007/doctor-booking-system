@@ -37,10 +37,12 @@
                 </div>
             @if (lang() == 'ar')
                 <div class="form-group">
-                    {!! Form::select('spec_id', App\Models\Specialist::pluck('ar_name', 'id'), ['placeholder' => 'اختار التخصص...']) !!}
-                </div>                
+                    {!! Form::select('spec_id', App\Models\Specialist::pluck('ar_name', 'id'), ['placeholder' => 'اختار التخصص...', 'class' => 'form-control']) !!}
+                </div>
             @else
-                    {!! Form::select('spec_id', App\Models\Specialist::pluck('en_name', 'id'), ['placeholder' => 'Pick a Specialis...']) !!}
+                <div class="form-group">
+                    {!! Form::select('spec_id', App\Models\Specialist::pluck('en_name', 'id'), [ 'class' => 'form-control', 'placeholder' => 'Pick a Specialis...']) !!}
+                </div>
             @endif
             {!! Form::submit(trans('admin.add'), ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
@@ -62,7 +64,7 @@
           <button type="button" class="close" data-dismiss="modal">×</button>
         </div>
         <div class="modal-body" id="ajax_view_content">
-          
+
         </div>
       </div>
     </div>
@@ -81,7 +83,7 @@
           <button type="button" class="close" data-dismiss="modal">×</button>
         </div>
         <div class="modal-body" id="ajax_edit_content">
-          
+
         </div>
       </div>
     </div>

@@ -17,14 +17,14 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('name_ar', trans('admin.name_ar')) !!}
+        {!! Form::label('country_id', trans('admin.country')) !!}
         @if (lang() == 'ar')
             <div class="form-group">
-                {!! Form::select('country_id', App\Models\Country::pluck('name_ar', 'id'), $city->country_id, ['placeholder' => 'الدولة...', 'class' => 'form-control']) !!}
+                {!! Form::select('country_id', App\Models\Country::pluck('name_ar', 'id'), $city->country_id, ['placeholder' => trans('admin.country') . '...', 'class' => 'form-control']) !!}
             </div>
         @else
             <div class="form-group">
-                {!! Form::select('country_id', App\Models\Country::pluck('name_en', 'id'), $city->country_id, ['placeholder' => 'Choose Country...', 'class' => 'form-control']) !!}
+                {!! Form::select('country_id', App\Models\Country::pluck('name_en', 'id'), $city->country_id, ['placeholder' => trans('admin.country') . '...', 'class' => 'form-control']) !!}
             </div>
         @endif
     </div>

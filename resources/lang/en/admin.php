@@ -86,4 +86,6 @@ return [
     'cities'                        => 'Cities',
     'country'                       => 'Country',
     'city_code'                     => 'Code',
+    'city'                          => 'City',
+    'districts'                     => 'Districts',
 ];

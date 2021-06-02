@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\Admin\AdminAuth;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\Admin\SubSpecialistController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\DoctorDegreeController;
 
 Route::prefix('admin')->group(function () {
@@ -54,10 +55,17 @@ Route::prefix('admin')->group(function () {
         Route::post('/countries/{country}/update', [CountryController::class, 'update'])->name('countries.update');
         Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
         //================================================================================================================//
-        //====================================================Cities Routes================================================//
+
+        //====================================================Cities Routes===============================================//
         Route::resource('/cities', CityController::class)->except(['create', 'update']);
         Route::post('/cities/{city}/update', [CityController::class, 'update'])->name('cities.update');
         Route::delete('/cities/destroy/all', [CityController::class, 'destroyAll'])->name('cities.destroyAll');
+        //================================================================================================================//
+
+        //=================================================Districts Routes===============================================//
+        Route::resource('/districts', DistrictController::class)->except(['create', 'update']);
+        Route::post('/districts/{district}/update', [DistrictController::class, 'update'])->name('districts.update');
+        Route::delete('/districts/destroy/all', [DistrictController::class, 'destroyAll'])->name('districts.destroyAll');
         //================================================================================================================//
 
         Route::get('/', function () {

@@ -119,19 +119,14 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('city_code', trans('admin.code')) !!}
-                    {!! Form::text('code', old('code'), ['class' => 'form-control']) !!}
-                </div>
-
-                <div class="form-group">
-                    {!! Form::label('country_id', trans('admin.country')) !!}
+                    {!! Form::label('city_id', trans('admin.city')) !!}
                     @if (lang() == 'ar')
                         <div class="form-group">
-                            {!! Form::select('country_id', App\Models\Country::pluck('name_ar', 'id'), old('name_ar'), ['placeholder' => trans('admin.country') . '...', 'class' => 'form-control']) !!}
+                            {!! Form::select('city_id', App\Models\City::pluck('name_ar', 'id'), old('name_ar'), ['placeholder' => trans('admin.city') . '...', 'class' => 'form-control']) !!}
                         </div>
                     @else
                         <div class="form-group">
-                            {!! Form::select('country_id', App\Models\Country::pluck('name_en', 'id'), old('name_en'), ['placeholder' => trans('admin.country') .'...', 'class' => 'form-control']) !!}
+                            {!! Form::select('city_id', App\Models\City::pluck('name_en', 'id'), old('name_en'), ['placeholder' => trans('admin.city') .'...', 'class' => 'form-control']) !!}
                         </div>
                     @endif
                 </div>
@@ -148,7 +143,7 @@
 
 {!! $dataTable->scripts() !!}
 
-@include('admin.cities.ajax.script')
+@include('admin.districts.ajax.script')
 
 @endpush
 

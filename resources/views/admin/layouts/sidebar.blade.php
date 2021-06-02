@@ -113,21 +113,46 @@
                                 </ul>
                             </li>
 
-                            <!-- Countries Dashboard -->
-                            <li class="nav-item">
-                                <a href="{{ aurl('countries') }}" class="nav-link">
-                                    <i class="far fa-flag nav-icon"></i>
-                                    <p>{{ trans('admin.countries') }}</p>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-flag"></i>
+                                    <p>
+                                        {{ trans('admin.countries') . '/' . trans('admin.cities') }}
+                                        @if (direction() == 'rtl')
+                                        <i class="right fas fa-angle-right"></i>
+                                        @else
+                                        <i class="right fas fa-angle-left"></i>
+                                        @endif
+                                    </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <!-- Countries Dashboard -->
+                                    <li class="nav-item">
+                                        <a href="{{ aurl('countries') }}" class="nav-link">
+                                            <i class="far fa-flag nav-icon"></i>
+                                            <p>{{ trans('admin.countries') }}</p>
+                                        </a>
+                                    </li>
+
+                                    <!-- Cities Dashboard -->
+                                    <li class="nav-item">
+                                        <a href="{{ aurl('cities') }}" class="nav-link">
+                                            <i class="far fa-flag nav-icon text-green"></i>
+                                            <p>{{ trans('admin.cities') }}</p>
+                                        </a>
+                                    </li>
+
+                                    <!-- Districts Dashboard -->
+                                    <li class="nav-item">
+                                        <a href="{{ aurl('districts') }}" class="nav-link">
+                                            <i class="far fa-flag nav-icon text-orange"></i>
+                                            <p>{{ trans('admin.districts') }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
 
-                            <!-- Cities Dashboard -->
-                            <li class="nav-item">
-                                <a href="{{ aurl('cities') }}" class="nav-link">
-                                    <i class="far fa-flag nav-icon text-green"></i>
-                                    <p>{{ trans('admin.cities') }}</p>
-                                </a>
-                            </li>
+
 
                             <!-- Doctors Dashboard -->
                             <li class="nav-item has-treeview">
@@ -151,6 +176,8 @@
                                     </li>
                                 </ul>
                             </li>
+
+
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->

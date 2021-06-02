@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Models\City;
+use App\Models\District;
 use Yajra\DataTables\Services\DataTable;
 
-class CityDatatable extends DataTable
+class DistrictDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,8 +16,8 @@ class CityDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('checkbox', 'admin.countries.btn.checkbox')
-            ->addColumn('actions', 'admin.countries.btn.actions')
+            ->addColumn('checkbox', 'admin.districts.btn.checkbox')
+            ->addColumn('actions', 'admin.districts.btn.actions')
             ->rawColumns([
                 'checkbox',
                 'actions',
@@ -32,12 +32,12 @@ class CityDatatable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\City $model
+     * @param \App\Models\District $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query()
     {
-        return City::query();
+        return District::query();
     }
 
     /**
@@ -105,13 +105,9 @@ class CityDatatable extends DataTable
 				'data'  => 'name_' . session('lang'),
 				'title' => trans('admin.name'),
 			], [
-				'name'  => 'code',
-				'data'  => 'code',
-				'title' => trans('admin.code'),
-			], [
-				'name'  => 'country_id',
-				'data'  => 'country_id',
-				'title' => trans('admin.country'),
+				'name'  => 'city_id',
+				'data'  => 'city_id',
+				'title' => trans('admin.city'),
 			]
             , [
 				'name'  => 'created_at',
@@ -141,6 +137,6 @@ class CityDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'City_' . date('YmdHis');
+        return 'District_' . date('YmdHis');
     }
 }

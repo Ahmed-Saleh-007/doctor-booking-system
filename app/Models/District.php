@@ -5,19 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class District extends Model
 {
     use HasFactory;
-
-    protected $table = 'countries';
 
     protected $fillable = [
         'name_en',
         'name_ar',
-        'code'
+        'city_id',
     ];
 
-    public function cities(){
-        return $this->hanMany(City::class);
+    public function city(){
+        return $this->belongsTo(City::class);
     }
 }
