@@ -14,6 +14,11 @@ class Specialist extends Model
         'en_name',
     ];
 
+    //Relationship of Specialist with Doctors
+    public function doctor() {
+        return $this->hasMany(Doctor::class);
+    }
+
     //Relationship of Specialist with SubSpecialists
     public function sub_specialists()
     {

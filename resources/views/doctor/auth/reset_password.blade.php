@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{ trans('admin.login')}}</title>
+            <title>{{ trans('admin.login')}}</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Font Awesome -->
@@ -18,30 +18,55 @@
         <link rel="stylesheet" href="{{ url('') }}/design/adminlte/dist/css/custom_admin_form.css">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+        
+        
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href=""><b>Admin</b>LTE</a>
+                <a href="{{route('admin.dashboard')}}"><b>Admin</b>LTE</a>
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
-                <p class="login-box-msg">{{ trans('admin.forgot_password')}}</p>
-                @if(session()->has('success'))
-                <h4 class="alert alert-success">{{ session('success') }}</h4>
+                <p class="login-box-msg">{{ trans('admin.forgot_password') }}</p>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="list-unstyled">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
                 <form method="post">
                     {!! csrf_field() !!}
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control" id="email" autocomplete="off">
-                        <label for="email">Email</label>
+                        <input type="email" name="email" value="{{ $data->email }}" class="form-control" placeholder="Email" disabled>
                         <div class="input-group-append">
                           <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                           </div>
                         </div>
                     </div>
-                      
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" class="form-control" id="password">
+                        <label for="password">Password</label>
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" name="password_confirmation" class="form-control" id="Confirmation_Password">
+                        <label for="Confirmation_Password">Confirm Password</label>
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                          </div>
+                        </div>
+                    </div>  
                     <div class="row">
                         <div class="col-sm-12">
                             <button type="submit" class="btn btn-primary btn-block btn-flat">Reset</button>

@@ -143,6 +143,18 @@
                                     </li>
                                 </ul>
                             </li>
+
+
+                            <!-- Feedback Dashboard -->
+                            <li class="nav-item has-treeview">
+                                <a href="{{aurl('doctors-feedback')}}" class="nav-link">
+                                    <i class="fas fa-comments"></i>
+                                    <p>
+                                        Feedback
+                                    </p>
+                                </a>
+                            </li>
+
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->

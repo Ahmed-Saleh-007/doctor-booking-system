@@ -1,53 +1,59 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Doctor;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Mail\AdminResetPassword;
-use App\Models\Admin;
+use Illuminate\Http\Request;
+use App\Mail\DoctorResetPassword;
+use App\Models\Doctor;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Mail;
 
-class AdminAuth extends Controller
+class DoctorAuth extends Controller
 {
-    //login admin page function
-    public function login()
+    //Register Doctor Page Function
+    public function signup()
     {
-        return view('admin.auth.login');
+        return view('doctor.auth.signup');
     }
 
-    //check admin login function
+    ///Login Doctor page function
+    public function login()
+    {
+        return view('doctor.auth.login');
+    }
+
+    //Check Doctor Login function
     public function loginCheck()
     {
         $rememberme = request('rememberme') == 1 ? true : false;
-        if (admin()->attempt(['email' => request('email'), 'password' => request('password')], $rememberme)) {
-            return redirect(aurl());
+        if (doctor()->attempt(['email' => request('email'), 'password' => request('password')], $rememberme)) {
+            return view('doctor.dashboard');
         } else {
             session()->flash('error', trans('admin.incorrect_information_login'));
-            return redirect(aurl('login'));
+            return redirect(durl('login'));
         }
     }
 
-    //logout function
+    //Doctor Logout Function
     public function logout()
     {
         admin()->logout();
-        return redirect(aurl('login'));
+        return redirect(durl('login'));
     }
 
-    //forget password page
+    //Forget Password Page
     public function forgotPassword()
     {
-        return view('admin.auth.forgot_password');
+        return view('doctor.auth.forgot_password');
     }
 
     //forget password message send
     public function forgotPasswordMessage()
     {
-		$admin = Admin::where('email', request('email'))->first();
-		if (!empty($admin)) {
+		$doctor = Doctor::where('email', request('email'))->first();
+		if (!empty($doctor)) {
 			$token = app('auth.password.broker')->createToken($admin);
 			$data  = DB::table('password_resets')->insert([
 					'email'      => $admin->email,
@@ -56,12 +62,12 @@ class AdminAuth extends Controller
 				]);
 			//Mail::to($admin->email)->send(new AdminResetPassword(['data' => $admin, 'token' => $token]));
 			//session()->flash('success', trans('admin.the_link_reset_sent'));
-            return new AdminResetPassword(['data' => $admin, 'token' => $token]);
+            return new DoctorResetPassword(['data' => $doctor, 'token' => $token]);
 		}
 		return back();
     }
 
-    //reset password page
+    //Reset Password Page
     public function resetPassword($token)
     {
         $check_token = DB::table('password_resets')->where('token', $token)->where('created_at', '>', Carbon::now()->subHours(2))->first();
@@ -72,7 +78,7 @@ class AdminAuth extends Controller
 		}    
     }
 
-    //reset password opearation and update data
+    //Reset Password Opearation and Update Data
     public function resetPasswordUpdateData($token)
     {
         request()->validate([
@@ -92,9 +98,9 @@ class AdminAuth extends Controller
             DB::table('password_resets')->where('email', $check_token->email)->delete();
             //admin()->attempt(['email' => $check_token->email, 'password' => request('password')], true);
 			session()->flash('success', 'passsword is reset you can login now');
-			return redirect(aurl('login'));
+			return redirect(durl('login'));
 		} else {
-			return redirect(aurl('forgot/password'));
+			return redirect(durl('forgot/password'));
         }
     }
 }

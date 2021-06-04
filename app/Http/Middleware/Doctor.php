@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class Admin
+class Doctor
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,13 @@ class Admin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next = null, $guard = null)
+    public function handle(Request $request, Closure $next = null, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return $next($request);
-        } else {
-            return redirect('admin/login');
-        }
+        // if (Auth::guard($guard)->check()) {
+        //     return $next($request);
+        // } else {
+            // return redirect('doctor/');
+        return $next($request);
+        
     }
 }

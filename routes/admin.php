@@ -8,19 +8,20 @@ use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\Admin\SubSpecialistController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DoctorDegreeController;
+use App\Http\Controllers\Doctor\DoctorController;
 
 Route::prefix('admin')->group(function () {
     
     Config::set('auth.defines', 'admin');
 
-    //Auth Routes
+    //======================================Auth Routes=================================//
     Route::get('login', [AdminAuth::class, 'login'])->name('admin.login');
     Route::post('login', [AdminAuth::class, 'loginCheck'])->name('admin.loginCheck');
     Route::get('forgot/password', [AdminAuth::class, 'forgotPassword']);
     Route::post('forgot/password', [AdminAuth::class, 'forgotPasswordMessage']);
     Route::get('reset/password/{token}', [AdminAuth::class, 'resetPassword']);
     Route::post('reset/password/{token}', [AdminAuth::class, 'resetPasswordUpdateData']);
-
+    //==================================================================================//
 
     Route::middleware(['admin:admin'])->group(function () {
 
@@ -54,6 +55,14 @@ Route::prefix('admin')->group(function () {
         Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
         //============================================================================================================//
 
+        //================================================Doctor Routes================================================//
+        Route::resource('/doctors', DoctorController::class)->except(['create', 'update']);
+        Route::post('/doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
+        Route::delete('/doctors/destroy/all', [DoctorController::class, 'destroyAll'])->name('doctors.destroyAll');
+        //=============================================================================================================//
+        
+        //================================================Doctor Feedback==============================================//
+        //=============================================================================================================//
         Route::get('/', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
