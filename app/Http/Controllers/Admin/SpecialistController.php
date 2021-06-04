@@ -48,7 +48,7 @@ class SpecialistController extends Controller
         foreach (request('item') as $id) {
             $specialist = Specialist::find($id);
         }
-        Admin::destroy(request('item'));
+        Specialist::destroy(request('item'));
 		return response()->json(['success' => trans('admin.deleted_record')]);
     }
 }

@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        $this->call(AdminSeeder::class);
         $this->call(SpecialistSeeder::class);
         $this->call(SubSpecialistSeeder::class);
         if (DoctorDegree::count() == 0) {

@@ -16,4 +16,8 @@ class Country extends Model
         'name_ar',
         'code'
     ];
+
+    public function cities(){
+        return $this->hanMany(City::class);
+    }
 }
