@@ -9,6 +9,9 @@ return [
     'name_en'                      	=> 'Doctor Name (En)',
     'name_ar'                      	=> 'Doctor Name (Ar)',
     'fees'          => 'Fees',
-    'doctor-addresses'   => 'Doctors Addresses'
+    'doctor-addresses'   => 'Doctors Addresses',
+    'specialties'       => 'Specialties',
+    'sub-specialties'       => 'Sub Specialties',
+
 
 ];

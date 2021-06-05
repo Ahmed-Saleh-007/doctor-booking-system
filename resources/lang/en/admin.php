@@ -92,6 +92,7 @@ return [
     'doctor_id'                     => 'Doctor ID',
     'address_en'                    => 'Address (En)',
     'address_ar'                    => 'Address (Ar)',
-    'district'                      => 'District'
+    'district'                      => 'District',
+    'feedback'                      => 'Feedback'
 
 ];
