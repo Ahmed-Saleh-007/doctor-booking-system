@@ -9,7 +9,7 @@
       <div class="avatar-upload">
         <div class="avatar-preview">
             @if(!empty($doctor->image))
-            <div style="background-image: url({{ url('storage/' . $admin->image) }});"></div>
+            <div style="background-image: url({{ url('storage/' . $doctor->image) }});"></div>
             @else
             <div style="background-image: url({{ url('/design/adminlte/dist/img/avatar5.png')}});"></div>
             @endif

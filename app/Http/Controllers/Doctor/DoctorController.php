@@ -1,96 +1,65 @@
 <?php
 
 namespace App\Http\Controllers\Doctor;
-
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use App\DataTables\DoctorDatatable;
-// use App\Http\Requests\Doctor\StoreDoctorRequest;
-// use App\Http\Requests\Doctor\UpdateDoctorRequest;
+use App\Http\Requests\Doctor\StoreDoctorRequest;
+use App\Http\Requests\Doctor\UpdateDoctorRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class DoctorController extends Controller
 {
-      /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(DoctorDatatable $admin)
+    //Show All Doctors Info
+    public function index(DoctorDatatable $doctor)
     {
         return $doctor->render('admin.doctor.doctors.index', ['title' => 'Doctors Control']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //Store A New Doctor Info
     public function store(StoreDoctorRequest $request)
     {
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-        $data['image'] = $request->hasFile('image') ? savePhoto('images/admins/', $request->image) : null;
+        $data['image'] = $request->hasFile('image') ? savePhoto('images/doctors/', $request->image) : null;
         Doctor::create($data);
         return response()->json(['success' => trans('admin.record_added')]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //Show A Specified Doctor Info
     public function show(Doctor $doctor)
     {
-        return view('admin.doctor.doctors.ajax.show', compact('admin'));
+        return view('admin.doctor.doctors.ajax.show', ['doctor' => $doctor,]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //Show A Specified Doctor
     public function edit(Doctor $doctor)
     {
-        return view('admin.doctor.doctors.ajax.edit', compact('admin'));
+        return view('admin.doctor.doctors.ajax.edit', compact('doctor'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateDoctorRequest $request, Admin $admin)
+    //Update A Specified Doctor
+    public function update(UpdateDoctorRequest $request, Doctor $doctor)
     {
-
         $data = $request->all();
         if ($request->filled('password')) {
             $data['password'] = Hash::make($data['password']);
         }else {
-            $data['password'] = $admin->password;
+            $data['password'] = $doctor->password;
         }
         if ($request->hasFile('image')) {
-            if (!empty($admin->image)) {
-                Storage::delete($admin->image);
+            if (!empty($doctor->image)) {
+                Storage::delete($doctor->image);
             }
-            $data['image'] = savePhoto('images/admins/', $request->image);
+            $data['image'] = savePhoto('images/doctors/', $request->image);
         }
-        $admin->update($data);
+        $doctor->update($data);
         return response()->json(['success' => trans('admin.updated_record')]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //Remove A Specified Doctor
     public function destroy(Doctor $doctor)
     {
         !empty($doctor->image) ? Storage::delete($doctor->image) : '';
@@ -98,6 +67,7 @@ class DoctorController extends Controller
         return response()->json(['success' => trans('admin.deleted_record')]);
     }
 
+    //Destroy All Doctors
     public function destroyAll()
     {
         foreach (request('item') as $id) {

@@ -127,30 +127,28 @@
                     <!-- User Account -->
                     <li class="nav-item dropdown user user-menu">
                         <a class="nav-link" data-toggle="dropdown" href="#">
-                            {{-- @if (!empty(admin()->user()->image))
-                            <img src="{{ Storage::url(admin()->user()->image) }}" style="width: 35px; height: 35px;" class="user-image" alt="User Image"/>
+                            @if (!empty(doctor()->user()->image))
+                            <img src="{{url('storage/' . doctor()->user()->image) }}" style="width: 35px; height: 35px;" class="user-image" alt="User Image"/>
                             @else
                             <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="user-image" alt="User Image">
-                            @endif --}}
-                            <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="user-image" alt="User Image">
+                            @endif
                         <span class="hidden-xs"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                             <!-- User image -->
                             <li class="user-header">
-                                {{-- @if (!empty(admin()->user()->image))
-                                <img src="{{ Storage::url(admin()->user()->image) }}" style="" class="img-circle" alt="User Image"/>
+                                @if (!empty(doctor()->user()->image))
+                                <img src="{{ url('storage/' . doctor()->user()->image) }}" style="" class="img-circle" alt="User Image"/>
                                 @else
                                 <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image">
-                                @endif --}}
-                                <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                                @endif
+                                {{-- <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image"> --}}
                                 <p>
                                     @if (lang() == 'en')
                                     {{ doctor()->user()->name_en }}
                                     @else
                                     {{ doctor()->user()->name_ar }}
                                     @endif
-
                                     <small>@lang('admin.Member Since') {{doctor()->user()->created_at->format('d/m/Y')}}</small>
                                 </p>
                             </li>

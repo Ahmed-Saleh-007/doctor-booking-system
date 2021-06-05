@@ -29,27 +29,17 @@
             {!! Form::open(['id' => 'store_form', 'files' => true]) !!}
             <div class="form-group">
                 {!! Form::label('name_en', trans('admin.name_en')) !!}
-                {!! Form::text('name_en', old('name_en'), ['class' => 'form-control']) !!}
+                {!! Form::text('name_en', null, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
                 {!! Form::label('name_ar', trans('admin.name_ar')) !!}
-                {!! Form::text('name_ar', old('name_ar'), ['class' => 'form-control']) !!}
+                {!! Form::text('name_ar', null, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
                 {!! Form::label('email', trans('admin.email')) !!}
-                {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
-            </div>
-            
-            <div class="form-group">
-                {!! Form::label('specialist', trans('admin.password')) !!}
-                {!! Form::select('spec_id', App\Models\Specialist::pluck('ar_name', 'id'), ['placeholder' => 'اختار التخصص الرئيسي...']) !!}
-            </div>
-            
-            <div class="form-group">
-                {!! Form::label('sub-specialist', trans('admin.password')) !!}
-                {!! Form::select('sub-spec_id', App\Models\SubSpecialist::pluck('ar_name', 'id'), ['placeholder' => ' اختار التخصص الفرعي...']) !!}
+                {!! Form::email('email', null, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
@@ -59,7 +49,19 @@
             </div>
 
             <div class="form-group">
+                {!! Form::label('degree', trans('doctor.degree')) !!}
+                {!! Form::select('deg_id', App\Models\DoctorDegree::pluck('name_ar', 'id'), null, ['class' => 'form-control', 'data-strength' => '']) !!}
+            </div>
             
+            <div class="form-group">
+                {!! Form::label('specialist', trans('doctor.specialist')) !!}
+                {!! Form::select('spec_id', App\Models\Specialist::pluck('ar_name', 'id'), null, ['class' => 'form-control', 'data-strength' => '']) !!}
+            </div>
+            
+
+            <div class="form-group">
+                {!! Form::label('country', trans('doctor.country')) !!}
+                {!! Form::select('country_id', App\Models\Country::pluck('name_en', 'id'), null, ['class' => 'form-control', 'data-strength' => '']) !!}
             </div>
 
             <div class="form-group">

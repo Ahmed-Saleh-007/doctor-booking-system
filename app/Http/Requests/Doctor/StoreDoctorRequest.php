@@ -26,10 +26,11 @@ class StoreDoctorRequest extends FormRequest
         return [
             'name_en'  => 'required',
             'name_ar'  => 'required',
-            'email'    => ['required', 'email', 'unique:admins'],
+            'email'    => ['required', 'email', 'unique:doctors'],
             'password' => ['required', 'min:8'],
+            'deg_id'   => 'required',
+            'spec_id'  => 'required',
             'image'    => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
-            'doc_degree' => 'required',
         ];
     }
 }

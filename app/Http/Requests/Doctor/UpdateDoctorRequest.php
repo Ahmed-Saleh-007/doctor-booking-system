@@ -29,7 +29,8 @@ class UpdateDoctorRequest extends FormRequest
             'email'    => ['required', 'email', 'unique:admins'],
             'password' => ['required', 'min:8'],
             'image'    => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
-            'doc_degree' => 'required',
+            'deg_id'   => 'required',
+            'spec_id'  => 'required',
         ];
     }
 }

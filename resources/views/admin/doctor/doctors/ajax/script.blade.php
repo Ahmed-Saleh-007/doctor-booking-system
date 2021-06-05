@@ -164,7 +164,6 @@
         $('#ajax_create_content #email').val('');
         $('#ajax_create_content #password').val('');
         $('#ajax_create_content #imageUpload-create').val('');
-        //$('#ajax_create_content #imagePreview-create').css('backgroundImage', 'url({{ url("/design/adminlte/dist/img/avatar5.png")}});')
         $('#ajax_create_content #ajax_create_errors').html('');   
     }
 </script>

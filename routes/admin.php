@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\DoctorDegreeController;
 use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Admin\SubSpecialistController;
+use App\Http\Controllers\Admin\FeedbackController;
 
 Route::prefix('admin')->group(function () {
 
@@ -83,12 +84,14 @@ Route::prefix('admin')->group(function () {
         //==========================================================================================================================//
 
         //================================================Doctor Routes================================================//
-        Route::resource('/doctors', DoctorController::class)->except(['create', 'update']);
-        Route::post('/doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
-        Route::delete('/doctors/destroy/all', [DoctorController::class, 'destroyAll'])->name('doctors.destroyAll');
+        Route::resource('doctors', DoctorController::class)->except(['create', 'update']);
+        Route::post('doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
+        Route::delete('doctors/destroy/all', [DoctorController::class, 'destroyAll'])->name('doctors.destroyAll');
         //=============================================================================================================//
         
         //================================================Doctor Feedback==============================================//
+        Route::resource('feedbacks', FeedbackController::class)->except(['create']);
+        Route::delete('feedbacks/destroy/all', [FeedbackController::class, 'destroyAll'])->name('feedbacks.destroyAll');
         //=============================================================================================================//
         Route::get('/', function () {
             return view('admin.dashboard');

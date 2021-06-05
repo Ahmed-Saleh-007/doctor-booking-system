@@ -17,7 +17,7 @@ class DoctorAuth extends Controller
     {
         return view('doctor.auth.signup');
     }
-
+    
     ///Login Doctor page function
     public function login()
     {
@@ -29,7 +29,7 @@ class DoctorAuth extends Controller
     {
         $rememberme = request('rememberme') == 1 ? true : false;
         if (doctor()->attempt(['email' => request('email'), 'password' => request('password')], $rememberme)) {
-            return view('doctor.dashboard');
+            return redirect(durl());
         } else {
             session()->flash('error', trans('admin.incorrect_information_login'));
             return redirect(durl('login'));
@@ -39,7 +39,7 @@ class DoctorAuth extends Controller
     //Doctor Logout Function
     public function logout()
     {
-        admin()->logout();
+        doctor()->logout();
         return redirect(durl('login'));
     }
 
@@ -91,7 +91,7 @@ class DoctorAuth extends Controller
 
         $check_token = DB::table('password_resets')->where('token', $token)->where('created_at', '>', Carbon::now()->subHours(2))->first();
 		if (!empty($check_token)) {
-			$admin = Admin::where('email', $check_token->email)->update([
+			$doctor = Doctor::where('email', $check_token->email)->update([
 					'email'    => $check_token->email,
 					'password' => bcrypt(request('password'))
 				]);

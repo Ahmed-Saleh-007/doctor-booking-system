@@ -48,22 +48,13 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ aurl('') }}" class="nav-link active">
+                                        <a href="{{ durl('') }}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>{{ trans('admin.control_panel') }}</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{ aurl('settings') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>{{ trans('admin.settings') }}</p>
-                                        </a>
-                                    </li>
                                 </ul>
                             </li>
-
-                            
-
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->

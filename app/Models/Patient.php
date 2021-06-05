@@ -18,4 +18,9 @@ class Patient extends Model
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //Relationship of Patient with Feedback
+    public function feedbacks () {
+        return $this->hasMany(Feedback::class);
+    }
 }

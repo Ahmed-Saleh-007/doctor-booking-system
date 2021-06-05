@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDoctorSubspecialistTable extends Migration
+class CreateFeedbacksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,20 @@ class CreateDoctorSubspecialistTable extends Migration
      */
     public function up()
     {
-        Schema::create('doctor_subspecialist', function (Blueprint $table) {
+        Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('doc_id');
             $table->foreign('doc_id')
                   ->references('id')
                   ->on('doctors')
                   ->onDelete('cascade');
-            $table->unsignedBigInteger('subspec_id');
-            $table->foreign('subspec_id')
+            $table->unsignedBigInteger('patient_id');
+            $table->foreign('patient_id')
                   ->references('id')
-                  ->on('sub_specialists')
+                  ->on('patients')
                   ->onDelete('cascade');
+            $table->string('comment');
+            $table->enum('rate', [1, 2, 3, 4, 5]);
             $table->timestamps();
         });
     }
@@ -36,6 +38,6 @@ class CreateDoctorSubspecialistTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doctor_subspecialist');
+        Schema::dropIfExists('feedbacks');
     }
 }

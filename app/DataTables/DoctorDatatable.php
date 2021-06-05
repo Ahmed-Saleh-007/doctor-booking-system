@@ -16,12 +16,18 @@ class DoctorDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('checkbox', 'admin.countries.btn.checkbox')
-            ->addColumn('actions', 'admin.countries.btn.actions')
+            ->addColumn('checkbox', 'admin.doctor.doctors.btn.checkbox')
+            ->addColumn('actions', 'admin.doctor.doctors.btn.actions')
             ->rawColumns([
                 'checkbox',
                 'actions',
-            ]);
+            ])
+            ->editColumn('created_at', function ($request) {
+                return $request->created_at->toDayDateTimeString();
+            })
+            ->editColumn('updated_at', function ($request) {
+                return $request->updated_at->toDayDateTimeString();
+            });
     }
 
     /**
@@ -32,7 +38,7 @@ class DoctorDatatable extends DataTable
      */
     public function query()
     {
-        return Doctor::query();
+        return Doctor::query()->with(['degree', 'specialist']);
     }
 
     /**
@@ -100,9 +106,13 @@ class DoctorDatatable extends DataTable
 				'data'  => 'name_' . session('lang'),
 				'title' => trans('admin.name'),
 			], [
-				'name'  => 'code',
-				'data'  => 'code',
-				'title' => trans('admin.code'),
+				'name'  => 'spec_id',
+				'data'  => 'specialist.'.session('lang').'_name',
+				'title' => 'Specialist',
+            ], [
+				'name'  => 'deg_id',
+				'data'  => 'degree.name_'.session('lang'),
+				'title' => 'Degree',
 			], [
 				'name'  => 'created_at',
 				'data'  => 'created_at',
@@ -131,6 +141,6 @@ class DoctorDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Doctor_' . date('YmdHis');
+        return 'Doctors_' . date('YmdHis');
     }
 }

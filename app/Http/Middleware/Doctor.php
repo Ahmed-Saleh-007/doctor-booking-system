@@ -17,11 +17,10 @@ class Doctor
      */
     public function handle(Request $request, Closure $next = null, $guard = null)
     {
-        // if (Auth::guard($guard)->check()) {
-        //     return $next($request);
-        // } else {
-            // return redirect('doctor/');
-        return $next($request);
-        
+        if (Auth::guard($guard)->check()) {
+            return $next($request);
+        } else {
+            return redirect('doctor/login');
+        }
     }
 }

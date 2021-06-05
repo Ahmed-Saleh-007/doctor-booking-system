@@ -157,9 +157,9 @@
                             <!-- Doctors Dashboard -->
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-users"></i>
+                                    <i class="fas fa-user-md"></i>
                                     <p>
-                                        {{ trans('doctor.doctor') }}
+                                        {{ trans('doctor.doctors') }}
                                         @if (direction() == 'rtl')
                                         <i class="right fas fa-angle-right"></i>
                                         @else
@@ -174,18 +174,15 @@
                                             <p>{{ trans('doctor.doctor-degree') }}</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ aurl('doctors') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ trans('doctor.doctor') }}</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 
-                            <!-- Feedback Dashboard -->
-                            <li class="nav-item has-treeview">
-                                <a href="{{aurl('doctors-feedback')}}" class="nav-link">
-                                    <i class="fas fa-comments"></i>
-                                    <p>
-                                        Feedback
-                                    </p>
-                                </a>
-                            </li>
 
                             <!-- Patients Dashboard -->
                             <li class="nav-item has-treeview">
@@ -208,6 +205,17 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            
+
+                            <!-- Feedback Dashboard -->
+                            <li class="nav-item has-treeview">
+                                <a href="{{aurl('feedbacks')}}" class="nav-link">
+                                    <i class="fas fa-comments"></i>
+                                    <p>
+                                        Feedback
+                                    </p>
+                                </a>
                             </li>
                         </ul>
                     </nav>

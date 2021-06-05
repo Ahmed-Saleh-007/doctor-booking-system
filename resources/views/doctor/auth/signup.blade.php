@@ -146,7 +146,6 @@
 
                     <!-- Country Input -->
                     <div class="input-group mb-3">                    
-                        {{-- {!! Form::label('country' , trans('admin.country')) !!} --}}
                         {!! Form::select('country', App\Models\Country::pluck('name_'.session('lang'), 'id')
                         ,null,['class' => 'form-control', 'placeholder' => 'Choose Country...']) !!}
                         <div class="input-group-append">
@@ -161,10 +160,27 @@
                         @enderror
                     </div>
 
+                    <!-- Mobile Number Input -->
+                    <div class="input-group mb-3">                    
+                        {!! Form::select('country', App\Models\Country::pluck('code', 'id')
+                        ,null,['class' => 'border border-white']) !!}
+                        {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone Number...']) !!}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                            <span class="fas fa-phone"></i></span>
+                            </div>
+                        </div>
+                        @error('gender')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
                     <!-- Specialist Input -->
                     <div class="input-group mb-3">                    
                         {!! Form::select('specialist', App\Models\Specialist::pluck(session('lang').'_name', 'id')
-                        ,old('specialist'),['class' => 'form-control', 'id' => 'specialist', 'onclick'=>'getSubSpecialist()', 'placeholder' => 'Choose Specialist...']) !!}
+                        ,old('specialist'),['class' => 'form-control', 'id' => 'specialist', 'placeholder' => 'Choose Specialist...']) !!}
                         <div class="input-group-append">
                             <div class="input-group-text">
                             <span class="fa fa-stethoscope"></span>
@@ -179,7 +195,8 @@
     
                     <!-- SubSpecialist Input -->
                     <div class="input-group mb-3">                    
-                        <select id="subspecialist"></select>
+                        {!! Form::select('specialist', App\Models\SubSpecialist::pluck(session('lang').'_name', 'id')
+                        ,['class' => 'form-control', 'id' => 'specialist', 'placeholder' => 'Choose SubSpecialist...']) !!}
                         <div class="input-group-append">
                             <div class="input-group-text">
                             <span class="fa fa-stethoscope"></span>
@@ -194,9 +211,9 @@
                     
                     <!-- Image Input -->
                     <div class="form-group">
-                        <input type="file" name="avatar_image" class="form-control" id="avatar_image" onchange="doAfterSelectImage(this)" style="display: none">
+                        <input type="file" name="avatar_image" class="form-control" id="avatar_image" onchange="doAfterSelectImage(this)">
                         <label for="avatar_image">
-                            <img src="{{ aurl('images/image.png') }}" class="img-thumbnail" alt="" width="80" id="post_user_image_">
+                            <img src="{{ durl('images/image.png') }}" class="img-thumbnail" alt="" width="80" id="post_user_image_">
                         </label>     
                     </div>
 
@@ -244,16 +261,6 @@
                 }
             });
 
-            function getSubSpecialist() {
-                var specialist = document.getElementById('specialist');
-                var subspecialist = document.getElementById('subspecialist');
-                var subspecialists = "<?php App\Models\SubSpecialist::where('spec_id', specialist.value) ?>"
-                for(var i = 0; i < subspecialists.length; i++) {
-                    subspecialist.append(`<option id = "${subspecialist['id']}" value="${subspecialist['name_'.session('lang')]}">
-                                       ${optionText}
-                                  </option>`);
-                }
-            }
 
             //==========================//
             //for showing selected image//
