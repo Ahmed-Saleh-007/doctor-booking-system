@@ -10,13 +10,13 @@ use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\DistrictController;
-use App\Http\Controllers\Admin\DoctorDegreeController;
+use App\Http\Controllers\Doctor\DoctorDegreeController;
 use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Admin\SubSpecialistController;
 use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Doctor\DoctorAddressController;
 
 Route::prefix('admin')->group(function () {
-
     Config::set('auth.defines', 'admin');
 
     //======================================Auth Routes=================================//
@@ -88,11 +88,19 @@ Route::prefix('admin')->group(function () {
         Route::post('doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
         Route::delete('doctors/destroy/all', [DoctorController::class, 'destroyAll'])->name('doctors.destroyAll');
         //=============================================================================================================//
-        
+
         //================================================Doctor Feedback==============================================//
         Route::resource('feedbacks', FeedbackController::class)->except(['create']);
         Route::delete('feedbacks/destroy/all', [FeedbackController::class, 'destroyAll'])->name('feedbacks.destroyAll');
         //=============================================================================================================//
+
+        //================================================doctor-addresses crud routes=================================================//
+        Route::resource('/doctor-addresses', DoctorAddressController::class)->except(['create', 'update']);
+        Route::post('/doctor-addresses/{id}/update', [DoctorAddressController::class, 'update'])->name('doctor-addresses.update');
+        Route::delete('/doctor-addresses/destroy/all', [DoctorAddressController::class, 'destroyAll'])->name('doctor-addresses.destroyAll');
+        //==========================================================================================================================//
+
+
         Route::get('/', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');

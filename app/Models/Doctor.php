@@ -19,29 +19,40 @@ class Doctor extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+
     //Relationship of Doctor With Specialist
-    public function specialist () {
+    public function specialist()
+    {
         return $this->belongsTo(Specialist::class, 'spec_id', 'id');
     }
 
     //Relationship of Doctor with SubSpecialist
-    public function subsepcialist () {
+    public function subsepcialist()
+    {
         return $this->belongsToMany(SubSpecialist::class);
     }
 
     //Relationship of Doctor with Feedback
-    public function feedbacks () {
+    public function feedbacks()
+    {
         return $this->hasMany(Feedback::class);
     }
 
     //Relationship of Doctor with Degree
-    public function degree () {
+    public function degree()
+    {
         return $this->belongsTo(DoctorDegree::class, 'deg_id', 'id');
     }
 
     //Relationship of Doctor with Country
-    public function country () {
-        return $this->belongsTo(Country::class, 'country_id', 'id');   
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+
+    //Relationship of Doctor with Addresses
+    public function addresses()
+    {
+        return $this->hasMany(DoctorAddress::class);
     }
 }

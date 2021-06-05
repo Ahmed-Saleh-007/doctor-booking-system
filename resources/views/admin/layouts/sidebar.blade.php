@@ -180,6 +180,14 @@
                                             <p>{{ trans('doctor.doctor') }}</p>
                                         </a>
                                     </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{ aurl('doctor-addresses') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ trans('doctor.doctor-addresses') }}</p>
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </li>
 
@@ -206,7 +214,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
 
                             <!-- Feedback Dashboard -->
                             <li class="nav-item has-treeview">

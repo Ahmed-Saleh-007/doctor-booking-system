@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Doctor;
+
 use App\DataTables\DoctorDegreeDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreDoctorDegreeRequest;

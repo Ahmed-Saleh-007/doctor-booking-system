@@ -49,15 +49,15 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('degree', trans('doctor.degree')) !!}
+                {!! Form::label('degree', trans('doctor.doctor-degree')) !!}
                 {!! Form::select('deg_id', App\Models\DoctorDegree::pluck('name_ar', 'id'), null, ['class' => 'form-control', 'data-strength' => '']) !!}
             </div>
-            
+
             <div class="form-group">
                 {!! Form::label('specialist', trans('doctor.specialist')) !!}
                 {!! Form::select('spec_id', App\Models\Specialist::pluck('ar_name', 'id'), null, ['class' => 'form-control', 'data-strength' => '']) !!}
             </div>
-            
+
 
             <div class="form-group">
                 {!! Form::label('country', trans('doctor.country')) !!}
@@ -79,7 +79,7 @@
                 </div>
             </div>
             {!! Form::submit(trans('admin.add'), ['class' => 'btn btn-primary']) !!}
-            {!! Form::close() !!}   
+            {!! Form::close() !!}
         </div>
       </div>
     </div>
@@ -98,7 +98,7 @@
           <button type="button" class="close" data-dismiss="modal">×</button>
         </div>
         <div class="modal-body" id="ajax_view_content">
-          
+
         </div>
       </div>
     </div>
@@ -117,7 +117,7 @@
           <button type="button" class="close" data-dismiss="modal">×</button>
         </div>
         <div class="modal-body" id="ajax_edit_content">
-          
+
         </div>
       </div>
     </div>
