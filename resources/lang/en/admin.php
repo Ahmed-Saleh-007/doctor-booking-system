@@ -93,6 +93,7 @@ return [
     'address_en'                    => 'Address (En)',
     'address_ar'                    => 'Address (Ar)',
     'district'                      => 'District',
-    'feedback'                      => 'Feedback'
+    'feedback'                      => 'Feedback',
+    'specialist'                    => 'Specialist'
 
 ];

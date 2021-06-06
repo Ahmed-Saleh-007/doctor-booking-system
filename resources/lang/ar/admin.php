@@ -91,6 +91,8 @@ return [
     'address_en'                    => 'العنوان بالانجليزية',
     'address_ar'                    => 'العنوان بالعربيه',
     'district'                      => 'المنطقه',
-    'feedback'                      => 'تعليق'
+    'feedback'                      => 'تعليق',
+    'specialist'                    => 'اختيار التخصص'
+
 
 ];
