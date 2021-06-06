@@ -7,6 +7,6 @@
         <h5 class="card-title">@lang('admin.code'):</h5>
         <p class="card-text">{{ $city->code }}</p>
         <h5 class="card-title">@lang('admin.country'):</h5>
-        <p class="card-text">{{ $city->country_id }}</p>
+        <p class="card-text">{{ session('lang') == 'en' ? $city->country->name_en : $city->country->name_ar }}</p>
     </div>
 </div>

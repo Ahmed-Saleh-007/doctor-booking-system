@@ -37,7 +37,7 @@ class DistrictDatatable extends DataTable
      */
     public function query()
     {
-        return District::query();
+        return District::query()->with('city');
     }
 
     /**
@@ -106,7 +106,7 @@ class DistrictDatatable extends DataTable
 				'title' => trans('admin.name'),
 			], [
 				'name'  => 'city_id',
-				'data'  => 'city_id',
+				'data'  => 'city.name_' . session('lang'),
 				'title' => trans('admin.city'),
 			]
             , [

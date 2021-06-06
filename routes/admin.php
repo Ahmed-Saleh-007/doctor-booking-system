@@ -61,6 +61,7 @@ Route::prefix('admin')->group(function () {
         //================================================================================================================//
 
         //====================================================Cities Routes===============================================//
+        Route::get('/cities/get_cities', [CityController::class, 'get_cities'])->name('cities.get_cities');
         Route::resource('/cities', CityController::class)->except(['create', 'update']);
         Route::post('/cities/{city}/update', [CityController::class, 'update'])->name('cities.update');
         Route::delete('/cities/destroy/all', [CityController::class, 'destroyAll'])->name('cities.destroyAll');

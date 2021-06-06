@@ -166,4 +166,27 @@
         $('#ajax_create_content #ajax_create_errors').html('');
     }
 
+    //==========Get cities which is related to a specific country========//
+    $(document).ready(function () {
+
+        $(document).on('change','.country_id',function(){
+            var country_id = $('.country_id option:selected').val();
+            if(country_id > 0){
+                $.ajax({
+                    url: "/admin/cities/get_cities",
+                    type:'get',
+                    datatype:'html',
+                    data:{country_id: country_id, select:  '{{ isset($city) ? $city->country_id : ''  }}' },
+                    success:function(data){
+                        $('.city').html(data);
+                    }
+                });
+
+            }else{
+            $('.city').html('');
+            }
+
+        });
+
+    });
 </script>

@@ -14,16 +14,17 @@
     </div>
 
     <div class="form-group">
+        {!! Form::label('country_id', trans('admin.country')) !!}
+        <div class="form-group country">
+            {!! Form::select('country_id', App\Models\Country::pluck('name_' . session('lang'), 'id'), $district->city->country_id, ['placeholder' => trans('admin.country') . '...', 'class' => 'form-control country_id']) !!}
+        </div>
+    </div>
+
+    <div class="form-group city">
         {!! Form::label('city_id', trans('admin.city')) !!}
-        @if (lang() == 'ar')
-            <div class="form-group">
-                {!! Form::select('city_id', App\Models\City::pluck('name_ar', 'id'), $district->city_id, ['placeholder' => trans('admin.city') . '...', 'class' => 'form-control']) !!}
-            </div>
-        @else
-            <div class="form-group">
-                {!! Form::select('city_id', App\Models\City::pluck('name_en', 'id'), $district->city_id, ['placeholder' => trans('admin.city') . '...', 'class' => 'form-control']) !!}
-            </div>
-        @endif
+        <div class="form-group">
+            {!! Form::select('city_id', App\Models\City::where('country_id',$district->city->country_id )->pluck('name_' . session('lang'), 'id'), $district->city_id, ['placeholder' => trans('admin.city') . '...', 'class' => 'form-control']) !!}
+        </div>
     </div>
 
     {!! Form::submit(trans('admin.edit'), ['class' => 'btn btn-primary']) !!}
