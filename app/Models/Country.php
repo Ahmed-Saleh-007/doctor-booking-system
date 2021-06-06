@@ -14,10 +14,10 @@ class Country extends Model
     protected $fillable = [
         'name_en',
         'name_ar',
-        'code'
+        'code',
     ];
 
     public function cities(){
-        return $this->hanMany(City::class);
+        return $this->hasMany(City::class);
     }
 }
