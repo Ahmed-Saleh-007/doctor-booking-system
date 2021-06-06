@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Doctor;
+namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\DataTables\DoctorDatatable;
-use App\Http\Requests\Doctor\StoreDoctorRequest;
-use App\Http\Requests\Doctor\UpdateDoctorRequest;
+use App\Http\Requests\Admin\StoreDoctorRequest;
+use App\Http\Requests\Admin\UpdateDoctorRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -56,7 +56,8 @@ class DoctorController extends Controller
             $data['image'] = savePhoto('images/doctors/', $request->image);
         }
         $doctor->update($data);
-        return response()->json(['success' => trans('admin.updated_record')]);
+        session()->flash('success', trans('admin.updated_record'));
+        return redirect()->route('doctors.index');
     }
 
     //Remove A Specified Doctor

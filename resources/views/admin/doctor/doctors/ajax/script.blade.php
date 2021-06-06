@@ -1,6 +1,4 @@
 <script>
-
-
     //========================//
     // AJAX handler for store //
     //========================//
@@ -32,73 +30,6 @@
                     });
                     errorsHtml += '</ul></div>';
                     $('#ajax_create_content #ajax_create_errors').html(errorsHtml);
-                }
-                
-            });//end of ajax request
-            
-        });
-    });
-
-    //////////////////////////
-    // Ajax handler for show//
-    //////////////////////////
-    $(document).ready(function () {
-      $(document).on('click', '.show-ajax', function () {
-        $.ajax({
-            url:  '{{aurl("")}}/doctors/' + $(this).data('ajax'),
-            type: 'get',
-            success: function (data) {
-              $('#ajax_view_content').html(data);
-            }
-        });
-      });
-    });
-
-    //////////////////////////
-    // Ajax handler for edit//
-    //////////////////////////
-    $(document).ready(function () {
-        $(document).on('click', '.edit-ajax', function () {
-            console.log($(this).data('ajax'));
-            $.ajax({
-                url:  '{{aurl("")}}/doctors/' + $(this).data('ajax') + '/edit',
-                type: 'get',
-                success: function (data) {
-                    $('#ajax_edit_content').html(data);
-                }
-            });
-        });
-    });
-
-    //==========================//
-    // AJAX handler for update //
-    //=========================// 
-    $(document).ready(function(){  
-        $(document).on('submit', '#update_form', function(event){
-            event.preventDefault();
-            console.log(new FormData(this)); 
-            $.ajax({
-                url: '{{aurl("")}}/doctors/' + $('#ajax_edit_content #id').val() + '/update',
-                method:"post",
-                data: new FormData(this),
-                contentType: false,
-                cache:false,
-                processData: false,
-                dataType:"json",
-                success: function (data) {
-                    toastr.success(data.success, 'Success Alert', {timeOut: 10000, closeButton: true, progressBar: true});
-                    $('.buttons-reload').trigger("click");
-                    $('#ajax_edit').modal('toggle');
-                },
-                error: function (data) {
-                    var errors = data.responseJSON;
-                    console.log(errors);
-                    var errorsHtml = '<div class="alert alert-danger"><ul class="mb-0">';
-                    $.each( errors.errors, function( key, value ) {
-                        errorsHtml += '<li>'+ value[0] + '</li>';
-                    });
-                    errorsHtml += '</ul></div>';
-                    $('#ajax_edit_content #ajax_edit_errors').html(errorsHtml);
                 }
                 
             });//end of ajax request

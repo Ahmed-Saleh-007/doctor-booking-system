@@ -10,11 +10,11 @@ use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\DistrictController;
-use App\Http\Controllers\Doctor\DoctorDegreeController;
-use App\Http\Controllers\Doctor\DoctorController;
+use App\Http\Controllers\Admin\DoctorDegreeController;
+use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\SubSpecialistController;
 use App\Http\Controllers\Admin\FeedbackController;
-use App\Http\Controllers\Doctor\DoctorAddressController;
+use App\Http\Controllers\Admin\DoctorAddressController;
 
 Route::prefix('admin')->group(function () {
     Config::set('auth.defines', 'admin');
@@ -86,7 +86,7 @@ Route::prefix('admin')->group(function () {
 
         //================================================Doctor Routes================================================//
         Route::resource('doctors', DoctorController::class)->except(['create', 'update']);
-        Route::post('doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
+        Route::put('doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
         Route::delete('doctors/destroy/all', [DoctorController::class, 'destroyAll'])->name('doctors.destroyAll');
         //=============================================================================================================//
 

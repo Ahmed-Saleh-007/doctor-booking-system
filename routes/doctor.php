@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\Doctor\DoctorAuth;
-use App\Http\Controllers\Doctor\DoctorController;
 
 Route::prefix('doctor')->group(function () {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Doctor;
+namespace App\Http\Controllers\Admin;
 
 use App\DataTables\DoctorAddressesDatatable;
 use App\Http\Controllers\Controller;
@@ -17,8 +17,6 @@ class DoctorAddressController extends Controller
      */
     public function index(DoctorAddressesDatatable $doctorAddresses)
     {
-        //dd($doctorAddresses);
-        // return "t";
         return $doctorAddresses->render('admin.doctor.doctor-addresses.index', ['title' => 'Doctor Addresses Control']);
     }
 

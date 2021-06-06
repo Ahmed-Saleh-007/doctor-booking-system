@@ -81,7 +81,8 @@
                         <!-- /.col -->
                     </div>
                 </form>
-
+                <span>Don't Have Account?</span>
+                <a href = "{{durl('signup')}}" class="signup">Sign up</a><br>
                 <a href="{{ durl('forgot/password')}}" class="forget">I forgot my password</a><br>
 
             </div>

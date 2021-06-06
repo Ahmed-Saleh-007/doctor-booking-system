@@ -1,6 +1,6 @@
 <?php
-$longitude = !empty($address->longitude) ? $address->longitude : '31.24238681793213';
-$latitude  = !empty($address->latitude)  ? $address->latitude  :'30.034024628931657';
+$longitude = !empty($doctor_address->longitude) ? $doctor_address->longitude : '31.24238681793213';
+$latitude  = !empty($doctor_address->latitude)  ? $doctor_address->latitude  :'30.034024628931657';
 ?>
 <div id="ajax_edit_errors"></div>
 
@@ -34,7 +34,7 @@ $latitude  = !empty($address->latitude)  ? $address->latitude  :'30.034024628931
     <input type="hidden" value="{{ $longitude }}" id="longitude" name="longitude">
     <input type="hidden" value="{{ $latitude }}" id="latitude" name="latitude">
     <div class="form-group">
-        <div id="location-on-map" style="width: 100%; height: 400px;"></div>
+        <div id="location-on-map-edit" style="width: 100%; height: 400px;"></div>
     </div>
     {!! Form::submit(trans('admin.edit'), ['class' => 'btn btn-primary']) !!}
 {!! Form::close() !!}
@@ -45,7 +45,7 @@ $latitude  = !empty($address->latitude)  ? $address->latitude  :'30.034024628931
  <script type="text/javascript" src='{{ url('design/adminlte/dist/js/locationpicker.jquery.js') }}'></script>
 
  <script>
-  $('#location-on-map').locationpicker({
+  $('#location-on-map-edit').locationpicker({
       location: {
           longitude:{{ $longitude }},
           latitude: {{ $latitude }}
