@@ -121,7 +121,17 @@ class PatientController extends Controller
 
     // public function register(Request $req)
     // {
-    //     return $req->input();
+
+    //     $patient = new Patient;
+    //     $patient->name_en = $req->input('name_en');
+    //     $patient->email = $req->input('email');
+    //     $patient->password = Hash::make($req->input('password'));
+    //     $patient->mobile = $req->input('mobile');
+    //     $patient->date_of_birth = $req->input('date_of_birth');
+    //     $patient->gender = $req->input('gender');
+    //     $patient->save();
+    //     return $patient;
+
     // }
 
 }
