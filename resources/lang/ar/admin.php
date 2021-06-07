@@ -86,4 +86,13 @@ return [
     'city_code'                     => 'كود المحاقظة',
     'city'                          => 'المدينة',
     'districts'                     => 'المناطق',
+    'address'                       => 'العنوان',
+    'doctor_id'                     => 'كود الدكتور',
+    'address_en'                    => 'العنوان بالانجليزية',
+    'address_ar'                    => 'العنوان بالعربيه',
+    'district'                      => 'المنطقه',
+    'feedback'                      => 'تعليق',
+    'specialist'                    => 'اختيار التخصص'
+
+
 ];

@@ -11,11 +11,8 @@
 </div>
 <div class="form-group">
     {!! Form::label('name_ar', trans('admin.name_ar')) !!}
-    @if (lang() == 'ar')
-        {!! Form::select('spec_id', App\Models\Specialist::pluck('ar_name', 'id'), $sub_specialist->spec_id, ['placeholder' => 'اختار التخصص..' , 'class' => 'form-control']) !!}
-    @else
-        {!! Form::select('spec_id', App\Models\Specialist::pluck('en_name', 'id'), $sub_specialist->spec_id, ['placeholder' => 'Pick a Specialist...', 'class' => 'form-control']) !!}
-    @endif
+        {!! Form::select('spec_id', App\Models\Specialist::pluck(session('lang').'_name', 'id'), $sub_specialist->spec_id, ['placeholder' => trans('admin.specialist') , 'class' => 'form-control']) !!}
+
 </div>
 {!! Form::submit(trans('admin.edit'), ['class' => 'btn btn-primary']) !!}
 {!! Form::close() !!}

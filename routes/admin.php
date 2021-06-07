@@ -11,20 +11,22 @@ use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\DoctorDegreeController;
+use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\SubSpecialistController;
+use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Admin\DoctorAddressController;
 
 Route::prefix('admin')->group(function () {
-
     Config::set('auth.defines', 'admin');
 
-    //Auth Routes
+    //======================================Auth Routes=================================//
     Route::get('login', [AdminAuth::class, 'login'])->name('admin.login');
     Route::post('login', [AdminAuth::class, 'loginCheck'])->name('admin.loginCheck');
     Route::get('forgot/password', [AdminAuth::class, 'forgotPassword']);
     Route::post('forgot/password', [AdminAuth::class, 'forgotPasswordMessage']);
     Route::get('reset/password/{token}', [AdminAuth::class, 'resetPassword']);
     Route::post('reset/password/{token}', [AdminAuth::class, 'resetPasswordUpdateData']);
-
+    //==================================================================================//
 
     Route::middleware(['admin:admin'])->group(function () {
 
@@ -59,6 +61,7 @@ Route::prefix('admin')->group(function () {
         //================================================================================================================//
 
         //====================================================Cities Routes===============================================//
+        Route::get('/cities/get_cities', [CityController::class, 'get_cities'])->name('cities.get_cities');
         Route::resource('/cities', CityController::class)->except(['create', 'update']);
         Route::post('/cities/{city}/update', [CityController::class, 'update'])->name('cities.update');
         Route::delete('/cities/destroy/all', [CityController::class, 'destroyAll'])->name('cities.destroyAll');
@@ -80,6 +83,24 @@ Route::prefix('admin')->group(function () {
         Route::post('/patients/{patient}/update', [PatientController::class, 'update'])->name('patients.update');
         Route::delete('/patients/destroy/all', [PatientController::class, 'destroyAll'])->name('patients.destroyAll');
         //==========================================================================================================================//
+
+        //================================================Doctor Routes================================================//
+        Route::resource('doctors', DoctorController::class)->except(['create', 'update']);
+        Route::put('doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
+        Route::delete('doctors/destroy/all', [DoctorController::class, 'destroyAll'])->name('doctors.destroyAll');
+        //=============================================================================================================//
+
+        //================================================Doctor Feedback==============================================//
+        Route::resource('feedbacks', FeedbackController::class)->except(['create']);
+        Route::delete('feedbacks/destroy/all', [FeedbackController::class, 'destroyAll'])->name('feedbacks.destroyAll');
+        //=============================================================================================================//
+
+        //================================================doctor-addresses crud routes=================================================//
+        Route::resource('/doctor-addresses', DoctorAddressController::class)->except(['create', 'update']);
+        Route::post('/doctor-addresses/{id}/update', [DoctorAddressController::class, 'update'])->name('doctor-addresses.update');
+        Route::delete('/doctor-addresses/destroy/all', [DoctorAddressController::class, 'destroyAll'])->name('doctor-addresses.destroyAll');
+        //==========================================================================================================================//
+
 
         Route::get('/', function () {
             return view('admin.dashboard');

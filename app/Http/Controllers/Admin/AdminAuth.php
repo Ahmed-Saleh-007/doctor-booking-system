@@ -13,14 +13,12 @@ use Mail;
 class AdminAuth extends Controller
 {
     //login admin page function
-
     public function login()
     {
         return view('admin.auth.login');
     }
 
     //check admin login function
-
     public function loginCheck()
     {
         $rememberme = request('rememberme') == 1 ? true : false;
@@ -33,7 +31,6 @@ class AdminAuth extends Controller
     }
 
     //logout function
-
     public function logout()
     {
         admin()->logout();
@@ -41,14 +38,12 @@ class AdminAuth extends Controller
     }
 
     //forget password page
-
     public function forgotPassword()
     {
         return view('admin.auth.forgot_password');
     }
 
     //forget password message send
-
     public function forgotPasswordMessage()
     {
 		$admin = Admin::where('email', request('email'))->first();
@@ -67,7 +62,6 @@ class AdminAuth extends Controller
     }
 
     //reset password page
-
     public function resetPassword($token)
     {
         $check_token = DB::table('password_resets')->where('token', $token)->where('created_at', '>', Carbon::now()->subHours(2))->first();
@@ -79,7 +73,6 @@ class AdminAuth extends Controller
     }
 
     //reset password opearation and update data
-
     public function resetPasswordUpdateData($token)
     {
         request()->validate([

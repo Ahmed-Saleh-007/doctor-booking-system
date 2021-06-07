@@ -9,10 +9,17 @@ class Specialist extends Model
 {
     use HasFactory;
 
+    protected $table = 'specialists';
+
     protected $fillable = [
         'ar_name',
         'en_name',
     ];
+
+    //Relationship of Specialist with Doctors
+    public function doctors () {
+        return $this->hasMany(Doctor::class);
+    }
 
     //Relationship of Specialist with SubSpecialists
     public function sub_specialists()

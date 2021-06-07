@@ -21,4 +21,9 @@ class Patient extends Model
         'password',
         'remember_token',
     ];
+
+    //Relationship of Patient with Feedback
+    public function feedbacks () {
+        return $this->hasMany(Feedback::class);
+    }
 }

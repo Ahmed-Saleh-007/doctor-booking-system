@@ -15,8 +15,13 @@ class SubSpecialist extends Model
         'spec_id',
     ];
 
-    //Relationship of SubSpecialists with SubSpecialist
+    //Relationship of SubSpecialists with Specialist
     public function specialist() {
         return $this->belongsTo(Specialist::class, 'spec_id', 'id');
+    }
+
+    //Relationship of SubSpecialist with Doctor
+    public function subsepcialist () {
+        return $this->belongsToMany(Doctor::class);
     }
 }

@@ -15,7 +15,14 @@ class District extends Model
         'city_id',
     ];
 
-    public function city(){
+    public function city()
+    {
         return $this->belongsTo(City::class);
+    }
+    
+    //Relationship of District with Addresses
+    public function addresses()
+    {
+        return $this->hasMany(DoctorAddress::class);
     }
 }

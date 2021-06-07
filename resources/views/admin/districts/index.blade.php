@@ -119,16 +119,17 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('country_id', trans('admin.country')) !!}
+                    <div class="form-group country">
+                        {!! Form::select('country_id', App\Models\Country::pluck('name_' . session('lang'), 'id'), old('name_' . session('lang')), ['placeholder' => trans('admin.country') . '...', 'class' => 'form-control country_id']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('city_id', trans('admin.city')) !!}
-                    @if (lang() == 'ar')
-                        <div class="form-group">
-                            {!! Form::select('city_id', App\Models\City::pluck('name_ar', 'id'), old('name_ar'), ['placeholder' => trans('admin.city') . '...', 'class' => 'form-control']) !!}
-                        </div>
-                    @else
-                        <div class="form-group">
-                            {!! Form::select('city_id', App\Models\City::pluck('name_en', 'id'), old('name_en'), ['placeholder' => trans('admin.city') .'...', 'class' => 'form-control']) !!}
-                        </div>
-                    @endif
+                    <div class="form-group city">
+                        {!! Form::select('city_id', [''], old('name_' . session('lang')), ['placeholder' => trans('admin.city') .'...', 'class' => 'form-control']) !!}
+                    </div>
                 </div>
 
                 {!! Form::submit(trans('admin.add'), ['class' => 'btn btn-primary']) !!}

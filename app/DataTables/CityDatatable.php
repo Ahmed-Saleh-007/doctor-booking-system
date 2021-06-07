@@ -37,7 +37,7 @@ class CityDatatable extends DataTable
      */
     public function query()
     {
-        return City::query();
+        return City::query()->with('country');
     }
 
     /**
@@ -110,7 +110,7 @@ class CityDatatable extends DataTable
 				'title' => trans('admin.code'),
 			], [
 				'name'  => 'country_id',
-				'data'  => 'country_id',
+				'data'  => 'country.name_' . session('lang'),
 				'title' => trans('admin.country'),
 			]
             , [

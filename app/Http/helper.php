@@ -12,9 +12,22 @@ if (!function_exists('aurl')) {
     }
 }
 
+if (!function_exists('durl')) {
+    function durl($url = null) {
+        return url('doctor/' . $url);
+    }
+}
+
+
 if (!function_exists('admin')) {
     function admin() {
         return auth()->guard('admin');
+    }
+}
+
+if (!function_exists('doctor')) {
+    function doctor() {
+        return auth()->guard('doctor');
     }
 }
 
