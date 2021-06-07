@@ -26,7 +26,6 @@ class StoreDoctorAddressesRequest extends FormRequest
         return [
             'address_en'  => 'required',
             'address_ar'  => 'required',
-            'doctor_id'  => 'required',
             'district_id'  => 'required',
             'fees'    => 'required|numeric|gt:0',
         ];

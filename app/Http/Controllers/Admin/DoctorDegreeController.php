@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Doctor;
+namespace App\Http\Controllers\Admin;
 
 use App\DataTables\DoctorDegreeDatatable;
 use App\Http\Controllers\Controller;
@@ -18,7 +18,7 @@ class DoctorDegreeController extends Controller
      */
     public function index(DoctorDegreeDatatable $doctorDegree)
     {
-        return $doctorDegree->render('admin.doctor.doctor-degree.index', ['title' => 'Doctor Degree Control']);
+        return $doctorDegree->render('admin.doctor-degree.index', ['title' => 'Doctor Degree Control']);
     }
 
     /**
@@ -55,7 +55,7 @@ class DoctorDegreeController extends Controller
         $doctor_degree = DoctorDegree::find($id);
 
         if ($doctor_degree) {
-            return view('admin.doctor.doctor-degree.ajax.show', ['doctor_degree'=>$doctor_degree]);
+            return view('admin.doctor-degree.ajax.show', ['doctor_degree'=>$doctor_degree]);
         } else {
             return redirect()->route('doctor-degree.index');
         }
@@ -72,7 +72,7 @@ class DoctorDegreeController extends Controller
         $doctor_degree = DoctorDegree::find($id);
 
         if ($doctor_degree) {
-            return view('admin.doctor.doctor-degree.ajax.edit', ['doctor_degree'=>$doctor_degree]);
+            return view('admin.doctor-degree.ajax.edit', ['doctor_degree'=>$doctor_degree]);
         } else {
             return redirect()->route('doctor-degree.index');
         }

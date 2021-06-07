@@ -10,7 +10,6 @@ use App\Http\Requests\Admin\UpdateCityRequest;
 
 class CityController extends Controller
 {
-
     public function index(CityDatatable $city)
     {
         return $city->render('admin.cities.index', ['title' => 'City Control']);
@@ -51,5 +50,10 @@ class CityController extends Controller
     {
         City::destroy(request('item'));
         return response()->json(['success' => trans('admin.deleted_record')]);
+    }
+
+    public function getDistrict(City $city)
+    {
+        return $city->districts()->select('id', 'name_'.session('lang'))->get();
     }
 }

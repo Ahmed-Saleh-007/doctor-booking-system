@@ -11,7 +11,7 @@ class Doctor extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name_en', 'name_ar', 'email', 'password', 'image', 'spec_id', 'deg_id', 'country_id'
+        'name_en', 'name_ar', 'email', 'password', 'image', 'spec_id', 'deg_id', 'country_id','gender','session_time','mobile','age'
     ];
 
     protected $table = 'doctors';

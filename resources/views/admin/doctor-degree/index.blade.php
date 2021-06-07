@@ -134,7 +134,7 @@
 
 {!! $dataTable->scripts() !!}
 
-@include('admin.doctor.doctor-degree.ajax.script')
+@include('admin.doctor-degree.ajax.script')
 
 @endpush
 

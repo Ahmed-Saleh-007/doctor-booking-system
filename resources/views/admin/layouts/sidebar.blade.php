@@ -181,13 +181,6 @@
                                         </a>
                                     </li>
 
-                                    <li class="nav-item">
-                                        <a href="{{ aurl('doctor-addresses') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>{{ trans('doctor.doctor-addresses') }}</p>
-                                        </a>
-                                    </li>
-
                                 </ul>
                             </li>
 

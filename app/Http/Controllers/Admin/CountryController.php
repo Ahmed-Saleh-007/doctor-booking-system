@@ -10,7 +10,6 @@ use App\Http\Requests\Admin\UpdateCountryRequest;
 
 class CountryController extends Controller
 {
-
     public function index(CountryDatatable $country)
     {
         return $country->render('admin.countries.index', ['title' => 'Country Control']);
@@ -51,5 +50,10 @@ class CountryController extends Controller
     {
         Country::destroy(request('item'));
         return response()->json(['success' => trans('admin.deleted_record')]);
+    }
+
+    public function getCity(Country $country)
+    {
+        return $country->cities()->select('id', 'name_'.session('lang'))->get();
     }
 }

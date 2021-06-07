@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Doctor;
+namespace App\Http\Controllers\Admin;
 
 use App\DataTables\DoctorAddressesDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Doctor\StoreDoctorAddressesRequest;
+use App\Models\City;
+use App\Models\Country;
+use App\Models\Doctor;
 use App\Models\DoctorAddress;
 use Illuminate\Http\Request;
 
@@ -27,9 +30,10 @@ class DoctorAddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Doctor $doctor)
     {
-        //
+        $countries = Country::latest()->get();
+        return view('admin.doctor-addresses.create', compact('doctor', 'countries'));
     }
 
     /**
@@ -38,11 +42,17 @@ class DoctorAddressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDoctorAddressesRequest $request)
+    public function store(StoreDoctorAddressesRequest $request, Doctor $doctor)
     {
         $data = $request->all();
-        DoctorAddress::create($data);
-        return response()->json(['success' => trans('admin.record_added')]);
+
+
+        $data['doctor_id'] = $doctor->id;
+
+        DoctorAddress::Create($data);
+
+        session()->flash('success', trans('admin.record_added'));
+        return redirect()->route('doctors.show', $doctor->id);
     }
 
     /**
@@ -68,15 +78,10 @@ class DoctorAddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DoctorAddress $address)
     {
-        $doctor_address = DoctorAddress::find($id);
-
-        if ($doctor_address) {
-            return view('admin.doctor.doctor-addresses.ajax.edit', ['doctor_address'=>$doctor_address]);
-        } else {
-            return redirect()->route('doctor-address.index');
-        }
+        $countries = Country::latest()->get();
+        return view('admin.doctor-addresses.edit', compact('address', 'countries'));
     }
 
     /**
@@ -86,16 +91,12 @@ class DoctorAddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreDoctorAddressesRequest $request, $id)
+    public function update(StoreDoctorAddressesRequest $request, DoctorAddress $address)
     {
-        $doctor_address = DoctorAddress::find($id);
-        if ($doctor_address) {
-            $data = $request->all();
-            $doctor_address->update($data);
-            return response()->json(['success' => trans('admin.updated_record')]);
-        } else {
-            return redirect()->route('doctor-addresses.index');
-        }
+        $address->update($request->all());
+
+        session()->flash('success', trans('admin.updated_record'));
+        return redirect()->route('doctors.show', $address->doctor_id);
     }
 
     /**
@@ -104,27 +105,25 @@ class DoctorAddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DoctorAddress $address)
     {
-        $doctor_address = DoctorAddress::find($id);
-        if ($doctor_address) {
-            $doctor_address->delete();
-            return response()->json(['success' => trans('admin.deleted_record')]);
-        } else {
-            return redirect()->route('doctor-address.index');
-        }
+        $address->delete();
+        return redirect()->route('doctors.show', $address->doctor_id);
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  null
-     * @return json
-     */
-    public function destroyAll()
+    //used in DoctorController in the create method
+    public static function saveDoctorAddress($doctorId, $addressEn, $addressAr, $cityId, $districtId, $longitude, $latitude, $fees)
     {
-        DoctorAddress::destroy(request('item'));
-        return response()->json(['success' => trans('admin.deleted_record')]);
+        # code...
+        DoctorAddress::create([
+             'address_ar'    => $addressAr,
+             'address_en'    => $addressEn,
+             'doctor_id'     => $doctorId,
+             'city_id'       => $cityId,
+             'district_id'   => $districtId,
+             'longitude'     => $longitude,
+             'latitude'      => $latitude,
+             'fees'          => $fees,
+         ]);
     }
 }

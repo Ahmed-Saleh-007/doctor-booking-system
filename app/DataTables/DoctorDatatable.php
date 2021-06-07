@@ -16,8 +16,8 @@ class DoctorDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('checkbox', 'admin.doctor.doctors.btn.checkbox')
-            ->addColumn('actions', 'admin.doctor.doctors.btn.actions')
+            ->addColumn('checkbox', 'admin.doctor.btn.checkbox')
+            ->addColumn('actions', 'admin.doctor.btn.actions')
             ->rawColumns([
                 'checkbox',
                 'actions',
@@ -55,7 +55,7 @@ class DoctorDatatable extends DataTable
                         'dom'        => 'Blfrtip',
                         'lengthMenu' => [[10, 25, 50, 100], [10, 25, 50, 100]],
                         'buttons'    => [
-                            ['text'   => '<i class="fa fa-plus" style="margin-right:2px;"></i> '.trans('admin.add'), 'className' => 'btn btn-info ajax-create'],
+                            ['text'   => '<i class="fa fa-plus" style="margin-right:2px;"></i> '.trans('admin.add'), 'className' => 'btn btn-info', 'action' => 'function() {window.location.href = "' . aurl('doctors/create') .'";}'],
                             ['text'   => '<i class="fa fa-trash"></i>', 'className' => 'btn btn-danger delBtn'],
                             ['extend' => 'csv', 'className' => 'btn btn-info', 'text' => '<i class="fas fa-file-csv" style="margin:0 2px;"></i> '.trans('admin.ex_csv')],
                             ['extend' => 'excel', 'className' => 'btn btn-success', 'text' => '<i class="fas fa-file-excel" style="margin:0 2px;"></i> '.trans('admin.ex_excel')],
@@ -87,51 +87,50 @@ class DoctorDatatable extends DataTable
      */
     protected function getColumns()
     {
-
         return [
             [
-				'name'          => 'checkbox',
-				'data'          => 'checkbox',
-				'title'         => '<input type="checkbox" class="check_all" onclick="check_all()" style="width:20px"/>',
-				'exportable'    => false,
-				'printable'     => false,
-				'orderable'     => false,
+                'name'          => 'checkbox',
+                'data'          => 'checkbox',
+                'title'         => '<input type="checkbox" class="check_all" onclick="check_all()" style="width:20px"/>',
+                'exportable'    => false,
+                'printable'     => false,
+                'orderable'     => false,
                 'searchable'    => false,
-			], [
-				'name'  => 'id',
-				'data'  => 'id',
-				'title' => trans('admin.admin_id'),
-			], [
-				'name'  => 'name_' . session('lang'),
-				'data'  => 'name_' . session('lang'),
-				'title' => trans('admin.name'),
-			], [
-				'name'  => 'spec_id',
-				'data'  => 'specialist.'.session('lang').'_name',
-				'title' => 'Specialist',
             ], [
-				'name'  => 'deg_id',
-				'data'  => 'degree.name_'.session('lang'),
-				'title' => 'Degree',
-			], [
-				'name'  => 'created_at',
-				'data'  => 'created_at',
-				'title' => trans('admin.created_at'),
-			], [
-				'name'  => 'updated_at',
-				'data'  => 'updated_at',
-				'title' => trans('admin.updated_at'),
-			], [
-				'name'       => 'actions',
-				'data'       => 'actions',
-				'title'      => trans('admin.actions'),
-				'exportable' => false,
-				'printable'  => false,
-				'orderable'  => false,
-				'searchable' => false,
-			],
+                'name'  => 'id',
+                'data'  => 'id',
+                'title' => trans('admin.admin_id'),
+            ], [
+                'name'  => 'name_' . session('lang'),
+                'data'  => 'name_' . session('lang'),
+                'title' => trans('admin.name'),
+            ], [
+                'name'  => 'spec_id',
+                'data'  => 'specialist.'.session('lang').'_name',
+                'title' => 'Specialist',
+            ], [
+                'name'  => 'deg_id',
+                'data'  => 'degree.name_'.session('lang'),
+                'title' => 'Degree',
+            ], [
+                'name'  => 'created_at',
+                'data'  => 'created_at',
+                'title' => trans('admin.created_at'),
+            ], [
+                'name'  => 'updated_at',
+                'data'  => 'updated_at',
+                'title' => trans('admin.updated_at'),
+            ], [
+                'name'       => 'actions',
+                'data'       => 'actions',
+                'title'      => trans('admin.actions'),
+                'exportable' => false,
+                'printable'  => false,
+                'orderable'  => false,
+                'searchable' => false,
+            ],
 
-		];
+        ];
     }
 
     /**
