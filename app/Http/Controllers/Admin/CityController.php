@@ -19,7 +19,6 @@ class CityController extends Controller
     }
 
     public function get_cities(){
-
         if(request()->ajax()){
             if(request()->has('country_id')){
                 $select=request()->has('select')?request('select'):'';
