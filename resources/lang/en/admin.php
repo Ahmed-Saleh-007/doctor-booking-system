@@ -94,6 +94,18 @@ return [
     'address_ar'                    => 'Address (Ar)',
     'district'                      => 'District',
     'feedback'                      => 'Feedback',
-    'specialist'                    => 'Specialist'
+    'specialist'                    => 'Specialist',
+    'gender'                        => 'Gender',
+    'specialists'                   => 'Specialists',
+    'doctorDegrees'                 => 'Doctor Degrees',
+    'Choose One'                    => 'Choose One',
+    'Male'                          => 'Male',
+    'Female'                        => 'Female',
+    'Edit Info'                     => 'Edit Info',
+    'mobile'                        => 'Mobile',
+    'age'                           => 'Age',
+    'degree'                        => 'Sentific Degree',
+    'edit-info'                     => 'Edit Info',
 
+    
 ];
