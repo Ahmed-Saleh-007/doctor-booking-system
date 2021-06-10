@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\DataTables\DoctorDatatable;
@@ -9,7 +10,7 @@ use App\Http\Requests\Admin\UpdateDoctorRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class DoctorsController extends Controller
+class DoctorController extends Controller
 {
     //Show All Doctors Info
     public function index(DoctorDatatable $doctor)
@@ -45,7 +46,7 @@ class DoctorsController extends Controller
         $data = $request->all();
         if ($request->filled('password')) {
             $data['password'] = Hash::make($data['password']);
-        }else {
+        } else {
             $data['password'] = $doctor->password;
         }
         if ($request->hasFile('image')) {
@@ -75,6 +76,6 @@ class DoctorsController extends Controller
             !empty($doctor->image) ? Storage::delete($doctor->image) : '';
         }
         Doctor::destroy(request('item'));
-		return response()->json(['success' => trans('admin.deleted_record')]);
+        return response()->json(['success' => trans('admin.deleted_record')]);
     }
 }
