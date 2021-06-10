@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\DoctorDegreeController;
-use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Admin\DoctorsController;
 use App\Http\Controllers\Admin\SubSpecialistController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\DoctorAddressController;
@@ -85,9 +85,9 @@ Route::prefix('admin')->group(function () {
         //==========================================================================================================================//
 
         //================================================Doctor Routes================================================//
-        Route::resource('doctors', DoctorController::class)->except(['create', 'update']);
-        Route::put('doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
-        Route::delete('doctors/destroy/all', [DoctorController::class, 'destroyAll'])->name('doctors.destroyAll');
+        Route::resource('doctors', DoctorsController::class)->except(['create', 'update']);
+        Route::put('doctors/{doctor}/update', [DoctorsController::class, 'update'])->name('doctors.update');
+        Route::delete('doctors/destroy/all', [DoctorsController::class, 'destroyAll'])->name('doctors.destroyAll');
         //=============================================================================================================//
 
         //================================================Doctor Feedback==============================================//

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DoctorsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\Doctor\DoctorAuth;
@@ -10,7 +11,7 @@ Route::prefix('doctor')->group(function () {
 
     //=======================================Doctor Routes===============================//
     Route::get('signup', [DoctorAuth::class, 'signup'])->name('doctor.signup');
-    Route::post('signup', [DoctorController::class, 'store'])->name('doctor.create');
+    Route::post('signup', [DoctorsController::class, 'store'])->name('doctor.create');
     Route::get('login', [DoctorAuth::class, 'login'])->name('doctor.login');
     Route::post('login', [DoctorAuth::class, 'loginCheck'])->name('doctor.loginCheck');
     Route::get('forgot/password', [DoctorAuth::class, 'forgotPassword']);

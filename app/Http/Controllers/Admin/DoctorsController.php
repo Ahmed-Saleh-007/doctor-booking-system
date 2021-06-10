@@ -6,11 +6,10 @@ use App\Models\Doctor;
 use App\DataTables\DoctorDatatable;
 use App\Http\Requests\Admin\StoreDoctorRequest;
 use App\Http\Requests\Admin\UpdateDoctorRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class DoctorController extends Controller
+class DoctorsController extends Controller
 {
     //Show All Doctors Info
     public function index(DoctorDatatable $doctor)
