@@ -124,12 +124,12 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
             <div class="form-group col-md-6 col-sm-12">
                 <label for="country_id" class="control-label col-sm-3">@lang('admin.Country')</label>
                 <div>
-                   <select required class="form-control"  name="country_id" id="country_n">
+                   <select class="form-control"  name="country_id" id="country_n">
 
                        <option selected value="">@lang('admin.Choose_One')</option>
 
                       @foreach($countries as $country)
-                           <option value="{{$country->id}}" {{ old('country_id') == $country->id ? 'selected' : '' }}>
+                           <option value="{{$country->id}}">
                                @if (direction() == 'rtl')
                                    {{$country->name_ar}}
                                @else
@@ -174,8 +174,8 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
             </div>
 
             <div class="form-group col-md-6 col-sm-12">
-                {!! Form::label('address_fees',trans('admin.Address Fees')) !!}
-                {!! Form::text('address_fees',old('address_fees'),['class'=>'form-control','required'=>'required']) !!}
+                {!! Form::label('fees',trans('admin.Address Fees')) !!}
+                {!! Form::text('fees',old('fees'),['class'=>'form-control','required'=>'required']) !!}
             </div>
         </div>
         <input type="hidden" value="{{ $longitude }}" id="longitude" name="longitude">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\DataTables\DoctorDatatable;
+use App\Http\Requests\Admin\StoreDoctorAddressesRequest;
 use App\Http\Requests\Admin\StoreDoctorRequest;
 use App\Models\City;
 use App\Models\Country;
@@ -39,6 +40,15 @@ class DoctorController extends Controller
     //Store A New Doctor Info
     public function store(StoreDoctorRequest $request)
     {
+        if (($request->filled('address_en')) || ($request->filled('address_ar'))) {
+            $validated = $request->validate([
+            'address_en'  => 'required',
+            'address_ar'  => 'required',
+            'district_id'  => 'required',
+            'fees'    => 'required|numeric|gt:0',
+        ]);
+        }
+
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
 
@@ -46,11 +56,30 @@ class DoctorController extends Controller
             $data['image'] = savePhoto('image', 'doctors', $request);
         }
 
-        $doctor = Doctor::create($data);
+        $isFound = Doctor::find(request('email'));
+
+        if (!$isFound) {
+            $doctor = Doctor::create($data);
+        }
 
         //insert the address if exist
         if (($request->filled('address_en')) || ($request->filled('address_ar'))) {
-            DoctorAddressController::saveDoctorAddress($doctor->id, request('address_en'), request('address_ar'), request('city_id'), request('district_id'), request('longitude'), request('latitude'), request('address_fees'));
+            // DoctorAddressController::saveDoctorAddress($doctor->id, request('address_en'), request('address_ar'), request('city_id'), request('district_id'), request('longitude'), request('latitude'), request('address_fees'));
+
+            // StoreDoctorAddressesRequest $doctorAddress;
+            $doctorAddress = [
+                'doctor_id'  => $doctor->id,
+                'address_en' => request('address_en'),
+                'address_ar' => request('address_ar'),
+                'city_id'    => request('city_id'),
+                'district_id'=> request('district_id'),
+                'longitude'  => request('longitude'),
+                'latitude'    => request('latitude'),
+                'fees' => request('address_fees'),
+
+            ];
+
+            DoctorAddressController::saveDoctorAddress($request, $doctor->id);
         }
 
         session()->flash('success', trans('admin.record_added'));

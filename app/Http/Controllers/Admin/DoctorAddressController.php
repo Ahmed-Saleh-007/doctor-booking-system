@@ -109,18 +109,24 @@ class DoctorAddressController extends Controller
     }
 
     //used in DoctorController in the create method
-    public static function saveDoctorAddress($doctorId, $addressEn, $addressAr, $cityId, $districtId, $longitude, $latitude, $fees)
+    public static function saveDoctorAddress(Request $doctor_address, $doctor_id)
     {
+        $validated = $doctor_address->validate([
+            'address_en'  => 'required',
+            'address_ar'  => 'required',
+            'district_id'  => 'required',
+            'fees'    => 'required|numeric|gt:0',
+        ]);
+        // dd($validated);
         # code...
         DoctorAddress::create([
-             'address_ar'    => $addressAr,
-             'address_en'    => $addressEn,
-             'doctor_id'     => $doctorId,
-             'city_id'       => $cityId,
-             'district_id'   => $districtId,
-             'longitude'     => $longitude,
-             'latitude'      => $latitude,
-             'fees'          => $fees,
+            'address_ar'    => $doctor_address['address_ar'],
+            'address_en'    => $doctor_address['address_en'],
+            'doctor_id'     => $doctor_id,
+            'district_id'   => $doctor_address['district_id'],
+            'longitude'     => $doctor_address['longitude'],
+            'latitude'      => $doctor_address['latitude'],
+            'fees'          => $doctor_address['fees'],
          ]);
     }
 }
