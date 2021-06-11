@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\DoctorAddressesDatatable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Doctor\StoreDoctorAddressesRequest;
+use App\Http\Requests\Admin\StoreDoctorAddressesRequest;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Doctor;
@@ -18,11 +18,8 @@ class DoctorAddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(DoctorAddressesDatatable $doctorAddresses)
+    public function index()
     {
-        //dd($doctorAddresses);
-        // return "t";
-        return $doctorAddresses->render('admin.doctor.doctor-addresses.index', ['title' => 'Doctor Addresses Control']);
     }
 
     /**

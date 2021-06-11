@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\DataTables\DoctorDatatable;
-use App\Http\Requests\Doctor\StoreDoctorRequest;
-use App\Http\Requests\Doctor\UpdateDoctorRequest;
+use App\Http\Requests\Admin\StoreDoctorRequest;
 use App\Models\City;
 use App\Models\Country;
 use Illuminate\Http\Request;
@@ -69,7 +68,7 @@ class DoctorController extends Controller
     }
 
     //Update A Specified Doctor
-    public function update(UpdateDoctorRequest $request, Doctor $doctor)
+    public function update(StoreDoctorRequest $request, Doctor $doctor)
     {
         $data = $request->all();
 
