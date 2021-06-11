@@ -95,19 +95,21 @@ class DoctorController extends Controller
     //Remove A Specified Doctor
     public function destroy(Doctor $doctor)
     {
-        !empty($doctor->image) ? Storage::delete($doctor->image) : '';
+        Storage::delete('images/'.$doctor->image);
         $doctor->delete();
-        return response()->json(['success' => trans('admin.deleted_record')]);
+        session()->flash('success', trans('admin.deleted_record'));
+        return redirect()->route('doctors.index');
     }
 
     //Destroy All Doctors
     public function destroyAll()
     {
         foreach (request('item') as $id) {
-            $doctor = Doctor::find($id);
-            !empty($doctor->image) ? Storage::delete($doctor->image) : '';
+            $admin = Doctor::find($id);
+            Storage::delete('images/'.$admin->image);
         }
         Doctor::destroy(request('item'));
-        return response()->json(['success' => trans('admin.deleted_record')]);
+        session()->flash('success', trans('admin.deleted_record'));
+        return redirect()->route('doctors.index');
     }
 }

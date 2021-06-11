@@ -86,7 +86,8 @@ $latitude  = !empty($address->latitude)  ? $address->latitude  :'30.034024628931
                <div>
                    <select name="city_id" id="city_id" class="form-control">
                        <option value="">  @lang('admin.Choose_One') </option>
-                   </select>
+
+                    </select>
 
                </div>
            </div>
@@ -96,7 +97,19 @@ $latitude  = !empty($address->latitude)  ? $address->latitude  :'30.034024628931
                {{ Form::label('district_id',trans('admin.District'),['class' => 'control-label col-sm-3']) }}
                <div>
                    <select name="district_id" id="district_id" class="form-control">
-                       <option value="">  @lang('admin.Choose_One') </option>
+                       {{-- <option value="">  @lang('admin.Choose_One') </option> --}}
+                        {{-- test --}}
+                        @if( $address->district)
+                        <option value="{{$address->district['id']}}">
+                            {{(Config::get('app.locale') == "en") ? $address->district['name_en'] : $address->district['name_ar']}}
+                        </option>
+                    @else
+                        <option value="">
+                            @lang('admin.District Not Found')
+                        </option>
+                    @endif
+                        {{-- test --}}
+
                    </select>
 
                </div>

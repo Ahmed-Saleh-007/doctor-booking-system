@@ -89,7 +89,7 @@ Route::prefix('admin')->group(function () {
         //==========================================================================================================================//
 
         //================================================Doctor Routes================================================//
-        Route::resource('doctors', DoctorController::class)->except(['create', 'update']);
+        Route::resource('doctors', DoctorController::class);
         Route::put('doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
         Route::delete('doctors/destroy/all', [DoctorController::class, 'destroyAll'])->name('doctors.destroyAll');
         //=============================================================================================================//
