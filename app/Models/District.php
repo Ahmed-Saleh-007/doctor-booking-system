@@ -19,7 +19,7 @@ class District extends Model
     {
         return $this->belongsTo(City::class);
     }
-
+    
     //Relationship of District with Addresses
     public function addresses()
     {

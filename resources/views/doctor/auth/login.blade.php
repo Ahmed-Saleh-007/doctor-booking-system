@@ -24,7 +24,7 @@
         {{-- <link rel="icon" href="{{ Storage::url(setting()->icon) }}" /> --}}
         
     </head>
-    <body class="hold-transition login-page">
+    <body class="hold-transition login-page auth-background" style="background-image:url('{{url('/design/adminlte/dist/img/auth-background.png')}}')">
         <div class="login-box">
             <div class="login-logo">
                 <a href=""><b>Doctor</b>LTE</a>
@@ -81,8 +81,8 @@
                         <!-- /.col -->
                     </div>
                 </form>
-
                 <a href="{{ durl('forgot/password')}}" class="forget">I forgot my password</a><br>
+                <a href="{{ durl('register')}}" class="register">Create new account <i class="fa fa-arrow-right"></i> </a>
 
             </div>
             <!-- /.login-box-body -->

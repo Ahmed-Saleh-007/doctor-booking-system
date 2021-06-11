@@ -58,12 +58,17 @@ Route::prefix('admin')->group(function () {
         Route::resource('/countries', CountryController::class)->except(['create', 'update']);
         Route::post('/countries/{country}/update', [CountryController::class, 'update'])->name('countries.update');
         Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
+        // Get cities related to country
+        Route::get('country/{country}/city_name', [CountryController::class, 'getCity']);
         //================================================================================================================//
 
         //====================================================Cities Routes===============================================//
+        Route::get('/cities/get_cities', [CityController::class, 'get_cities'])->name('cities.get_cities');
         Route::resource('/cities', CityController::class)->except(['create', 'update']);
         Route::post('/cities/{city}/update', [CityController::class, 'update'])->name('cities.update');
         Route::delete('/cities/destroy/all', [CityController::class, 'destroyAll'])->name('cities.destroyAll');
+        // Get Districts related to country
+        Route::get('city/{city}/district_name', [CityController::class, 'getDistrict']);
         //================================================================================================================//
 
         //=================================================Districts Routes===============================================//
@@ -84,8 +89,8 @@ Route::prefix('admin')->group(function () {
         //==========================================================================================================================//
 
         //================================================Doctor Routes================================================//
-        Route::resource('doctors', DoctorController::class);
-        // Route::post('doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
+        Route::resource('doctors', DoctorController::class)->except(['create', 'update']);
+        Route::put('doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
         Route::delete('doctors/destroy/all', [DoctorController::class, 'destroyAll'])->name('doctors.destroyAll');
         //=============================================================================================================//
 
@@ -109,9 +114,7 @@ Route::prefix('admin')->group(function () {
 
         //==========================================================================================================================//
 
-        //test
-        Route::get('city/{city}/district_name', [CityController::class, 'getDistrict']);
-        Route::get('country/{country}/city_name', [CountryController::class, 'getCity']);
+
 
 
         Route::get('/', function () {

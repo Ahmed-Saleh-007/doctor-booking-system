@@ -25,6 +25,14 @@ class AdminSeeder extends Seeder
             'remember_token' => Str::random(10),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ],[
+            'name_en' => 'Super Admin',
+            'name_ar' => 'عميد',
+            'email' => 'SuperAdmin@SuperAdmin.com',
+            'password' => Hash::make(123456),
+            'remember_token' => Str::random(10),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
 }

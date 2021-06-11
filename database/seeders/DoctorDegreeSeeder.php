@@ -40,6 +40,12 @@ class DoctorDegreeSeeder extends Seeder
                     'description' => 'test Specialist',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
+                ],[
+                    'name_en' => 'Assistant',
+                    'name_ar' => 'مساعد',
+                    'description' => 'test Assistant',
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ]
             ];
             foreach ($test as $t) {

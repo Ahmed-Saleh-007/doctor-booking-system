@@ -89,7 +89,7 @@
                                 <a href="#" class="nav-link">
                                     <i class="fa fa-stethoscope" aria-hidden="true"></i>
                                     <p>
-                                        {{ trans('doctor.specialties')}}
+                                         {{ trans('doctor.specialties')}}
                                         @if (direction() == 'rtl')
                                             <i class="right fas fa-angle-right"></i>
                                         @else
@@ -101,13 +101,17 @@
                                     <li class="nav-item">
                                         <a href="{{ aurl('specialists') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p> {{ trans('doctor.specialties')}} </p>
+                                            <p>
+                                                {{ trans('doctor.specialties')}}
+                                            </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ aurl('sub-specialists') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p> {{ trans('doctor.sub-specialties')}} </p>
+                                            <p>
+                                                {{ trans('doctor.sub-specialties')}}
+                                            </p>
                                         </a>
                                     </li>
                                 </ul>

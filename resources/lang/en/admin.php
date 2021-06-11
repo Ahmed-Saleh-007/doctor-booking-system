@@ -92,6 +92,7 @@ return [
     'doctor_id'                     => 'Doctor ID',
     'address_en'                    => 'Address (En)',
     'address_ar'                    => 'Address (Ar)',
+
     'Country'		                => 'Country',
     'City'		                    => 'City',
     'District'                      => 'District',
@@ -118,4 +119,26 @@ return [
     'Email'							=> 'Email',
     'no addresses to show'           => 'No Addresses To Show',
     'Choose_One'		            => 'Choose One',
+
+    'district'                      => 'District',
+    'feedback'                      => 'Feedback',
+    'specialist'                    => 'Specialist',
+    'gender'                        => 'Gender',
+    'specialists'                   => 'Specialists',
+    'doctorDegrees'                 => 'Doctor Degrees',
+    'Choose One'                    => 'Choose One',
+    'Male'                          => 'Male',
+    'Female'                        => 'Female',
+    'Edit Info'                     => 'Edit Info',
+    'mobile'                        => 'Mobile',
+    'age'                           => 'Age',
+    'degree'                        => 'Sentific Degree',
+    'edit-info'                     => 'Edit Info',
+    'Confirm Password'			    => 'Confirm Password',
+    'Name In English'			    => 'Name In English',
+    'Sign Up'			            => 'Sign Up',
+    'Email'                         => 'Email',
+    'already member'			    => 'already member ? ',
+
+
 ];

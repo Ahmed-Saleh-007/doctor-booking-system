@@ -53,8 +53,16 @@
                                             <p>{{ trans('admin.control_panel') }}</p>
                                         </a>
                                     </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{ route('doctor.profile') }}" class="nav-link">
+                                            <i class="fas fa-user nav-icon"></i>
+                                            <p>{{ trans('admin.Profile') }}</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
+                            
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->

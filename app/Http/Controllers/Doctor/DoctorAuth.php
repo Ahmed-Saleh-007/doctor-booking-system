@@ -12,13 +12,8 @@ use Mail;
 
 class DoctorAuth extends Controller
 {
-    //Register Doctor Page Function
-    public function signup()
-    {
-        return view('doctor.auth.signup');
-    }
     
-    ///Login Doctor page function
+    //Login Doctor page function
     public function login()
     {
         return view('doctor.auth.login');
@@ -43,6 +38,34 @@ class DoctorAuth extends Controller
         return redirect(durl('login'));
     }
 
+    //Register Doctor Page Function
+    public function register()
+    {
+        return view('doctor.auth.register');
+    }
+
+    //doctor register operation
+
+    public function registerCheck()
+    {
+        $data = request()->validate([
+            'name_en'               => 'required',
+            'spec_id'               => 'required',
+            'deg_id'                => 'required',
+            'email'                 => 'required|email|unique:doctors',
+            'password'              => 'required|min:8|confirmed',
+			'password_confirmation' => 'required',
+        ]);
+        
+        $data['name_ar'] = request('name_en');
+        $data['password'] = bcrypt(request('password'));
+
+        Doctor::create($data);
+
+        session()->flash('success', 'Account is created you can login now');
+		return redirect(durl('login'));
+    }
+
     //Forget Password Page
     public function forgotPassword()
     {
@@ -54,14 +77,14 @@ class DoctorAuth extends Controller
     {
 		$doctor = Doctor::where('email', request('email'))->first();
 		if (!empty($doctor)) {
-			$token = app('auth.password.broker')->createToken($admin);
+			$token = app('auth.password.broker')->createToken($doctor);
 			$data  = DB::table('password_resets')->insert([
-					'email'      => $admin->email,
+					'email'      => $doctor->email,
 					'token'      => $token,
 					'created_at' => Carbon::now(),
 				]);
-			//Mail::to($admin->email)->send(new AdminResetPassword(['data' => $admin, 'token' => $token]));
-			//session()->flash('success', trans('admin.the_link_reset_sent'));
+			//Mail::to($doctor->email)->send(new DoctorResetPassword(['data' => $doctor, 'token' => $token]));
+			//session()->flash('success', trans('doctor.the_link_reset_sent'));
             return new DoctorResetPassword(['data' => $doctor, 'token' => $token]);
 		}
 		return back();

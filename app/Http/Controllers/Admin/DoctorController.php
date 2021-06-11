@@ -9,6 +9,8 @@ use App\Http\Requests\Admin\StoreDoctorRequest;
 use App\Models\City;
 use App\Models\Country;
 use Illuminate\Http\Request;
+
+use App\Http\Requests\Admin\UpdateDoctorRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +19,7 @@ class DoctorController extends Controller
     //Show All Doctors Info
     public function index(DoctorDatatable $doctor)
     {
-        return $doctor->render('admin.doctor.index', ['title' => 'Doctors Control']);
+        return $doctor->render('admin.doctor.index', ['title' => trans('admin.doctor')]);
     }
 
     /**
@@ -67,11 +69,11 @@ class DoctorController extends Controller
         return view('admin.doctor.edit', compact('doctor'));
     }
 
+
     //Update A Specified Doctor
-    public function update(StoreDoctorRequest $request, Doctor $doctor)
+    public function update(UpdateDoctorRequest $request, Doctor $doctor)
     {
         $data = $request->all();
-
         if ($request->filled('password')) {
             $data['password'] = Hash::make($data['password']);
         } else {
@@ -83,6 +85,7 @@ class DoctorController extends Controller
 
             Storage::delete('images/'.$doctor->image);//delete the old image
         }
+
 
         $doctor->update($data);
         session()->flash('success', trans('admin.updated_record'));

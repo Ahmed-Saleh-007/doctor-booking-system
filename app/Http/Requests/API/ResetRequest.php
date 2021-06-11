@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Doctor;
+namespace App\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateDoctorRequest extends FormRequest
+class ResetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,9 @@ class UpdateDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_en'  => 'required',
-            'name_ar'  => 'required',
-            'email'    => ['required', 'email', 'unique:admins'],
+            'token' => 'required',
             'password' => ['required', 'min:8'],
-            'image'    => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
-            'deg_id'   => 'required',
-            'spec_id'  => 'required',
+            'password_confirm' => ['required', 'same:password'],
         ];
     }
 }

@@ -8,11 +8,23 @@ use App\DataTables\CityDatatable;
 use App\Http\Requests\Admin\StoreCityRequest;
 use App\Http\Requests\Admin\UpdateCityRequest;
 
+use Form;
+
 class CityController extends Controller
 {
     public function index(CityDatatable $city)
     {
         return $city->render('admin.cities.index', ['title' => 'City Control']);
+    }
+
+    public function get_cities(){
+        if(request()->ajax()){
+            if(request()->has('country_id')){
+                $select=request()->has('select')?request('select'):'';
+                return Form::select('city_id' ,City::where('country_id',request('country_id'))
+                ->pluck('name_'. session('lang'),'id'),$select,['class' => 'form-control','placeholder'=>'...']);
+            }
+        }
     }
 
     public function store(StoreCityRequest $request)

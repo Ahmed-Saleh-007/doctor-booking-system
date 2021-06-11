@@ -25,7 +25,7 @@
     <body class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href=""><b>Admin</b>LTE</a>
+                <a href=""><b>Doctor</b>LTE</a>
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
@@ -53,7 +53,7 @@
                     </div>
                 </form>
 
-                <a href="{{ aurl('login')}}" class="forget">Sign In</a><br>
+                <a href="{{ durl('login')}}" class="forget">Sign In</a><br>
 
             </div>
             <!-- /.login-box-body -->

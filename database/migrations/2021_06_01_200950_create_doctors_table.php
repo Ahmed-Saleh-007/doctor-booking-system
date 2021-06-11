@@ -28,7 +28,7 @@ class CreateDoctorsTable extends Migration
             $table->foreign('spec_id')
                   ->references('id')
                   ->on('specialists');
-            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->foreign('country_id')
                   ->references('id')
                   ->on('countries');
