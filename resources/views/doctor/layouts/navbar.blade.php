@@ -171,7 +171,7 @@
                             <li class="user-footer">
                                 <div class="row">
                                     <div class="col-sm-4 text-center">
-                                        {{-- <a href="{{route('admins.edit',admin()->id())}}" class="btn btn-primary btn-flat">@lang('admin.Profile')</a> --}}
+                                        <a href="{{ route('doctor.profile') }}" class="btn btn-primary btn-flat">@lang('admin.Profile')</a>
                                     </div>
                                     <div class="col-sm-4 text-center">
                                         <a href="#" class="btn btn-primary btn-flat">Lock</a>

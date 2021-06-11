@@ -11,8 +11,8 @@ Route::prefix('doctor')->group(function () {
     Config::set('auth.defines', 'doctor');
 
     //=======================================Doctor Routes===============================//
-    Route::get('signup', [DoctorAuth::class, 'signup'])->name('doctor.signup');
-    //Route::post('signup', [DoctorController::class, 'store'])->name('doctor.create');
+    Route::get('register', [DoctorAuth::class, 'register'])->name('doctor.register');
+    Route::post('register', [DoctorAuth::class, 'registerCheck'])->name('doctor.registerCheck');
     Route::get('login', [DoctorAuth::class, 'login'])->name('doctor.login');
     Route::post('login', [DoctorAuth::class, 'loginCheck'])->name('doctor.loginCheck');
     Route::get('forgot/password', [DoctorAuth::class, 'forgotPassword']);

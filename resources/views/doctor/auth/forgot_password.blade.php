@@ -53,7 +53,7 @@
                     </div>
                 </form>
 
-                <a href="{{ aurl('login')}}" class="forget">Sign In</a><br>
+                <a href="{{ durl('login')}}" class="forget">Sign In</a><br>
 
             </div>
             <!-- /.login-box-body -->

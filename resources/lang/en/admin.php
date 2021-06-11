@@ -106,6 +106,10 @@ return [
     'age'                           => 'Age',
     'degree'                        => 'Sentific Degree',
     'edit-info'                     => 'Edit Info',
-
+    'Confirm Password'			    => 'Confirm Password',
+	'Name In English'			    => 'Name In English',
+	'Sign Up'			            => 'Sign Up',
+    'Email'                         => 'Email',
+	'already member'			    => 'already member ? ',
     
 ];
