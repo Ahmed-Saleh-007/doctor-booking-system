@@ -16,7 +16,7 @@ class CreateDoctorsTable extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->string('name_en');
-            $table->string('name_ar');
+            $table->string('name_ar')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('gender', ['male', 'female']);

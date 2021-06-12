@@ -21,12 +21,11 @@ class DoctorAuth extends Controller
     public function registerCheck(Request $request) {
         $data = request()->validate([
             'name_en'               => 'required',
-            'name_ar'               => 'required',
+            'spec_id'               => 'required',
+            'deg_id'                => 'required',
             'email'                 => 'required|email|unique:doctors',
-            'gender'                => 'required',
             'password'              => 'required|min:8|confirmed',
 			'password_confirmation' => 'required',
-            'image'                 => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
         ]);
         $data['password'] = bcrypt(request('password'));
         $data['image'] = $request->hasFile('image') ? savePhoto('images/admins/', $request->image) : null;
