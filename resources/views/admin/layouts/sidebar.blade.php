@@ -220,6 +220,17 @@
                                     <p>{{ trans('admin.feedback') }}</p>
                                 </a>
                             </li>
+
+                            <!-- Doctor Time Dashboard -->
+                            <li class="nav-item has-treeview">
+                                <a href="{{aurl('doctor_times')}}" class="nav-link">
+                                    <i class="fas fa-comments"></i>
+                                    <p>
+                                        {{ trans('admin.doctor_times') }}
+                                    </p>
+                                </a>
+                            </li>
+
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->

@@ -115,7 +115,23 @@ return [
     'Id'					        => 'الترتيب',
     'Edit'		                    => 'تعديل',
     'Email'							=> 'البريد الالكتروني',
-    'no addresses to show'           => 'لا يوجد عناوين لعرضها',
+    'no addresses to show'          => 'لا يوجد عناوين لعرضها',
     'Choose_One'		            => 'إختر واحد',
+    'doctor_times'                  => 'مواعيد الطبيب',
+    'from'                          =>'من',
+    'to'                            =>'الى',
+    'session_number'                =>'وقت الانتظار',
+    'fees'                          =>'الاتعاب',
+
+    'saturday'                      =>'السبت',
+    'sunday'                        =>'الاحد',
+    'monday'                        =>'الاثنين',
+    'thursday'                      =>'الثلاثاء',
+    'wednesday'                     =>'الاربعاء',
+    'thursday'                      =>'الخميس',
+    'friday'                        =>'الجمعة',
+    'doctor'                        =>'الطبيب',
+    'day'                           =>'اليوم',
+
 
 ];

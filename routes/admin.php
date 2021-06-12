@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\SubSpecialistController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\DoctorAddressController;
+use App\Http\Controllers\Admin\DoctorTimeController;
 
 Route::prefix('admin')->group(function () {
     Config::set('auth.defines', 'admin');
@@ -77,6 +78,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('/districts', DistrictController::class)->except(['create', 'update']);
         Route::post('/districts/{district}/update', [DistrictController::class, 'update'])->name('districts.update');
         Route::delete('/districts/destroy/all', [DistrictController::class, 'destroyAll'])->name('districts.destroyAll');
+        //================================================================================================================//
+
+        //=================================================Doctor Time Routes===============================================//
+        Route::resource('/doctor_times', DoctorTimeController::class)->except(['create', 'update']);
+        Route::post('/doctor_times/{doctor_time}/update', [DoctorTimeController::class, 'update'])->name('doctor_times.update');
+        Route::delete('/doctor_times/destroy/all', [DoctorTimeController::class, 'destroyAll'])->name('doctor_times.destroyAll');
         //================================================================================================================//
 
         //=================================================Settings Routes===============================================//
