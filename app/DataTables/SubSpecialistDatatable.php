@@ -101,16 +101,16 @@ class SubSpecialistDatatable extends DataTable
                 'data'  => 'id',
                 'title' => trans('admin.admin_id'),
             ], [
-                'name'  => 'ar_name',
-                'data'  => 'ar_name',
+                'name'  => 'name_ar',
+                'data'  => 'name_ar',
                 'title' => 'Ar-Name',
             ], [
-                'name'  => 'en_name',
-                'data'  => 'en_name',
+                'name'  => 'name_en',
+                'data'  => 'name_en',
                 'title' => 'En-Name',
             ], [
                 'name'  => 'spec_id',
-                'data'  => 'specialist.' . session('lang') . '_' . 'name',
+                'data'  => 'specialist.'.'name_'.session('lang'),
                 'title' => 'Main Specialist'
             ], [
                 'name'  => 'created_at',

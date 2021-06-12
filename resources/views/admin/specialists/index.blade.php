@@ -27,11 +27,11 @@
             {!! Form::open(['id' => 'store_form']) !!}
             <div class="form-group">
                 {!! Form::label('name_en', trans('admin.name_en')) !!}
-                {!! Form::text('en_name', old('en_name'), ['class' => 'form-control']) !!}
+                {!! Form::text('name_en', old('name_en'), ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('name_ar', trans('admin.name_ar')) !!}
-                {!! Form::text('ar_name', old('ar_name'), ['class' => 'form-control']) !!}
+                {!! Form::text('name_ar', old('name_ar'), ['class' => 'form-control']) !!}
             </div>
             {!! Form::submit(trans('admin.add'), ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}

@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SubSpecialistSeeder::class);
         $this->call(SettingSeeder::class);
         $this->call(CountriesTableSeeder::class);
+        $this->call(DoctorDegreeSeeder::class);
     }
 }

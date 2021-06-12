@@ -101,12 +101,12 @@ class SpecialistDatatable extends DataTable
 				'data'  => 'id',
 				'title' => trans('admin.admin_id'),
 			], [
-				'name'  => 'ar_name',
-				'data'  => 'ar_name',
+				'name'  => 'name_ar',
+				'data'  => 'name_ar',
 				'title' => 'Ar-Name',
 			], [
-				'name'  => 'en_name',
-				'data'  => 'en_name',
+				'name'  => 'name_en',
+				'data'  => 'name_en',
 				'title' => 'En-Name',
 			], [
 				'name'  => 'created_at',

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\DataTables\DoctorDatatable;
@@ -10,7 +9,6 @@ use App\Http\Requests\Admin\StoreDoctorRequest;
 use App\Models\City;
 use App\Models\Country;
 use Illuminate\Http\Request;
-
 use App\Http\Requests\Admin\UpdateDoctorRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -30,10 +28,7 @@ class DoctorController extends Controller
     */
     public function create()
     {
-        //
-
         $countries = Country::latest()->get();
-
         return view('admin.doctor.create', compact('countries'));
     }
 
@@ -42,16 +37,14 @@ class DoctorController extends Controller
     {
         if (($request->filled('address_en')) || ($request->filled('address_ar'))) {
             $validated = $request->validate([
-            'address_en'  => 'required',
-            'address_ar'  => 'required',
-            'district_id'  => 'required',
-            'fees'    => 'required|numeric|gt:0',
-        ]);
+                'address_en'  => 'required',
+                'address_ar'  => 'required',
+                'district_id'  => 'required',
+                'fees'    => 'required|numeric|gt:0',
+            ]);
         }
-
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-
         if ($request->image) {
             $data['image'] = savePhoto('image', 'doctors', $request);
         }
@@ -76,9 +69,7 @@ class DoctorController extends Controller
                 'longitude'  => request('longitude'),
                 'latitude'    => request('latitude'),
                 'fees' => request('address_fees'),
-
             ];
-
             DoctorAddressController::saveDoctorAddress($request, $doctor->id);
         }
 
@@ -111,10 +102,8 @@ class DoctorController extends Controller
 
         if ($request->file('image')) {
             $data['image']  = savePhoto('image', 'doctors', $request);//new image
-
             Storage::delete('images/'.$doctor->image);//delete the old image
         }
-
 
         $doctor->update($data);
         session()->flash('success', trans('admin.updated_record'));

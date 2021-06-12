@@ -15,8 +15,8 @@ class CreateSubSpecialistsTable extends Migration
     {
         Schema::create('sub_specialists', function (Blueprint $table) {
             $table->id();
-            $table->string('ar_name');
-            $table->string('en_name');
+            $table->string('name_ar');
+            $table->string('name_en');
             $table->unsignedBigInteger('spec_id');
             $table->foreign('spec_id')
                   ->references('id')

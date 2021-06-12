@@ -36,7 +36,7 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">@lang('admin.Create Doctor')</h3>
+        <h3 class="card-title">@lang('doctor.create_doctor')</h3>
     </div>
     <!-- /.box-header -->
     <div class="card-body">
@@ -113,8 +113,8 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
                 {!! Form::select('deg_id', App\Models\DoctorDegree::pluck('name_'.session('lang'), 'id'), old('deg_id'), ['class' => 'form-control', 'placeholder' => trans('admin.Choose One')]) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('specialist', trans('doctor.specialist')) !!}
-                {!! Form::select('spec_id', App\Models\Specialist::pluck(session('lang').'_name', 'id'), old('spec_id'), ['class' => 'form-control', 'data-strength' => '']) !!}
+                {!! Form::label('specialist', trans('doctor.specialists')) !!}
+                {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), old('spec_id'), ['class' => 'form-control', 'data-strength' => '']) !!}
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 {!! Form::label('session_time',trans('admin.Session Time')) !!}
@@ -143,7 +143,7 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
            </div>
 
            <div class="form-group col-md-6 col-sm-12">
-               {{ Form::label('city_id',trans('admin.City'),['class' => 'control-label col-sm-3']) }}
+               {{ Form::label('city_id',trans('admin.cities'),['class' => 'control-label col-sm-3']) }}
                <div>
                    <select name="city_id" id="city_id" class="form-control">
                        <option value="">  @lang('admin.Choose One') </option>
@@ -154,7 +154,7 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
 
 
            <div class="form-group col-md-6 col-sm-12">
-               {{ Form::label('district_id',trans('admin.District'),['class' => 'control-label col-sm-3']) }}
+               {{ Form::label('district_id',trans('admin.districts'),['class' => 'control-label col-sm-3']) }}
                <div>
                    <select name="district_id" id="district_id" class="form-control">
                        <option value="">  @lang('admin.Choose One') </option>
@@ -183,7 +183,7 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
         <div class="form-group">
             <div id="location-on-map" style="width: 100%; height: 400px;"></div>
         </div>
-        {!! Form::submit(trans('admin.Add New'), ['class' => 'btn btn-primary']) !!}
+        {!! Form::submit(trans('doctor.new_doctor'), ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
     </div>
     <!-- /.box-body -->

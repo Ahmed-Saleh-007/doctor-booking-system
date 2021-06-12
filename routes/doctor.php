@@ -1,6 +1,5 @@
 <?php
 
-//use App\Http\Controllers\Admin\DoctorController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\Doctor\DoctorAuth;
@@ -10,7 +9,7 @@ Route::prefix('doctor')->group(function () {
 
     Config::set('auth.defines', 'doctor');
 
-    //=======================================Doctor Routes===============================//
+    //=======================================Doctor Routes=====================================//
     Route::get('register', [DoctorAuth::class, 'register'])->name('doctor.register');
     Route::post('register', [DoctorAuth::class, 'registerCheck'])->name('doctor.registerCheck');
     Route::get('login', [DoctorAuth::class, 'login'])->name('doctor.login');
@@ -19,16 +18,16 @@ Route::prefix('doctor')->group(function () {
     Route::post('forgot/password', [DoctorAuth::class, 'forgotPasswordMessage']);
     Route::get('reset/password/{token}', [DoctorAuth::class, 'resetPassword']);
     Route::post('reset/password/{token}', [DoctorAuth::class, 'resetPasswordUpdateData']);
-    //===================================================================================//
-
-    //doctor profile routes
-    Route::get('profile', [DoctorController::class, 'show'])->name('doctor.profile');
-    Route::get('profile/edit', [DoctorController::class, 'edit'])->name('doctor.editInfo');
-    Route::put('profile/update/{doctor}', [DoctorController::class, 'update'])->name('doctor.updateInfo');
-
-
+    //=========================================================================================//
 
     Route::middleware(['doctor:doctor'])->group(function () {
+    
+        //=======================================doctor profile routes=======================================//
+        Route::get('profile', [DoctorController::class, 'show'])->name('doctor.profile');
+        Route::get('profile/edit', [DoctorController::class, 'edit'])->name('doctor.editInfo');
+        Route::put('profile/update/{doctor}', [DoctorController::class, 'update'])->name('doctor.updateInfo');
+        //===================================================================================================//
+        
         Route::get('/', function () {
             return view('doctor.dashboard');
         })->name('doctor.dashboard');

@@ -24,7 +24,13 @@ class PatientDataTable extends DataTable
         ->rawColumns([
             'checkbox',
             'actions',
-        ]);
+        ])
+        ->editColumn('created_at', function ($request) {
+            return $request->created_at->toDayDateTimeString();
+        })
+        ->editColumn('updated_at', function ($request) {
+            return $request->updated_at->toDayDateTimeString();
+        });
     }
 
     /**

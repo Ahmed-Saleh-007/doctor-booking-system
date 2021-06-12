@@ -24,8 +24,8 @@ class StoreSpecialistRequest extends FormRequest
     public function rules()
     {
         return [
-            'en_name'  => 'required',
-            'ar_name'  => 'required',
+            'name_en'  => 'required',
+            'name_ar'  => 'required',
         ];
     }
 }
