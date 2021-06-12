@@ -1,4 +1,5 @@
 @extends('admin.index')
+@section('pageTitle', trans('admin.feedback'))
 @section('content')
 
 <div class="card">

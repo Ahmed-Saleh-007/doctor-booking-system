@@ -106,12 +106,16 @@ class DoctorDatatable extends DataTable
                 'title' => trans('admin.name'),
             ], [
                 'name'  => 'spec_id',
-                'data'  => 'specialist.'.session('lang').'_name',
+                'data'  => 'specialist.'.'name_'.session('lang'),
                 'title' => 'Specialist',
             ], [
                 'name'  => 'deg_id',
                 'data'  => 'degree.name_'.session('lang'),
                 'title' => 'Degree',
+            ], [
+                'name'  => 'gender',
+                'data'  => 'gender',
+                'title' => trans('admin.gender'),
             ], [
                 'name'  => 'created_at',
                 'data'  => 'created_at',

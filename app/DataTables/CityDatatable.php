@@ -21,7 +21,8 @@ class CityDatatable extends DataTable
             ->rawColumns([
                 'checkbox',
                 'actions',
-            ])->editColumn('created_at', function ($request) {
+            ])
+            ->editColumn('created_at', function ($request) {
                 return $request->created_at->toDayDateTimeString();
             })
             ->editColumn('updated_at', function ($request) {

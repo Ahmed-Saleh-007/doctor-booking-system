@@ -22,8 +22,8 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
         <link rel="icon" href="{{ Storage::url(setting()->icon) }}" />
-        
-        
+
+
     </head>
     <body class="hold-transition login-page auth-background" style="background-image:url('{{url('/design/adminlte/dist/img/auth-background.png')}}')">
         <div class="login-box">
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">                    
-                        {!! Form::select('spec_id', App\Models\Specialist::pluck(session('lang').'_name', 'id')
+                        {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id')
                         ,old('specialist'),['class' => 'form-control', 'placeholder' => 'Choose Specialist...']) !!}
                         <div class="input-group-append">
                             <div class="input-group-text">

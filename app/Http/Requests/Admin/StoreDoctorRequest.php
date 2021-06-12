@@ -32,7 +32,7 @@ class StoreDoctorRequest extends FormRequest
             'image'    => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
             'age'      => 'nullable|numeric|min:26|max:80',
             'mobile'   => 'nullable|numeric|min:6',
-            'gender'   =>  'required|integer',
+            'gender'   =>  'required',
         ];
         //make the [email,password] required in the create only
         if ($this->getMethod() == 'POST') {

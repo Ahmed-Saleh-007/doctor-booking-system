@@ -12,10 +12,30 @@ use Mail;
 
 class DoctorAuth extends Controller
 {
+    //Register Doctor Page Function
+    public function register() {
+        return view('doctor.auth.register');
+    }
+
+    //Check Doctor Register Function
+    public function registerCheck(Request $request) {
+        $data = request()->validate([
+            'name_en'               => 'required',
+            'spec_id'               => 'required',
+            'deg_id'                => 'required',
+            'email'                 => 'required|email|unique:doctors',
+            'password'              => 'required|min:8|confirmed',
+			'password_confirmation' => 'required',
+        ]);
+        $data['password'] = bcrypt(request('password'));
+        $data['image'] = $request->hasFile('image') ? savePhoto('images/admins/', $request->image) : null;
+        Doctor::create($data);
+        session()->flash('success', 'Account is created you can login now');
+		return redirect(durl('login'));
+    }
     
     //Login Doctor page function
-    public function login()
-    {
+    public function login() {
         return view('doctor.auth.login');
     }
 
@@ -31,6 +51,7 @@ class DoctorAuth extends Controller
         }
     }
 
+    
     //Doctor Logout Function
     public function logout()
     {
@@ -38,33 +59,6 @@ class DoctorAuth extends Controller
         return redirect(durl('login'));
     }
 
-    //Register Doctor Page Function
-    public function register()
-    {
-        return view('doctor.auth.register');
-    }
-
-    //doctor register operation
-
-    public function registerCheck()
-    {
-        $data = request()->validate([
-            'name_en'               => 'required',
-            'spec_id'               => 'required',
-            'deg_id'                => 'required',
-            'email'                 => 'required|email|unique:doctors',
-            'password'              => 'required|min:8|confirmed',
-			'password_confirmation' => 'required',
-        ]);
-        
-        $data['name_ar'] = request('name_en');
-        $data['password'] = bcrypt(request('password'));
-
-        Doctor::create($data);
-
-        session()->flash('success', 'Account is created you can login now');
-		return redirect(durl('login'));
-    }
 
     //Forget Password Page
     public function forgotPassword()
@@ -72,6 +66,7 @@ class DoctorAuth extends Controller
         return view('doctor.auth.forgot_password');
     }
 
+    
     //forget password message send
     public function forgotPasswordMessage()
     {
@@ -79,17 +74,16 @@ class DoctorAuth extends Controller
 		if (!empty($doctor)) {
 			$token = app('auth.password.broker')->createToken($doctor);
 			$data  = DB::table('password_resets')->insert([
-					'email'      => $doctor->email,
-					'token'      => $token,
-					'created_at' => Carbon::now(),
-				]);
-			//Mail::to($doctor->email)->send(new DoctorResetPassword(['data' => $doctor, 'token' => $token]));
-			//session()->flash('success', trans('doctor.the_link_reset_sent'));
+                        'email'      => $doctor->email,
+                        'token'      => $token,
+                        'created_at' => Carbon::now(),
+				    ]);
             return new DoctorResetPassword(['data' => $doctor, 'token' => $token]);
 		}
 		return back();
     }
 
+    
     //Reset Password Page
     public function resetPassword($token)
     {
@@ -101,6 +95,7 @@ class DoctorAuth extends Controller
 		}    
     }
 
+    
     //Reset Password Opearation and Update Data
     public function resetPasswordUpdateData($token)
     {
@@ -119,7 +114,6 @@ class DoctorAuth extends Controller
 					'password' => bcrypt(request('password'))
 				]);
             DB::table('password_resets')->where('email', $check_token->email)->delete();
-            //admin()->attempt(['email' => $check_token->email, 'password' => request('password')], true);
 			session()->flash('success', 'passsword is reset you can login now');
 			return redirect(durl('login'));
 		} else {

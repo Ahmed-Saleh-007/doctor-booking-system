@@ -11,11 +11,11 @@
                 var select = $('#city_id');
                 if(data.length == 0){
                     select.empty();
-                    select.append('<option>' + ' @lang('admin.Choose_One')' + '</option>');
-                    select.append('<option>' + 'No Cities' + '</option>');
+                    select.append('<option value="">' + ' @lang('admin.Choose_One')' + '</option>');
+                    select.append('<option value="">' + 'No Cities' + '</option>');
                 }else{
                     select.empty();
-                    select.append('<option>' + ' @lang('admin.Choose_One')' + '</option>');
+                    select.append('<option value="">' + ' @lang('admin.Choose_One')' + '</option>');
                 }
                 $.each(data,function(key, value) {
                     let name = value.name_en != null ? value.name_en : value.name_ar

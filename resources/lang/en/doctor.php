@@ -10,18 +10,20 @@ return [
     'name_ar'           => 'Doctor Name (Ar)',
     'fees'              => 'Fees',
     'doctor-addresses'  => 'Doctors Addresses',
-    'specialties'       => 'Specialties',
-    'sub-specialties'   => 'Sub Specialties',
+    'specialists'       => 'Specialties',
+    'sub-specialists'   => 'Sub Specialties',
     'main-info'         => 'Main Info',
     'name'              => 'Name',
     'email'             => 'Email',
     'mobile'            => 'Mobile',
     'age'               => 'Age',
     'gender'            => 'Gender',
-    'specialist'        => 'Specialist',
+    'specialists'       => 'Specialists',
+    'subspecialists'    => 'Sub-Specialists',
     'edit-info'         => 'Edit Info',
     'degree'            => 'Sentific Degree',
-    'session-time'      => 'Session Time'
-
+    'session-time'      => 'Session Time',
+    'create_doctor'     => 'Add New Doctor',
+    'new_doctor'        => 'Add',
 
 ];

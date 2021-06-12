@@ -152,31 +152,13 @@
                                     <small>@lang('admin.Member Since') {{doctor()->user()->created_at->format('d/m/Y')}}</small>
                                 </p>
                             </li>
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-sm-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-sm-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-sm-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="row">
-                                    <div class="col-sm-4 text-center">
+                                    <div class="col-sm-6 text-center">
                                         <a href="{{ route('doctor.profile') }}" class="btn btn-primary btn-flat">@lang('admin.Profile')</a>
                                     </div>
-                                    <div class="col-sm-4 text-center">
-                                        <a href="#" class="btn btn-primary btn-flat">Lock</a>
-                                    </div>
-                                    <div class="col-sm-4 text-center">
+                                    <div class="col-sm-6 text-center">
                                         <a href="{{durl('logout')}}" class="btn btn-primary btn-flat">@lang('admin.Logout')</a>
                                     </div>
                                 </div>

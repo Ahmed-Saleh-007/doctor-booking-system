@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\SubSpecialistController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\DoctorAddressController;
+use App\Http\Controllers\Admin\DoctorTimeController;
 
 Route::prefix('admin')->group(function () {
     Config::set('auth.defines', 'admin');
@@ -67,7 +68,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('/cities', CityController::class)->except(['create', 'update']);
         Route::post('/cities/{city}/update', [CityController::class, 'update'])->name('cities.update');
         Route::delete('/cities/destroy/all', [CityController::class, 'destroyAll'])->name('cities.destroyAll');
-        // Get Districts related to country
+        //================================================================================================================//
+        
+        //==============================Get Districts related to country==================================================//
         Route::get('city/{city}/district_name', [CityController::class, 'getDistrict']);
         //================================================================================================================//
 
@@ -75,6 +78,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('/districts', DistrictController::class)->except(['create', 'update']);
         Route::post('/districts/{district}/update', [DistrictController::class, 'update'])->name('districts.update');
         Route::delete('/districts/destroy/all', [DistrictController::class, 'destroyAll'])->name('districts.destroyAll');
+        //================================================================================================================//
+
+        //=================================================Doctor Time Routes===============================================//
+        Route::resource('/doctor_times', DoctorTimeController::class)->except(['create', 'update']);
+        Route::post('/doctor_times/{doctor_time}/update', [DoctorTimeController::class, 'update'])->name('doctor_times.update');
+        Route::delete('/doctor_times/destroy/all', [DoctorTimeController::class, 'destroyAll'])->name('doctor_times.destroyAll');
         //================================================================================================================//
 
         //=================================================Settings Routes===============================================//
@@ -89,7 +98,7 @@ Route::prefix('admin')->group(function () {
         //==========================================================================================================================//
 
         //================================================Doctor Routes================================================//
-        Route::resource('doctors', DoctorController::class);
+        Route::resource('doctors', DoctorController::class)->except(['update']);
         Route::put('doctors/{doctor}/update', [DoctorController::class, 'update'])->name('doctors.update');
         Route::delete('doctors/destroy/all', [DoctorController::class, 'destroyAll'])->name('doctors.destroyAll');
         //=============================================================================================================//
@@ -103,15 +112,11 @@ Route::prefix('admin')->group(function () {
         // Route::resource('/doctor-addresses', DoctorAddressController::class)->except(['create', 'update']);
         // Route::post('/doctor-addresses/{id}/update', [DoctorAddressController::class, 'update'])->name('doctor-addresses.update');
         // Route::delete('/doctor-addresses/destroy/all', [DoctorAddressController::class, 'destroyAll'])->name('doctor-addresses.destroyAll');
-
         Route::get('doctor-addresses/create/{doctor}', [DoctorAddressController::class,'create'])->name('addDoctorAddress');
         Route::post('doctor-addresses/create/{doctor}', [DoctorAddressController::class,'store'])->name('storeDoctorAddress');
-
         Route::get('doctor-addresses/edit/{address}', [DoctorAddressController::class,'edit'])->name('editDoctorAddress');
         Route::put('doctor-addresses/edit/{address}', [DoctorAddressController::class,'update'])->name('updateDoctorAddress');
-
         Route::delete('doctor-addresses/delete/{address}', [DoctorAddressController::class,'destroy'])->name('deleteDoctorAddress');
-
         //==========================================================================================================================//
 
 

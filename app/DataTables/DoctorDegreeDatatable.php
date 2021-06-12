@@ -17,12 +17,18 @@ class DoctorDegreeDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('checkbox', 'admin.doctor.doctor-degree.btn.checkbox')
-            ->addColumn('actions', 'admin.doctor.doctor-degree.btn.actions')
+            ->addColumn('checkbox', 'admin.doctor-degree.btn.checkbox')
+            ->addColumn('actions', 'admin.doctor-degree.btn.actions')
             ->rawColumns([
                 'checkbox',
                 'actions',
-            ]);
+            ])
+            ->editColumn('created_at', function ($request) {
+                return $request->created_at->toDayDateTimeString();
+            })
+            ->editColumn('updated_at', function ($request) {
+                return $request->updated_at->toDayDateTimeString();
+            });
     }
 
     /**

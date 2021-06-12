@@ -1,6 +1,6 @@
 @extends('admin.index')
+@section('pageTitle', trans('admin.dashboard'))
 @section('content')
-    
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">

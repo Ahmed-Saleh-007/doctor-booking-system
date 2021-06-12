@@ -34,8 +34,8 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                                 with font-awesome or any other icon font library -->
-                            <li class="nav-item has-treeview menu-open">
-                                <a href="#" class="nav-link active">
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link {{ request()->is('admin') || request()->is('admin/settings') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         {{ trans('admin.dashboard') }}
@@ -48,7 +48,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ aurl('') }}" class="nav-link active">
+                                        <a href="{{ aurl('') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>{{ trans('admin.control_panel') }}</p>
                                         </a>
@@ -63,7 +63,7 @@
                             </li>
 
                             <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="nav-link {{ request()->is('admin/admins') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>
                                         {{ trans('admin.admins') }}
@@ -86,10 +86,10 @@
 
                             <!-- Spcailists and Sub Specialists Dashboard -->
                             <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-stethoscope" aria-hidden="true"></i>
+                                <a href="#" class="nav-link {{ request()->is('admin/specialists') || request()->is('admin/sub-specialists') ? 'active' : '' }}">
+                                    <i class="fa fa-stethoscope nav-icon"></i>
                                     <p>
-                                         {{ trans('doctor.specialties')}}
+                                         {{ trans('doctor.specialists')}}
                                         @if (direction() == 'rtl')
                                             <i class="right fas fa-angle-right"></i>
                                         @else
@@ -102,7 +102,7 @@
                                         <a href="{{ aurl('specialists') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>
-                                                {{ trans('doctor.specialties')}}
+                                                {{ trans('doctor.specialists')}}
                                             </p>
                                         </a>
                                     </li>
@@ -110,7 +110,7 @@
                                         <a href="{{ aurl('sub-specialists') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>
-                                                {{ trans('doctor.sub-specialties')}}
+                                                {{ trans('doctor.sub-specialists')}}
                                             </p>
                                         </a>
                                     </li>
@@ -118,7 +118,7 @@
                             </li>
 
                             <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="nav-link {{ request()->is('admin/c*') || request()->is('admin/districts') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-flag"></i>
                                     <p>
                                         {{ trans('admin.countries') . '/' . trans('admin.cities') }}
@@ -160,8 +160,8 @@
 
                             <!-- Doctors Dashboard -->
                             <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="fas fa-user-md"></i>
+                                <a href="#" class="nav-link {{ request()->is('admin/doctors') || request()->is('admin/doctor-degree') ? 'active' : '' }}">
+                                    <i class="fas fa-user-md nav-icon"></i>
                                     <p>
                                         {{ trans('doctor.doctors') }}
                                         @if (direction() == 'rtl')
@@ -191,7 +191,7 @@
 
                             <!-- Patients Dashboard -->
                             <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="nav-link {{ request()->is('admin/patient*') ? 'active' : '' }} ">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>
                                         {{ trans('patient.patients') }}
@@ -215,13 +215,22 @@
 
                             <!-- Feedback Dashboard -->
                             <li class="nav-item has-treeview">
-                                <a href="{{aurl('feedbacks')}}" class="nav-link">
-                                    <i class="fas fa-comments"></i>
+                                <a href="{{aurl('feedbacks')}}" class="nav-link {{ request()->is('admin/feedbacks') ? 'active' : '' }}">
+                                    <i class="fas fa-comments nav-icon"></i>
+                                    <p>{{ trans('admin.feedback') }}</p>
+                                </a>
+                            </li>
+
+                            <!-- Doctor Time Dashboard -->
+                            <li class="nav-item has-treeview">
+                                <a href="{{aurl('doctor_times')}}" class="nav-link {{ request()->is('admin/doctor_times') ? 'active' : '' }}">
+                                    <i class="fas fa-calendar-alt nav-icon"></i>
                                     <p>
-                                        {{ trans('admin.feedback') }}
+                                        {{ trans('admin.doctor_times') }}
                                     </p>
                                 </a>
                             </li>
+
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
