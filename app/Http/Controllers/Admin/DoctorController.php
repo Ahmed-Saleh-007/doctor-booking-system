@@ -57,9 +57,6 @@ class DoctorController extends Controller
 
         //insert the address if exist
         if (($request->filled('address_en')) || ($request->filled('address_ar'))) {
-            // DoctorAddressController::saveDoctorAddress($doctor->id, request('address_en'), request('address_ar'), request('city_id'), request('district_id'), request('longitude'), request('latitude'), request('address_fees'));
-
-            // StoreDoctorAddressesRequest $doctorAddress;
             $doctorAddress = [
                 'doctor_id'  => $doctor->id,
                 'address_en' => request('address_en'),

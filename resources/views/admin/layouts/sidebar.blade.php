@@ -160,7 +160,7 @@
 
                             <!-- Doctors Dashboard -->
                             <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link {{ request()->is('admin/doctor*') ? 'active' : '' }}">
+                                <a href="#" class="nav-link {{ request()->is('admin/doctors') || request()->is('admin/doctor-degree') ? 'active' : '' }}">
                                     <i class="fas fa-user-md nav-icon"></i>
                                     <p>
                                         {{ trans('doctor.doctors') }}
@@ -223,8 +223,8 @@
 
                             <!-- Doctor Time Dashboard -->
                             <li class="nav-item has-treeview">
-                                <a href="{{aurl('doctor_times')}}" class="nav-link">
-                                    <i class="fas fa-comments"></i>
+                                <a href="{{aurl('doctor_times')}}" class="nav-link {{ request()->is('admin/doctor_times') ? 'active' : '' }}">
+                                    <i class="fas fa-calendar-alt nav-icon"></i>
                                     <p>
                                         {{ trans('admin.doctor_times') }}
                                     </p>

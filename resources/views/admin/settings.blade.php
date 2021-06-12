@@ -1,4 +1,5 @@
 @extends('admin.index')
+@section('pageTitle', trans('admin.settings'))
 @section('content')
 <div class="card">
     <div class="card-header">

@@ -45,13 +45,10 @@
                     {{ Form::label('gender',trans('admin.Gender'),['class' => 'control-label col-sm-3']) }}
                     <div class="">
                         <select name="gender" class="form-control" required>
-                            <option value="0" {{($doctor->gender == 0)? 'selected' : ''}}>@lang('admin.Male')</option>
-
-                            <option value="1" {{($doctor->gender == 1)? 'selected' : ''}}>@lang('admin.Female')</option>
-
+                            <option value="male" {{($doctor->gender == "male")? 'selected' : ''}}>@lang('admin.Male')</option>
+                            <option value="female" {{($doctor->gender == "female")? 'selected' : ''}}>@lang('admin.Female')</option>
                         </select>
-
-                     </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -60,7 +57,7 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('specialist', trans('doctor.specialist')) !!}
+                    {!! Form::label('specialist', trans('admin.specialist')) !!}
                     {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), $doctor->spec_id, ['class' => 'form-control', 'data-strength' => '']) !!}
                 </div>
 
@@ -83,9 +80,9 @@
                         </div>
                         <div class="avatar-preview">
                             @if(!empty($doctor->image))
-                            <div id="imagePreview" style="background-image: url({{ Storage::url('images/' . $doctor->image) }});"></div>
+                            <div id="imagePreview-edit" style="background-image: url({{ url('storage/' . $doctor->image) }});"></div>
                             @else
-                            <div id="imagePreview" style="background-image: url({{ url('/design/adminlte/dist/img/avatar5.png')}});"></div>
+                            <div id="imagePreview-edit" style="background-image: url({{ url('/design/adminlte/dist/img/avatar5.png')}});"></div>
                             @endif
                         </div>
                     </div>
@@ -98,7 +95,4 @@
     <!-- /.box-body -->
 </div>
 <!-- /.box -->
-
-
-
 @endsection

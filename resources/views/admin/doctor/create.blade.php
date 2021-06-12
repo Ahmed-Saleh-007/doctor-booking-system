@@ -20,11 +20,8 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
       inputBinding: {
         longitudeInput: $('#longitude'),
         latitudeInput: $('#latitude'),
-       // radiusInput: $('#us2-radius'),
         locationNameInput: $('#address')
       },
-      //enableAutocomplete: true
-
   });
  </script>
 
@@ -79,10 +76,9 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
                         <select required class="form-control input" name="gender">
                             <option selected value="">@lang('admin.Choose One')</option>
 
-                            <option value="0" {{ old('gender') == '0' ? 'selected' : '' }}>@lang('admin.Male')</option>
+                            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>@lang('admin.Male')</option>
 
-                            <option value="1" {{ old('gender') == '1' ? 'selected' : '' }}>@lang('admin.Female')</option>
-
+                            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>@lang('admin.Female')</option>
                         </select>
                     </div>
                 </div>

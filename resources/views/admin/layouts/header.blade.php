@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>@lang('admin.sitename')</title>
+        {{-- <title>@lang('admin.sitename')</title> --}}
+        <title>@yield('pageTitle')</title> 
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Font Awesome -->
@@ -67,7 +68,6 @@
 			.dataTables_info {padding-bottom: 8px; }
             .dataTables_paginate {margin-top : -40px !important; }
 			th input {width: 100%; }
-            
         </style>
         
         {{-- <link rel="icon" href="{{ Storage::url(setting()->icon) }}" /> --}}

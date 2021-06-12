@@ -74,10 +74,6 @@
                             <span>@lang('admin.degree') : </span> <span>{{$doctor->degree['name_en']}}</span>
                         @endif
                     </li>                   
-
-                    {{-- <li>
-                        <span>@lang('doctor.session-time') : </span> <span>{{$doctor->session_time}}</span>
-                    </li> --}}
                     
                     <li>
                         <a href="{{ route('doctor.editInfo') }}" class="btn btn-primary">@lang('admin.edit-info')</a>
@@ -91,7 +87,7 @@
                     <div class="avatar-upload">
                         <div class="avatar-preview">
                             @if(!empty($doctor->image))
-                            <div id="imagePreview" style="background-image: url({{ url('storage/' . $doctor->image) }});"></div>
+                            <div id="imagePreview" style="background-image: url({{ url('storage/'. $doctor->image) }});"></div>
                             @else
                             <div id="imagePreview" style="background-image: url({{ url('/design/adminlte/dist/img/avatar5.png')}});"></div>
                             @endif

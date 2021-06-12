@@ -22,13 +22,16 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
         <link rel="icon" href="" />  
     </head>
-    <body class="hold-transition login-page auth-background"  style="background-image:url('{{url('/design/adminlte/dist/img/auth-background.jpg')}}')">
+    <body class="hold-transition login-page auth-background"  style="background-image:url('{{url('/design/adminlte/dist/img/auth-background.png')}}')">
         <div class="login-box">
             <div class="login-logo">
             </div>
 
             <!-- /.Register-Logo -->
             <div class="login-box-body">
+                <div class="login-logo">
+                    <a href=""><b>Doctor</b>LTE</a>
+                </div>
                 <p class="login-box-msg">Sign up to create new account</p>
                 
                 <!-- Check if Signup Success -->
@@ -44,7 +47,7 @@
 
                     <!-- Name in English -->
                     <div class="input-group mb-3">
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" autocomplete="off">
+                        <input type="text" name="name_en" class="form-control @error('name') is-invalid @enderror" id="name" autocomplete="off">
                         <label for="name">Name In English</label>
                         <div class="input-group-append">
                           <div class="input-group-text">
@@ -60,7 +63,7 @@
                     
                     <!-- Name in Arabic -->
                     <div class="input-group mb-3">
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" autocomplete="off">
+                        <input type="text" name="name_ar" class="form-control @error('name') is-invalid @enderror" id="name" autocomplete="off">
                         <label for="name">Name In Arabic</label>
                         <div class="input-group-append">
                           <div class="input-group-text">
@@ -126,48 +129,14 @@
 
                     <!-- Gender Input -->
                     <div class="input-group mb-3">
-                        {!! Form::label('gender' , trans('admin.gender')) !!}
-                        {!! Form::select('gender', [
-                            'male'     => trans('admin.male'),
-                            'female'   => trans('admin.female')
-                        ]
-                        ,old('gender'),['class' => 'form-control', 'placeholder' => 'gender']) !!}
+                        <select class = 'form-control' name = "gender">
+                            <option selected>Choose your Gender</option>
+                            <option value="male">@lang('admin.Male')</option>
+                            <option value="female">@lang('admin.Female')</option>
+                        </select>
                         <div class="input-group-append">
                             <div class="input-group-text">
                             <span class="fas fa-venus-mars"></span>
-                            </div>
-                        </div>
-                        @error('gender')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <!-- Country Input -->
-                    <div class="input-group mb-3">                    
-                        {!! Form::select('country', App\Models\Country::pluck('name_'.session('lang'), 'id')
-                        ,null,['class' => 'form-control', 'placeholder' => 'Choose Country...']) !!}
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                            <span class="fas fa-flag"></span>
-                            </div>
-                        </div>
-                        @error('gender')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <!-- Mobile Number Input -->
-                    <div class="input-group mb-3">                    
-                        {!! Form::select('country', App\Models\Country::pluck('code', 'id')
-                        ,null,['class' => 'border border-white']) !!}
-                        {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone Number...']) !!}
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                            <span class="fas fa-phone"></i></span>
                             </div>
                         </div>
                         @error('gender')
@@ -192,12 +161,7 @@
                         </div>
                     </div>
                 </form>
-
                 <a href="{{ durl('login')}}" class="signin">already member ?</a><br>
-                <div class="hr-container">
-                    <hr>
-                    <label>Or</label>
-                </div>
             </div>
             <!-- /.login-box-body -->
         </div>
@@ -211,6 +175,7 @@
         <script src="{{url('')}}/design/adminlte/plugins/toastr/toastr.min.js"></script>
         <!-- AdminLTE App -->
         <script src="{{ url('') }}/design/adminlte/dist/js/adminlte.min.js"></script>
+        
         <script>
             $(function () {
                 $('input').iCheck({
@@ -220,6 +185,7 @@
                 });
             });
         </script>
+        
         <script>
             $(".input-group input").change(function() {
                 if ($(this).val() != "") {

@@ -35,9 +35,9 @@
                     {{ Form::label('gender',trans('admin.gender'),['class' => 'control-label col-sm-3']) }}
                     <div class="">
                         <select name="gender" class="form-control" required>
-                            <option value="0" {{($doctor->gender == 0)? 'selected' : ''}}>@lang('admin.Male')</option>
+                            <option value="male" {{($doctor->gender == "male")? 'selected' : ''}}>@lang('admin.Male')</option>
 
-                            <option value="1" {{($doctor->gender == 1)? 'selected' : ''}}>@lang('admin.Female')</option>
+                            <option value="female" {{($doctor->gender == "female")? 'selected' : ''}}>@lang('admin.Female')</option>
 
                         </select>
 
@@ -46,7 +46,7 @@
 
                 <div class="form-group">
                     {!! Form::label('spec_id', trans('admin.specialists')) !!}
-                    {!! Form::select('spec_id', App\Models\Specialist::pluck(session('lang').'_name', 'id'), $doctor->spec_id, ['class' => 'form-control', 'placeholder' => trans('admin.Choose One')]) !!}
+                    {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), $doctor->spec_id, ['class' => 'form-control', 'placeholder' => trans('admin.Choose One')]) !!}
                 </div>
 
                 <div class="form-group">
