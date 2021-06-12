@@ -19,7 +19,7 @@ class CreateDoctorsTable extends Migration
             $table->string('name_ar');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('image')->nullable();
+            $table->string('image')->default('avatar.png');
             $table->unsignedBigInteger('deg_id');
             $table->foreign('deg_id')
                   ->references('id')
