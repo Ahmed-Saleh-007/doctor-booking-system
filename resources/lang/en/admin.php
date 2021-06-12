@@ -140,5 +140,19 @@ return [
     'Email'                         => 'Email',
     'already member'			    => 'already member ? ',
 
+    'doctor_times'                  => 'Doctor Times',
+    'from'                          =>'From',
+    'to'                            =>'To',
+    'session_number'                =>'Session Number',
+    'fees'                          =>'Fees',
+    'saturday'                      =>'SATURDAY',
+    'sunday'                        =>'SUNDAY',
+    'monday'                        =>'MONDAY',
+    'thursday'                      =>'TUESDAY',
+    'wednesday'                     =>'WEDNESDAY',
+    'thursday'                      =>'THURSDAY',
+    'friday'                        =>'FRIDAY',
+    'doctor'                        =>'Doctor',
+    'day'                           =>'Day',
 
 ];
