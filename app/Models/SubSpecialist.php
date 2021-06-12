@@ -10,8 +10,8 @@ class SubSpecialist extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ar_name',
-        'en_name',
+        'name_ar',
+        'name_en',
         'spec_id',
     ];
 

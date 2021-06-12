@@ -92,7 +92,6 @@ return [
     'doctor_id'                     => 'Doctor ID',
     'address_en'                    => 'Address (En)',
     'address_ar'                    => 'Address (Ar)',
-
     'Country'		                => 'Country',
     'City'		                    => 'City',
     'District'                      => 'District',
@@ -117,12 +116,10 @@ return [
     'Id'					        => 'Id',
     'Edit'		                    => 'Edit',
     'Email'							=> 'Email',
-    'no addresses to show'           => 'No Addresses To Show',
+    'no addresses to show'          => 'No Addresses To Show',
     'Choose_One'		            => 'Choose One',
-
     'district'                      => 'District',
     'feedback'                      => 'Feedback',
-    'specialist'                    => 'Specialist',
     'gender'                        => 'Gender',
     'specialists'                   => 'Specialists',
     'doctorDegrees'                 => 'Doctor Degrees',
@@ -139,7 +136,6 @@ return [
     'Sign Up'			            => 'Sign Up',
     'Email'                         => 'Email',
     'already member'			    => 'already member ? ',
-
     'doctor_times'                  => 'Doctor Times',
     'from'                          =>'From',
     'to'                            =>'To',
@@ -154,5 +150,4 @@ return [
     'friday'                        =>'FRIDAY',
     'doctor'                        =>'Doctor',
     'day'                           =>'Day',
-
 ];

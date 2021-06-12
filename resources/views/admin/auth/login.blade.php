@@ -24,7 +24,7 @@
         {{-- <link rel="icon" href="{{ Storage::url(setting()->icon) }}" /> --}}
         
     </head>
-    <body class="hold-transition login-page">
+    <body class="hold-transition login-page" style="background-image:url('{{url('/design/adminlte/dist/img/auth-background.png')}}')">
         <div class="login-box">
             <div class="login-logo">
                 <a href=""><b>Admin</b>LTE</a>

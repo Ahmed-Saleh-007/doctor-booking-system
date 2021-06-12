@@ -19,8 +19,8 @@ class SubSpecialistSeeder extends Seeder
                 $splitName = explode(',', $value);
                 DB::table('sub_specialists')->insert(array(
                     'spec_id' => $key,
-                    'ar_name' => $splitName[0],
-                    'en_name' => $splitName[1],
+                    'name_ar' => $splitName[0],
+                    'name_en' => $splitName[1],
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ));

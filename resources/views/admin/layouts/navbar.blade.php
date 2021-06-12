@@ -138,11 +138,6 @@
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                             <!-- User image -->
                             <li class="user-header">
-                                {{-- @if (!empty(admin()->user()->image))
-                                <img src="{{ Storage::url(admin()->user()->image) }}" style="" class="img-circle" alt="User Image"/>
-                                @else
-                                <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image">
-                                @endif --}}
                                 <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image">
                                 <p>
                                     @if (lang() == 'en')
@@ -150,33 +145,14 @@
                                     @else
                                     {{ admin()->user()->name_ar }}
                                     @endif
-
                                     <small>@lang('admin.Member Since') {{admin()->user()->created_at->format('d/m/Y')}}</small>
                                 </p>
-                            </li>
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-sm-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-sm-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-sm-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="row">
                                     <div class="col-sm-4 text-center">
-                                        {{-- <a href="{{route('admins.edit',admin()->id())}}" class="btn btn-primary btn-flat">@lang('admin.Profile')</a> --}}
-                                    </div>
-                                    <div class="col-sm-4 text-center">
-                                        <a href="#" class="btn btn-primary btn-flat">Lock</a>
+                                        <a href="#" class="btn btn-primary btn-flat">Profile</a>
                                     </div>
                                     <div class="col-sm-4 text-center">
                                         <a href="{{aurl('logout')}}" class="btn btn-primary btn-flat">@lang('admin.Logout')</a>

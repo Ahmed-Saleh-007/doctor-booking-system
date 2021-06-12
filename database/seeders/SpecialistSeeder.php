@@ -17,8 +17,8 @@ class SpecialistSeeder extends Seeder
         $departments = include(resource_path('../database/data/specialists.php'));
         foreach($departments as $key => $value) {
             DB::table('specialists')->insert(array(
-                'ar_name' => $value[0],
-                'en_name' => $value[1],
+                'name_ar' => $value[0],
+                'name_en' => $value[1],
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ));

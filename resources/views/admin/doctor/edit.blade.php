@@ -61,7 +61,7 @@
 
                 <div class="form-group">
                     {!! Form::label('specialist', trans('doctor.specialist')) !!}
-                    {!! Form::select('spec_id', App\Models\Specialist::pluck(session('lang').'_name', 'id'), $doctor->spec_id, ['class' => 'form-control', 'data-strength' => '']) !!}
+                    {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), $doctor->spec_id, ['class' => 'form-control', 'data-strength' => '']) !!}
                 </div>
 
                 <div class="form-group">

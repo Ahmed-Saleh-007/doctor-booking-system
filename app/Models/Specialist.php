@@ -12,8 +12,8 @@ class Specialist extends Model
     protected $table = 'specialists';
 
     protected $fillable = [
-        'ar_name',
-        'en_name',
+        'name_ar',
+        'name_en',
     ];
 
     //Relationship of Specialist with Doctors
