@@ -19,6 +19,10 @@ class CreateDoctorsTable extends Migration
             $table->string('name_ar');
             $table->string('email')->unique();
             $table->string('password');
+            $table->enum('gender', ['male', 'female']);
+            $table->string('mobile')->nullable();
+            $table->string('age')->nullable();
+            $table->integer('session_time')->nullable();
             $table->string('image')->nullable();
             $table->unsignedBigInteger('deg_id');
             $table->foreign('deg_id')
