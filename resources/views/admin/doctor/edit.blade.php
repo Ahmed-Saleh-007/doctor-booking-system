@@ -36,6 +36,12 @@
                 </div>
 
                 <div class="form-group">
+                    {{ Form::label('country',trans('country'),['class' => 'control-label col-sm-3']) }}
+                    {!! Form::select('country_id', App\Models\Country::pluck('name_'.session('lang'), 'id')
+                        , $doctor->country_id,['class' => 'form-control', 'placeholder' => 'Choose Country...']) !!}
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('password', trans('admin.password')) !!}
                     {!! Form::password('password', ['class'=>'form-control', 'data-strength' => '']) !!}
                     <h6 id="pass-msg" style="display:none; color:#dd4b39;">{{ trans('admin.password_massage') }}</h6>

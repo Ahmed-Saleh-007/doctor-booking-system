@@ -135,6 +135,7 @@ return [
     'edit-info'                     => 'Edit Info',
     'Confirm Password'			    => 'Confirm Password',
     'Name In English'			    => 'Name In English',
+    'Name In Arabic'                => 'Name In Arabic',
     'Sign Up'			            => 'Sign Up',
     'Email'                         => 'Email',
     'already member'			    => 'already member ? ',
@@ -152,4 +153,5 @@ return [
     'friday'                        =>'FRIDAY',
     'doctor'                        =>'Doctor',
     'day'                           =>'Day',
+    'rate'                          =>'Rate',
 ];

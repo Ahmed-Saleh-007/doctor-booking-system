@@ -69,24 +69,17 @@
                           </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">                    
-                        {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id')
-                        ,old('specialist'),['class' => 'form-control', 'placeholder' => 'Choose Specialist...']) !!}
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="name_ar" class="form-control" id="name_ar" autocomplete="off">
+                        <label for="name_en">@lang('admin.Name In Arabic')</label>
                         <div class="input-group-append">
-                            <div class="input-group-text">
-                            <span class="fa fa-stethoscope"></span>
-                            </div>
+                          <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                          </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">                    
-                        {!! Form::select('deg_id', App\Models\DoctorDegree::pluck('name_' . session('lang'), 'id')
-                        ,old('specialist'),['class' => 'form-control', 'placeholder' => 'Choose Degree...']) !!}
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                            <span class="fa fa-graduation-cap" style="font-size: 12px"></span>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control" id="email" autocomplete="off">
                         <label for="email">@lang('admin.Email')</label>
@@ -96,6 +89,7 @@
                           </div>
                         </div>
                     </div>
+                    
                     <div class="input-group mb-3">
                         <input type="password" name="password" class="form-control" id="password">
                         <label for="password">@lang('admin.password')</label>
@@ -105,6 +99,7 @@
                           </div>
                         </div>
                     </div>
+
                     <div class="input-group mb-3">
                         <input type="password" name="password_confirmation" class="form-control" id="password_confirmation">
                         <label for="password_confirmation">@lang('admin.Confirm Password')</label>
@@ -114,6 +109,27 @@
                           </div>
                         </div>
                     </div>
+
+                    <div class="input-group mb-3">                    
+                        {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id')
+                        ,old('specialist'),['class' => 'form-control', 'placeholder' => 'Choose Specialist...']) !!}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                            <span class="fa fa-stethoscope"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">                    
+                        {!! Form::select('deg_id', App\Models\DoctorDegree::pluck('name_' . session('lang'), 'id')
+                        ,old('specialist'),['class' => 'form-control', 'placeholder' => 'Choose Degree...']) !!}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                            <span class="fa fa-graduation-cap" style="font-size: 12px"></span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-sm-12">
                             <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('admin.Sign Up')</button>

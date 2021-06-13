@@ -21,6 +21,7 @@ class DoctorAuth extends Controller
     public function registerCheck(Request $request) {
         $data = request()->validate([
             'name_en'               => 'required',
+            'name_ar'               => 'required',
             'spec_id'               => 'required',
             'deg_id'                => 'required',
             'email'                 => 'required|email|unique:doctors',

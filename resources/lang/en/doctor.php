@@ -19,11 +19,12 @@ return [
     'age'               => 'Age',
     'gender'            => 'Gender',
     'specialists'       => 'Specialists',
+    'subspecialist'     => 'Sub Specialist',
     'subspecialists'    => 'Sub-Specialists',
     'edit-info'         => 'Edit Info',
     'degree'            => 'Sentific Degree',
     'session-time'      => 'Session Time',
     'create_doctor'     => 'Add New Doctor',
-    'new_doctor'        => 'Add',
-
+    'new_subspecialist' => 'Add New Sub Specialist',
+    'no_subspecialist'  => 'No Sub Specialist Specified',
 ];

@@ -109,9 +109,6 @@ Route::prefix('admin')->group(function () {
         //=============================================================================================================//
 
         //================================================doctor-addresses crud routes=================================================//
-        // Route::resource('/doctor-addresses', DoctorAddressController::class)->except(['create', 'update']);
-        // Route::post('/doctor-addresses/{id}/update', [DoctorAddressController::class, 'update'])->name('doctor-addresses.update');
-        // Route::delete('/doctor-addresses/destroy/all', [DoctorAddressController::class, 'destroyAll'])->name('doctor-addresses.destroyAll');
         Route::get('doctor-addresses/create/{doctor}', [DoctorAddressController::class,'create'])->name('addDoctorAddress');
         Route::post('doctor-addresses/create/{doctor}', [DoctorAddressController::class,'store'])->name('storeDoctorAddress');
         Route::get('doctor-addresses/edit/{address}', [DoctorAddressController::class,'edit'])->name('editDoctorAddress');
