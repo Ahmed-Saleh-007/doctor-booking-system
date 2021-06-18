@@ -18,6 +18,9 @@ class DoctorDatatable extends DataTable
         return datatables($query)
             ->addColumn('checkbox', 'admin.doctor.btn.checkbox')
             ->addColumn('actions', 'admin.doctor.btn.actions')
+            ->addColumn('Rate', function(Doctor $doctor) {
+                return $doctor->totalRate();
+            })
             ->rawColumns([
                 'checkbox',
                 'actions',
@@ -38,7 +41,7 @@ class DoctorDatatable extends DataTable
      */
     public function query()
     {
-        return Doctor::query()->with(['degree', 'specialist']);
+        return Doctor::query()->with(['degree', 'specialist',]);
     }
 
     /**
@@ -116,6 +119,10 @@ class DoctorDatatable extends DataTable
                 'name'  => 'gender',
                 'data'  => 'gender',
                 'title' => trans('admin.gender'),
+            ], [
+                'name'  => 'rate',
+                'data'  => 'Rate',
+                'title' => trans('admin.rate'),
             ], [
                 'name'  => 'created_at',
                 'data'  => 'created_at',

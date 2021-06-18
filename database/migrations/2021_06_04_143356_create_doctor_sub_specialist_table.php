@@ -13,7 +13,7 @@ class CreateDoctorSubspecialistTable extends Migration
      */
     public function up()
     {
-        Schema::create('doctor_subspecialist', function (Blueprint $table) {
+        Schema::create('doctor_sub_specialist', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('doc_id');
             $table->foreign('doc_id')

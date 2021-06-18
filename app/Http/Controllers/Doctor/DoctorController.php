@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Doctor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateDoctorRequest;
 use App\Models\Doctor;
+use App\Models\SubSpecialist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,11 @@ class DoctorController extends Controller
     public function update(UpdateDoctorRequest $request, Doctor $doctor)
     {
         $data = $request->all();
-        
+
+        if ($doctor->spec_id != $request->spec_id) {
+           $doctor->subspecialists()->wherePivot('doc_id', '=', $doctor->id)->detach();
+        }
+
         if ($request->filled('password')) {
             $data['password'] = Hash::make($data['password']);
         } else {
@@ -40,7 +45,6 @@ class DoctorController extends Controller
             }
             $data['image'] = savePhoto('images/doctors/', $request->image);
         }
-
         $doctor->update($data);
         session()->flash('success', trans('admin.updated_record'));
         return redirect()->route('doctor.profile');

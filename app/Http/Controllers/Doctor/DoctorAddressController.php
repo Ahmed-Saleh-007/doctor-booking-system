@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Doctor;
 
 use App\DataTables\DoctorAddressesDatatable;
 use App\Http\Controllers\Controller;
@@ -21,7 +21,7 @@ class DoctorAddressController extends Controller
     public function create(Doctor $doctor)
     {
         $countries = Country::latest()->get();
-        return view('admin.doctor-addresses.create', compact('doctor', 'countries'));
+        return view('doctor.doctor-addresses.create', compact('doctor', 'countries'));
     }
 
     /**
@@ -33,14 +33,10 @@ class DoctorAddressController extends Controller
     public function store(StoreDoctorAddressesRequest $request, Doctor $doctor)
     {
         $data = $request->all();
-
-
         $data['doctor_id'] = $doctor->id;
-
         DoctorAddress::Create($data);
-
         session()->flash('success', trans('admin.record_added'));
-        return redirect()->route('doctors.show', $doctor->id);
+        return redirect()->route('doctor.profile', $doctor->id);
     }
 
     /**
@@ -54,9 +50,9 @@ class DoctorAddressController extends Controller
         $doctor_address = DoctorAddress::find($id);
 
         if ($doctor_address) {
-            return view('admin.doctor.doctor-addresses.ajax.show', ['doctor_address'=>$doctor_address]);
+            return view('doctor.doctor-addresses.ajax.show', ['doctor_address'=>$doctor_address]);
         } else {
-            return redirect()->route('doctor-address.index');
+            return redirect()->route('doctor.doctor-address.index');
         }
     }
 
@@ -69,7 +65,7 @@ class DoctorAddressController extends Controller
     public function edit(DoctorAddress $address)
     {
         $countries = Country::latest()->get();
-        return view('admin.doctor-addresses.edit', compact('address', 'countries'));
+        return view('doctor.doctor-addresses.edit', compact('address', 'countries'));
     }
 
     /**
@@ -84,7 +80,7 @@ class DoctorAddressController extends Controller
         $address->update($request->all());
 
         session()->flash('success', trans('admin.updated_record'));
-        return redirect()->route('doctors.show', $address->doctor_id);
+        return redirect()->route('doctor.profile', $address->doctor_id);
     }
 
     /**
@@ -96,7 +92,7 @@ class DoctorAddressController extends Controller
     public function destroy(DoctorAddress $address)
     {
         $address->delete();
-        return redirect()->route('doctors.show', $address->doctor_id);
+        return redirect()->route('doctor.profile', $address->doctor_id);
     }
 
     //used in DoctorController in the create method

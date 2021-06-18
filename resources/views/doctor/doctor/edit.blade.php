@@ -32,15 +32,28 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('mobile', trans('admin.mobile')) !!}
+                    {!! Form::text('mobile', $doctor->mobile, ['class'=>'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('age', trans('admin.Age')) !!}
+                    {!! Form::text('age', $doctor->age, ['class'=>'form-control','required'=>'required']) !!}
+                </div>
+                
+                <div class="form-group">
+                    {{ Form::label('country',trans('country'),['class' => 'control-label col-sm-3']) }}
+                    {!! Form::select('country_id', App\Models\Country::pluck('name_'.session('lang'), 'id')
+                        , $doctor->country_id,['class' => 'form-control', 'placeholder' => 'Choose Country...']) !!}
+                </div>
+
+                <div class="form-group">
                     {{ Form::label('gender',trans('admin.gender'),['class' => 'control-label col-sm-3']) }}
                     <div class="">
                         <select name="gender" class="form-control" required>
                             <option value="male" {{($doctor->gender == "male")? 'selected' : ''}}>@lang('admin.Male')</option>
-
                             <option value="female" {{($doctor->gender == "female")? 'selected' : ''}}>@lang('admin.Female')</option>
-
                         </select>
-
                      </div>
                 </div>
 
@@ -52,6 +65,11 @@
                 <div class="form-group">
                     {!! Form::label('deg_id', trans('admin.doctorDegrees')) !!}
                     {!! Form::select('deg_id', App\Models\DoctorDegree::pluck('name_'.session('lang'), 'id'), $doctor->deg_id, ['class' => 'form-control', 'placeholder' => trans('admin.Choose One')]) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('session_time',trans('admin.Session Time')) !!}
+                    {!! Form::text('session_time',$doctor->session_time,['class'=>'form-control']) !!}
                 </div>
             </div>
             <div class="col-md-6 col-sm-12 up_img">

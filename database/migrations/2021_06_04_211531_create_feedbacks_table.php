@@ -27,6 +27,7 @@ class CreateFeedbacksTable extends Migration
                   ->onDelete('cascade');
             $table->string('comment');
             $table->enum('rate', [1, 2, 3, 4, 5]);
+            $table->unique('doc_id', 'patient_id');
             $table->timestamps();
         });
     }

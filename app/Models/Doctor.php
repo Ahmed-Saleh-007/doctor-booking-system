@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Doctor extends Authenticatable
 {
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name_en', 'name_ar', 'email', 'password', 'image', 'spec_id', 'deg_id', 'country_id','gender','session_time','mobile','age'
+        'name_en', 'name_ar', 'email', 'password', 'image', 'spec_id', 'deg_id', 'country_id', 'gender', 'session_time', 'mobile', 'age'
     ];
 
     protected $table = 'doctors';
@@ -27,9 +29,9 @@ class Doctor extends Authenticatable
     }
 
     //Relationship of Doctor with SubSpecialist
-    public function subsepcialist()
+    public function subspecialists()
     {
-        return $this->belongsToMany(SubSpecialist::class);
+        return $this->belongsToMany(SubSpecialist::class, 'doctor_sub_specialist', 'doc_id', 'subspec_id');
     }
 
     //Relationship of Doctor with Feedback
@@ -54,5 +56,16 @@ class Doctor extends Authenticatable
     public function addresses()
     {
         return $this->hasMany(DoctorAddress::class);
+    }
+
+    //Total Rate of Doctor
+    public function totalRate()
+    {
+        $totalRates  = DB::select('SELECT SUM(rate) AS sum FROM feedbacks WHERE doc_id = ?', [$this->id])[0];
+        $rates_count = DB::select('SELECT COUNT(rate) AS count FROM feedbacks WHERE doc_id = ?', [$this->id])[0];
+        if($totalRates->sum == 0 && $rates_count->count == 0) {
+            return 0;
+        }
+        return $this->rate = $totalRates->sum/$rates_count->count;
     }
 }
