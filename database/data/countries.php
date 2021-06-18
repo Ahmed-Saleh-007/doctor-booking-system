@@ -63,7 +63,6 @@ return array(
     array('code' => 'DO', 'name_ar' =>'', 'name_en' => 'Dominican Republic', 'created_at' => now(), 'updated_at' => now()),
     array('code' => 'TP', 'name_ar' =>'', 'name_en' => 'East Timor', 'created_at' => now(), 'updated_at' => now()),
     array('code' => 'EC', 'name_ar' =>'', 'name_en' => 'Ecudaor', 'created_at' => now(), 'updated_at' => now()),
-    array('code' => 'EG', 'name_ar' =>'', 'name_en' => 'Egypt', 'created_at' => now(), 'updated_at' => now()),
     array('code' => 'SV', 'name_ar' =>'', 'name_en' => 'El Salvador', 'created_at' => now(), 'updated_at' => now()),
     array('code' => 'GQ', 'name_ar' =>'', 'name_en' => 'Equatorial Guinea', 'created_at' => now(), 'updated_at' => now()),
     array('code' => 'ER', 'name_ar' =>'', 'name_en' => 'Eritrea', 'created_at' => now(), 'updated_at' => now()),
