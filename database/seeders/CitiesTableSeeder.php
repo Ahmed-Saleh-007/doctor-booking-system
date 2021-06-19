@@ -6,14 +6,8 @@ use App\Models\City;
 use App\Models\Country;
 use Illuminate\Database\Seeder;
 
-
 class CitiesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $egypt = Country::create(['code' => 'EG', 'code' => 'BS', 'name_ar' => '', 'name_en' => 'Egypt', 'created_at' => now(), 'updated_at' => now()]);

@@ -38,11 +38,11 @@ class DoctorController extends Controller
     public function store(StoreDoctorRequest $request)
     {
         if (($request->filled('address_en')) || ($request->filled('address_ar'))) {
-            $validated = $request->validate([
+            $request->validate([
                 'address_en'  => 'required',
                 'address_ar'  => 'required',
-                'district_id'  => 'required',
-                'fees'    => 'required|numeric|gt:0',
+                'district_id' => 'required',
+                'fees'        => 'required|numeric|gt:0',
             ]);
         }
         $data = $request->all();

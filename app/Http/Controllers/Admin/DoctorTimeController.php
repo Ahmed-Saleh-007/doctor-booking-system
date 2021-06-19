@@ -12,7 +12,12 @@ class DoctorTimeController extends Controller
 {
     public function index(DoctorTimeDatatable $doctor_time)
     {
-        return $doctor_time->render('admin.doctor_times.index', ['title' => 'DoctorTime Control']);
+        return $doctor_time->with([
+            'doctor_id' => request('doctor_id'),
+            'doctor_address_id' => request('doctor_address_id')
+            ])
+        ->render('admin.doctor_times.index',
+        ['title' => 'DoctorTime Control']);
     }
 
     public function store(StoreDoctorTimeRequest $request)

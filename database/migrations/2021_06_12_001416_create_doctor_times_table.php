@@ -15,7 +15,7 @@ class CreateDoctorTimesTable extends Migration
     {
         Schema::create('doctor_times', function (Blueprint $table) {
             $table->id();
-            $table->enum('day',['FRIDAY', 'MONDAY', 'SATURDAY', 'SUNDAY', 'THURSDAY', 'TUESDAY', 'WEDNESDAY']);
+            $table->enum('day', ['FRIDAY', 'MONDAY', 'SATURDAY', 'SUNDAY', 'THURSDAY', 'TUESDAY', 'WEDNESDAY']);
             $table->time('from');
             $table->time('to');
             $table->integer('session_number');
@@ -24,6 +24,11 @@ class CreateDoctorTimesTable extends Migration
             $table->foreign('doctor_id')
                 ->references('id')
                 ->on('doctors')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('doctor_address_id');
+            $table->foreign('doctor_address_id')
+                ->references('id')
+                ->on('doctor_addresses')
                 ->onDelete('cascade');
 
             $table->timestamps();
