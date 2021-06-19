@@ -10,7 +10,13 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctors = Doctor::all();
+        $doctors = Doctor::paginate(2);
         return $doctors;
+    }
+
+    function search($key)
+    {
+         $doctors = Doctor::where('name_en','like',"%$key%")->get();
+         return $doctors;
     }
 }
