@@ -48,9 +48,7 @@ class DoctorController extends Controller
         }
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-        if ($request->image) {
-            $data['image'] = savePhoto('image', 'doctors', $request);
-        }
+        $data['image'] = $request->hasFile('image') ? savePhoto('images/doctors/', $request->image) : null;
 
         $isFound = Doctor::find(request('email'));
 
