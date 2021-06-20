@@ -53,7 +53,7 @@
                     </li>
 
                     <li>
-                        <span>@lang('admin.Age') : </span> <span>{{$doctor->age}}</span>
+                        <span>@lang('admin.Age') : </span> <span>{{$doctor->age()}}</span>
                     </li>
 
                     <li>
@@ -173,7 +173,9 @@
         @else
             <tr>
                 <td>
-                    @lang('admin.no addresses to show')
+                    <p class="text-center">
+                        @lang('admin.no addresses to show')
+                    </p>
                 </td>
             </tr>
         @endif

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\DataTables\DoctorDatatable;
@@ -59,16 +60,6 @@ class DoctorController extends Controller
 
         //insert the address if exist
         if (($request->filled('address_en')) || ($request->filled('address_ar'))) {
-            $doctorAddress = [
-                'doctor_id'  => $doctor->id,
-                'address_en' => request('address_en'),
-                'address_ar' => request('address_ar'),
-                'city_id'    => request('city_id'),
-                'district_id'=> request('district_id'),
-                'longitude'  => request('longitude'),
-                'latitude'    => request('latitude'),
-                'fees' => request('address_fees'),
-            ];
             DoctorAddressController::saveDoctorAddress($request, $doctor->id);
         }
 

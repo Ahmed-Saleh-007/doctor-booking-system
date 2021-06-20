@@ -155,4 +155,6 @@ return [
     'day'                           =>'Day',
     'rate'                          =>'Rate',
     'time_table'                    => 'Time Table',
+    'date_of_birth'                 =>'Date Of Birth'
+
 ];

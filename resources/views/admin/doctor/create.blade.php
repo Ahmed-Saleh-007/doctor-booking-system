@@ -60,8 +60,8 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('age', trans('admin.Age')) !!}
-                    {!! Form::text('age', old('age'), ['class'=>'form-control','required'=>'required']) !!}
+                    {!! Form::label('date_of_birth', trans('admin.date_of_birth')) !!}
+                    {!! Form::date('date_of_birth', old('date_of_birth'), ['class'=>'form-control','required'=>'required']) !!}
                 </div>
 
                 <div class="form-group">
@@ -171,7 +171,7 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
 
             <div class="form-group col-md-6 col-sm-12">
                 {!! Form::label('fees',trans('admin.Address Fees')) !!}
-                {!! Form::text('fees',old('fees'),['class'=>'form-control','required'=>'required']) !!}
+                {!! Form::text('fees',old('fees'),['class'=>'form-control']) !!}
             </div>
         </div>
         <input type="hidden" value="{{ $longitude }}" id="longitude" name="longitude">
