@@ -5,15 +5,9 @@ namespace Database\Seeders;
 use App\Models\District;
 use App\Models\City;
 use Illuminate\Database\Seeder;
-
-
 class DistrictsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         $buheira = City::where('name_ar', 'البحيرة')->first();

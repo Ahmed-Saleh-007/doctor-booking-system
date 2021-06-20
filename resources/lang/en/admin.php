@@ -154,4 +154,5 @@ return [
     'doctor'                        =>'Doctor',
     'day'                           =>'Day',
     'rate'                          =>'Rate',
+    'time_table'                    => 'Time Table',
 ];

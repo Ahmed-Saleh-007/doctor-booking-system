@@ -109,6 +109,8 @@
                 <div id="ajax_create_errors"></div>
 
                 {!! Form::open(['id' => 'store_form']) !!}
+
+                <input type="hidden" name="doctor_address_id" value="{{ request('doctor_address_id') }}">
                 <div class="form-group">
                     {!! Form::label('day', trans('admin.day')) !!}
                     {!! Form::select('day',[

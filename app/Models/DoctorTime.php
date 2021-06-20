@@ -18,11 +18,16 @@ class DoctorTime extends Model
         'fees',
         'session_number',
         'doctor_id',
+        'doctor_address_id',
     ];
 
 
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
+    }
+
+    public function doctor_address(){
+        return $this->belongsTo(Doctor::class,'doctor_address_id', 'id');
     }
 }

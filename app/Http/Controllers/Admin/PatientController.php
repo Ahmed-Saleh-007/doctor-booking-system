@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Patient;
-use Illuminate\Http\Request;
 use App\DataTables\PatientDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -13,25 +12,13 @@ use App\Http\Requests\Admin\UpdatePatientRequest;
 
 class PatientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(PatientDataTable $patient)
     {
         return $patient->render('admin.patients.index', ['title' => 'Patients Control']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StorePatientRequest $request)
     {
-        //dd($request);
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
         $data['image'] = $request->hasFile('image') ? savePhoto('images/patients/', $request->image) : null;
@@ -39,35 +26,16 @@ class PatientController extends Controller
         return response()->json(['success' => trans('admin.record_added')]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Patient $patient)
     {
         return view('admin.patients.ajax.show', compact('patient'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Patient $patient)
     {
         return view('admin.patients.ajax.edit', compact('patient'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdatePatientRequest $request, Patient $patient)
     {
         $data = $request->all();
@@ -86,12 +54,6 @@ class PatientController extends Controller
         return response()->json(['success' => trans('admin.updated_record')]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Patient $patient)
     {
         !empty($patient->image) ? Storage::delete($patient->image) : '';
@@ -108,20 +70,5 @@ class PatientController extends Controller
         Patient::destroy(request('item'));
 		return response()->json(['success' => trans('admin.deleted_record')]);
     }
-
-    // public function register(Request $req)
-    // {
-
-    //     $patient = new Patient;
-    //     $patient->name_en = $req->input('name_en');
-    //     $patient->email = $req->input('email');
-    //     $patient->password = Hash::make($req->input('password'));
-    //     $patient->mobile = $req->input('mobile');
-    //     $patient->date_of_birth = $req->input('date_of_birth');
-    //     $patient->gender = $req->input('gender');
-    //     $patient->save();
-    //     return $patient;
-
-    // }
-
-}
+    
+}//end of controller

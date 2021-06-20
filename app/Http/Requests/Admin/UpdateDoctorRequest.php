@@ -26,7 +26,7 @@ class UpdateDoctorRequest extends FormRequest
         return [
             'name_en'  => 'required',
             'name_ar'  => 'required',
-            'email'    => ['required', 'email', 'unique:doctors,id,' . $this->doctor->id],
+            'email'    => ['required', 'email', 'unique:doctors,id' . $this->id],
             'password' => ['required', 'min:8'],
             'image'    => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
             'deg_id'   => 'required',

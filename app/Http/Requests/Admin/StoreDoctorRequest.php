@@ -37,11 +37,12 @@ class StoreDoctorRequest extends FormRequest
         //make the [email,password] required in the create only
         if ($this->getMethod() == 'POST') {
             $rules += ['email'    => 'required|email|unique:doctors',
-                       'password' => 'required|min:8'];
+                'password' => 'required|min:8'
+            ];
         } else {
             $rules += ['email'    => 'required|email|unique:doctors,email,'.$this->doctor->id,
-                        'password' => 'sometimes|nullable|min:8',
-                      ];
+                'password' => 'sometimes|nullable|min:8',
+            ];
         }
 
         return $rules;
