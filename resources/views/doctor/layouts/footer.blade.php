@@ -2,7 +2,7 @@
                 <strong>Copyright &copy; 2020 <a href="">ITI</a>.</strong>
                 All rights reserved.
                 <div class="float-right d-none d-sm-inline-block">
-                
+
                 </div>
             </footer>
 
@@ -70,9 +70,13 @@
         <script src="{{ url('design/adminlte/jstree/jstree.js') }}"></script>
 		<script src="{{ url('design/adminlte/jstree/jstree.wholerow.js') }}"></script>
 		<script src="{{ url('design/adminlte/jstree/jstree.checkbox.js') }}"></script>
+        <!-- include Chart JS -->
+        <script src="{{ url('') }}/vendor/Chart.min.js"></script>
+        <script src="{{ url('') }}/vendor/create-charts.js"></script>
+
         <script>
-            function check_all() { 
-				$('input.item_checkbox').each(function () { 
+            function check_all() {
+				$('input.item_checkbox').each(function () {
 					if ($('input.check_all:checked').length == 0) {
 						$(this).prop('checked', false);
 					} else {
@@ -80,7 +84,7 @@
 					}
 				});
 			}
-			
+
 			$(document).on('click', '.delBtn', function () {
 				var item_checked = $('input.item_checkbox').filter(':checked').length;
 				if (item_checked > 0) {
@@ -121,13 +125,13 @@
                     }
                 }
             }
-            
+
             document.getElementById('btnFullscreen').addEventListener('click', function(e) {
                 e.preventDefault();
                 toggleFullscreen();
             });
-            
-            $('#btnFullscreen').on('click', function () {	
+
+            $('#btnFullscreen').on('click', function () {
                 $(this).children('i').toggleClass("fa-expand fa-compress");
 			});
 
@@ -161,6 +165,9 @@
                 readURLEdit(this);
             });
         </script>
+
+
+
         @stack('js')
 
         @yield('footer')

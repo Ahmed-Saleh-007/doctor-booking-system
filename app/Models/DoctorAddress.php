@@ -21,4 +21,9 @@ class DoctorAddress extends Model
     {
         return $this->belongsTo(District::class, 'district_id');
     }
+
+    public function doctor_times()
+    {
+        return $this->hasMany(DoctorTime::class);
+    }
 }

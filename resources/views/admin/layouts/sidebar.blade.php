@@ -221,6 +221,14 @@
                                 </a>
                             </li>
 
+                            <!-- Statistics Dashboard -->
+                            <li class="nav-item has-treeview">
+                                <a href="{{aurl('statistics')}}" class="nav-link {{ request()->is('admin/statistics') ? 'active' : '' }}">
+                                    <i class="fas fa-chart-line nav-icon"></i>
+                                    <p>{{ trans('admin.statistics') }}</p>
+                                </a>
+                            </li>
+
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
