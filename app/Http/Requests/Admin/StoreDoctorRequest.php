@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Admin;
 
+// use Carbon\Carbon;
+
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreDoctorRequest extends FormRequest
@@ -30,7 +33,7 @@ class StoreDoctorRequest extends FormRequest
             'deg_id'   => 'required',
             'spec_id'  => 'required',
             'image'    => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
-            'age'      => 'nullable|numeric|min:26|max:80',
+            'date_of_birth' => 'required|date|before:01-jan-2000|after:01-jan-1920',
             'mobile'   => 'nullable|numeric|min:6',
             'gender'   =>  'required',
         ];

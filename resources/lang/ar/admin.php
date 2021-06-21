@@ -134,5 +134,9 @@ return [
     'doctor'                        =>'الطبيب',
     'day'                           =>'اليوم',
     'rate'                          =>'التقييم',
+    'date_of_birth'                 =>'تاريخ الميلاد',
+    'doctors_specialists'           =>'تخصصات الاطباء',
+    'doctors_revenue'               =>'دخل الاطباء',
+    'statistics'                    =>'الاحصائيات'
 
 ];

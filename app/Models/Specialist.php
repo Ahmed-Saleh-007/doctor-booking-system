@@ -17,7 +17,8 @@ class Specialist extends Model
     ];
 
     //Relationship of Specialist with Doctors
-    public function doctors () {
+    public function doctors()
+    {
         return $this->hasMany(Doctor::class);
     }
 
@@ -26,5 +27,4 @@ class Specialist extends Model
     {
         return $this->hasMany(SubSpecialist::class);
     }
-
 }

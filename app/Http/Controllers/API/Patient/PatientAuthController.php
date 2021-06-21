@@ -16,6 +16,12 @@ class PatientAuthController extends Controller
 {
     public function register(RegisterRequest $request)
     {
+        $pic_name = time().$request->file('image')->getClientOriginalName();
+        
+        $path = $request->file('image')->storeAs(
+            'patients',$pic_name
+        );
+
         $patient = Patient::create([
         'name_en' => $request->input('name_en'),
         'name_ar' => $request->input('name_ar'),
@@ -24,6 +30,7 @@ class PatientAuthController extends Controller
         'mobile' => $request->input('mobile'),
         'date_of_birth' => $request->input('date_of_birth'),
         'gender' => $request->input('gender'),
+        'image' => $pic_name
         ]);
 
         return response()->json([
