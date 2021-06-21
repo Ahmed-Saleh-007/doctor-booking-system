@@ -49,18 +49,18 @@
                     </li>
 
                     <li>
-                        <span>@lang('admin.mobile') : </span> 
+                        <span>@lang('admin.mobile') : </span>
                         @if ($doctor->mobile)
-                            <span>{{$doctor->mobile}}</span>                            
+                            <span>{{$doctor->mobile}}</span>
                         @else
                             <span>Not Specified</span>
                         @endif
                     </li>
 
                     <li>
-                        <span>@lang('admin.age') : </span> 
-                        @if ($doctor->age)
-                            <span>{{$doctor->age}}</span>                            
+                        <span>@lang('admin.age') : </span>
+                        @if ($doctor->age())
+                            <span>{{$doctor->age()}}</span>
                         @else
                             <span>Not Specified</span>
                         @endif
@@ -81,7 +81,7 @@
                             <span>@lang('admin.specialist') : </span> <span>No Specialist Selected</span>
                         @endif
                     </li>
-                    
+
                     <li>
                         @if ($doctor->degree)
                             @if (direction() == 'rtl')
@@ -92,14 +92,14 @@
                         @else
                             <span>@lang('admin.degree') : </span> <span>No Degree Selected</span>
                         @endif
-                    </li>                     
-                    
+                    </li>
+
                     <li>
                         <a href="{{ route('doctor.editInfo') }}" class="btn btn-primary">@lang('admin.edit-info')</a>
                     </li>
                 </ul>
             </div>
-            
+
             <div class="col-md-6 col-sm-12 up_img">
                 <div class="form-group">
                     <div class="avatar-upload">
@@ -122,7 +122,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">@lang('admin.subspecialists')</h3>
-    </div>  
+    </div>
     <div class="card-body">
         @if(count($doctor->subspecialists) > 0)
         <table class="table table-bordered table-hover datatable-highlight">
@@ -173,7 +173,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">@lang('admin.Doctor Address')</h3>
-    </div>  
+    </div>
     <div class="card-body">
         @if(count($doctor->addresses) > 0)
             <table class="table table-bordered table-hover datatable-highlight">
