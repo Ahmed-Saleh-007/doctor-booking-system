@@ -30,6 +30,7 @@ class UpdateDoctorTimeRequest extends FormRequest
             'session_number'       => ['required', 'numeric'],
             'fees'                 => ['required', 'numeric'],
             'doctor_id'            => ['required', 'numeric'],
+            'doctor_address_id'    => ['required', 'numeric'],
         ];
     }
 }

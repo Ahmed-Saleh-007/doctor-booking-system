@@ -37,7 +37,7 @@ class DoctorTimeDatatable extends DataTable
      */
     public function query()
     {
-        return DoctorTime::query()->with('doctor');
+        return DoctorTime::query()->with('doctor')->where('doctor_id', $this->doctor_id)->where('doctor_address_id', $this->doctor_address_id);
     }
 
     /**
@@ -145,11 +145,6 @@ class DoctorTimeDatatable extends DataTable
 		];
     }
 
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
     protected function filename()
     {
         return 'DoctorTime_' . date('YmdHis');

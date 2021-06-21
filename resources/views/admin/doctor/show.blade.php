@@ -53,7 +53,7 @@
                     </li>
 
                     <li>
-                        <span>@lang('admin.Age') : </span> <span>{{$doctor->age}}</span>
+                        <span>@lang('admin.Age') : </span> <span>{{$doctor->age()}}</span>
                     </li>
 
                     <li>
@@ -104,6 +104,7 @@
     </div>
     <div class="card-body">
 
+
         @if(count($doctor->addresses) > 0)
             <table class="table table-bordered table-hover datatable-highlight">
                 <thead>
@@ -113,6 +114,7 @@
                         <th> @lang('admin.address_ar') </th>
                         <th> @lang('admin.District') </th>
                         <th> @lang('admin.Fees') </th>
+                        <th> @lang('admin.time_table') </th>
                         <th> @lang('admin.Actions') </th>
                     </tr>
                 </thead>
@@ -133,6 +135,14 @@
                             @endif
                             </td>
                             <td>{{$address->fees}}</td>
+                            <td>
+                                <form style="display: inline;" action="{{aurl('doctor_times')}}">
+                                    <input type="hidden" name="doctor_id" value="{{ $doctor->id }}">
+                                    <input type="hidden" name="doctor_address_id" value="{{ $address->id }}">
+                                    <button class="btn btn-info btn-sm">Show<i class="fa fa-eye" style="opacity: 0.9;font-size: 16px;margin: 0 5px;color: #f8f8f8;"></i></button>
+                                </form>
+                            </td>
+
                             <td>
 
                                 {{-- edit doctor Address --}}
@@ -163,7 +173,9 @@
         @else
             <tr>
                 <td>
-                    @lang('admin.no addresses to show')
+                    <p class="text-center">
+                        @lang('admin.no addresses to show')
+                    </p>
                 </td>
             </tr>
         @endif

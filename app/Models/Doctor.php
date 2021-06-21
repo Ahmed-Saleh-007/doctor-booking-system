@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,7 +14,7 @@ class Doctor extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name_en', 'name_ar', 'email', 'password', 'image', 'spec_id', 'deg_id', 'country_id', 'gender', 'session_time', 'mobile', 'age'
+        'name_en', 'name_ar', 'email', 'password', 'image', 'spec_id', 'deg_id', 'country_id', 'gender', 'session_time', 'mobile', 'date_of_birth'
     ];
 
     protected $table = 'doctors';
@@ -63,9 +64,14 @@ class Doctor extends Authenticatable
     {
         $totalRates  = DB::select('SELECT SUM(rate) AS sum FROM feedbacks WHERE doc_id = ?', [$this->id])[0];
         $rates_count = DB::select('SELECT COUNT(rate) AS count FROM feedbacks WHERE doc_id = ?', [$this->id])[0];
-        if($totalRates->sum == 0 && $rates_count->count == 0) {
+        if ($totalRates->sum == 0 && $rates_count->count == 0) {
             return 0;
         }
         return $this->rate = $totalRates->sum/$rates_count->count;
+    }
+
+    public function age()
+    {
+        return Carbon::parse($this->date_of_birth)->age;
     }
 }

@@ -1,7 +1,8 @@
 <div id="ajax_edit_errors"></div>
 
 {!! Form::open(['id' => 'update_form']) !!}
-    <input type="text" name="id" class="hidden" id="id" value="{{$doctor_time->id}}">
+    <input type="hidden" name="id" id="id" value="{{$doctor_time->id}}">
+    <input type="hidden" name="doctor_address_id" value="{{ $doctor_time->doctor_address_id }}">
     <div class="form-group">
         {!! Form::label('day', trans('admin.day')) !!}
         {!! Form::select('day',[

@@ -221,13 +221,11 @@
                                 </a>
                             </li>
 
-                            <!-- Doctor Time Dashboard -->
+                            <!-- Statistics Dashboard -->
                             <li class="nav-item has-treeview">
-                                <a href="{{aurl('doctor_times')}}" class="nav-link {{ request()->is('admin/doctor_times') ? 'active' : '' }}">
-                                    <i class="fas fa-calendar-alt nav-icon"></i>
-                                    <p>
-                                        {{ trans('admin.doctor_times') }}
-                                    </p>
+                                <a href="{{aurl('statistics')}}" class="nav-link {{ request()->is('admin/statistics') ? 'active' : '' }}">
+                                    <i class="fas fa-chart-line nav-icon"></i>
+                                    <p>{{ trans('admin.statistics') }}</p>
                                 </a>
                             </li>
 

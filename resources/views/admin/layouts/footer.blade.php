@@ -1,5 +1,5 @@
             <footer class="main-footer">
-                <strong>Copyright &copy; 2020 <a href="">ITI</a>.</strong>
+                <strong>Copyright &copy; 2021 <a href="">ITI</a>.</strong>
                 All rights reserved.
                 <div class="float-right d-none d-sm-inline-block">
 
@@ -70,6 +70,9 @@
         <script src="{{ url('design/adminlte/jstree/jstree.js') }}"></script>
 		<script src="{{ url('design/adminlte/jstree/jstree.wholerow.js') }}"></script>
 		<script src="{{ url('design/adminlte/jstree/jstree.checkbox.js') }}"></script>
+           <!-- include Chart JS -->
+           <script src="{{ url('') }}/vendor/Chart.min.js"></script>
+           <script src="{{ url('') }}/vendor/create-charts.js"></script>
         <script>
             function check_all() {
 				$('input.item_checkbox').each(function () {

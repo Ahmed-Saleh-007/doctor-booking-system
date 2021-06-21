@@ -31,8 +31,8 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('age', trans('admin.Age')) !!}
-                    {!! Form::text('age', $doctor->age, ['class'=>'form-control','required'=>'required']) !!}
+                    {!! Form::label('date_of_birth', trans('admin.date_of_birth')) !!}
+                    {!! Form::text('date_of_birth', $doctor->date_of_birth, ['class'=>'form-control','required'=>'required']) !!}
                 </div>
 
                 <div class="form-group">

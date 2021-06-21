@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\SubSpecialistController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\DoctorAddressController;
 use App\Http\Controllers\Admin\DoctorTimeController;
+use App\Http\Controllers\Admin\StatisticsController;
 
 Route::prefix('admin')->group(function () {
     Config::set('auth.defines', 'admin');
@@ -69,7 +70,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/cities/{city}/update', [CityController::class, 'update'])->name('cities.update');
         Route::delete('/cities/destroy/all', [CityController::class, 'destroyAll'])->name('cities.destroyAll');
         //================================================================================================================//
-        
+
         //==============================Get Districts related to country==================================================//
         Route::get('city/{city}/district_name', [CityController::class, 'getDistrict']);
         //================================================================================================================//
@@ -116,6 +117,15 @@ Route::prefix('admin')->group(function () {
         Route::delete('doctor-addresses/delete/{address}', [DoctorAddressController::class,'destroy'])->name('deleteDoctorAddress');
         //==========================================================================================================================//
 
+
+        //================================================ Statistics Routes ====================================================================================//
+        Route::get('statistics', [StatisticsController::class,'index'])->name('statistics');
+
+        Route::get('statistics/doctor_specialist', [StatisticsController::class,'doctor_specialist'])->name('statistics.doctor_specialist');
+
+        Route::get('statistics/doctor_revenue/{year}', [StatisticsController::class,'doctor_revenue'])->name('statistics.doctor_revenue');
+        //
+        //==========================================================================================================================//
 
 
 

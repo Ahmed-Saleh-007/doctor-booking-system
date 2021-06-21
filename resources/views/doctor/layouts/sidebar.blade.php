@@ -62,10 +62,39 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
                 </div>
                 <!-- /.sidebar -->
             </aside>
+
+        {{-- @push("js")
+
+            <script>
+               //calculate total price of days
+                $( document ).ready(function() {
+
+                    // $(document).on('change','#seleted_year',function(){
+
+                    //     var year = $('#seleted_year').val();
+
+                    //     $.ajax({
+                    //         url:  "{{ route('clients.statistics') }}",
+                    //         type: 'get',
+                    //         dataType:'html',
+                    //         data: {
+                    //             _year: year,
+                    //         },
+                    //         success: function (data) {
+                    //             $('#static_id').html($(data).find('#static_id').html());
+                    //             charts.init(year);
+                    //         }
+                    //     });
+                    // });
+
+                    charts.doctor_specialist();
+                });
+            </script>
+        @endpush --}}
