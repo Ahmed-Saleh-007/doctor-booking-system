@@ -18,15 +18,28 @@ class UpdateDoctorRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'name_en'  => 'required',
-            'name_ar'  => 'required',
-            'email'    => ['required', 'email', 'unique:doctors,id,' . $this->doctor->id],
-            'password' => ['required', 'min:8'],
-            'image'    => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
+        $rules = [
+            'name_en'       => 'required',
+            'name_ar'       => 'required',
+            'password'      => ['required', 'min:8'],
+            'image'         => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
             'date_of_birth' => 'required|date|before:01-jan-2000|after:01-jan-1920',
-            'deg_id'   => 'required',
-            'spec_id'  => 'required',
+            'deg_id'        => 'required',
+            'spec_id'       => 'required',
         ];
+
+        if ($this->getMethod() == 'POST') {
+            $rules += [
+                'email'    => 'required|email|unique:doctors',
+                'password' => 'required|min:8'
+            ];
+        } else {   //PUT
+            $rules += [
+                'email'    => 'required|email|unique:doctors,email,' . $this->doctor->id,
+                'password' => 'sometimes|nullable|min:8',
+            ];
+        }
+
+        return $rules;
     }
 }

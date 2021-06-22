@@ -32,7 +32,7 @@
 
                 <div class="form-group">
                     {!! Form::label('date_of_birth', trans('admin.date_of_birth')) !!}
-                    {!! Form::date('date_of_birth', old('date_of_birth'), ['class'=>'form-control','required'=>'required']) !!}
+                    {!! Form::date('date_of_birth', $doctor->date_of_birth, ['class'=>'form-control','required'=>'required']) !!}
 
                 </div>
 
@@ -80,8 +80,8 @@
                     </h1>
                     <div class="avatar-upload">
                         <div class="avatar-edit">
-                            <input type='file' id="imageUpload" name="image"/>
-                            <label for="imageUpload">
+                            <input type='file' id="imageUpload-edit" name="image"/>
+                            <label for="imageUpload-edit">
                                 <i class="fa fa-pencil-alt"></i>
                             </label>
                         </div>
