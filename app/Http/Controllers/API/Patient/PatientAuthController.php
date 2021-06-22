@@ -59,8 +59,8 @@ class PatientAuthController extends Controller
         }
         
         $token = $patient->createToken('token')->plainTextToken;
-
-        $cookie = cookie('jwt',$token,60*24);
+        
+        $cookie = cookie('jwt',$token,60*24, null, null, false, false);
 
         return response()->json([
             "jwt" => $token,
