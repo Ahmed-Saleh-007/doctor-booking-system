@@ -13,7 +13,6 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        
         $doctors = Doctor::with(['degree','specialist','subspecialists','addresses','country'])->with(['addresses.doctor_times','addresses.district','addresses.district.city'])->paginate(2);
         return $doctors;
     }
@@ -29,27 +28,43 @@ class DoctorController extends Controller
         }
 
         if (isset($doctorDistrictIDs)) {
-            $d = Doctor::with(['degree','specialist','subspecialists','addresses','country'])->with(['addresses.doctor_times','addresses.district','addresses.district.city'])
-            ->whereIn('id', $doctorDistrictIDs)->get();
+            $d = Doctor::with(['degree','specialist','subspecialists','addresses','country'])
+            ->with(['addresses.doctor_times','addresses.district','addresses.district.city'])
+            ->whereIn('id', $doctorDistrictIDs);
             $doctor = $d;
-            dd($d);
         }
 
+        if (isset($request->name)) {
+            if (isset($d)) {
+                $doctor = $d->
+            where('name_en', $request->name)
+            ->with(['degree','specialist','subspecialists','addresses','country'])
+            ->with(['addresses.doctor_times','addresses.district','addresses.district.city']);
+            } else {
+                $doctor = Doctor::with(['degree','specialist','subspecialists','addresses','country'])
+                ->with(['addresses.doctor_times','addresses.district','addresses.district.city'])
+                ->where('name_en', $request->name);
+            }
+        }
         if (isset($request->specialty)) {
-            $doctor =  Doctor::
-            where('spec_id', $request->specialty)->pluck('id', 'name_en')
-            ->with(['degree','specialist','subspecialists','addresses','country'])->with(['addresses.doctor_times','addresses.district','addresses.district.city'])->toArray();
-            if (!isset($d)) {
-                $d = $doctor;
+            if (isset($d)) {
+                $doctor = $d->
+            where('spec_id', $request->specialty)
+            ->with(['degree','specialist','subspecialists','addresses','country'])
+            ->with(['addresses.doctor_times','addresses.district','addresses.district.city']);
+            } else {
+                $doctor = Doctor::with(['degree','specialist','subspecialists','addresses','country'])
+                ->with(['addresses.doctor_times','addresses.district','addresses.district.city'])
+                ->where('spec_id', $request->specialty);
             }
         }
 
-        // if (isset($doctor) && isset($d)) {
-        //     $result = array_intersect($d, $doctor);
-        // } else {
-        //     $result = "No data";
-        // }
+        if (isset($doctor)) {
+            $result = $doctor->paginate(5);
+        } else {
+            $result = ["response"=>"no Data"];
+        }
 
-        return $d ;
+        return $result;
     }
 }
