@@ -88,9 +88,11 @@ class DoctorController extends Controller
             $data['password'] = $doctor->password;
         }
 
-        if ($request->file('image')) {
-            $data['image']  = savePhoto('image', 'doctors', $request);//new image
-            Storage::delete('images/'.$doctor->image);//delete the old image
+        if ($request->hasFile('image')) {
+            if (!empty($doctor->image)) {
+                Storage::delete($doctor->image);
+            }
+            $data['image'] = savePhoto('images/doctors/', $request->image);
         }
 
         $doctor->update($data);
