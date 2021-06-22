@@ -11,7 +11,7 @@ class DoctorController extends Controller
     public function index()
     {
         
-        $doctors = Doctor::with(['degree','specialist','addresses','country'])->with('addresses.doctor_times')->paginate(2);
+        $doctors = Doctor::with(['degree','specialist','subspecialists','addresses','country'])->with(['addresses.doctor_times','addresses.district','addresses.district.city'])->paginate(2);
         return $doctors;
     }
 

@@ -32,7 +32,7 @@ class Doctor extends Authenticatable
     //Relationship of Doctor with SubSpecialist
     public function subspecialists()
     {
-        return $this->belongsToMany(SubSpecialist::class, 'doctor_sub_specialist', 'doc_id', 'subspec_id');
+        return $this->belongsToMany(SubSpecialist::class, 'doctor_sub_specialist', 'doc_id', 'subspec_id')->withTimestamps();;
     }
 
 
