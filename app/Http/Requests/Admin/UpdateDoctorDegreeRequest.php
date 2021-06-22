@@ -24,8 +24,8 @@ class UpdateDoctorDegreeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_en'  => ['required','unique:doctor_degrees,id,' . $this->id],
-            'name_ar'  => ['required','unique:doctor_degrees,id,' . $this->id],
+            'name_en'         => ['required','unique:doctor_degrees,id,' . $this->id],
+            'name_ar'         => ['required','unique:doctor_degrees,id,' . $this->id],
             'description'     => ['required', 'min:15','max:255'],
         ];
     }

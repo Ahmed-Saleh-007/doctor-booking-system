@@ -5,12 +5,24 @@ use App\Http\Controllers\Controller;
 use App\DataTables\SubSpecialistDatatable;
 use App\Http\Requests\Admin\StoreSubSpecialistRequest;
 use App\Http\Requests\Admin\UpdateSubSpecialistRequest;
-
+use App\Models\Specialist;
+use Form;
 class SubSpecialistController extends Controller
 {
     //Retrieve All SubSpecialists
     public function index(SubSpecialistDatatable $sub_specialist) {
         return $sub_specialist->render('admin.sub_specialists.index', ['title' => 'SubSpecialist Control']);
+    }
+
+    public function get_subSpecialists()
+    {
+        if (request()->ajax()) {
+            if (request()->has('spec_id')) {
+                $select=request()->has('select')?request('select'):'';
+                return Form::select('subspec_id', SubSpecialist::where('spec_id', request('spec_id'))
+                ->pluck('name_'. session('lang'), 'id'), $select, ['class' => '','placeholder'=>'...']);
+            }
+        }
     }
 
     //Create New SubSpecialist

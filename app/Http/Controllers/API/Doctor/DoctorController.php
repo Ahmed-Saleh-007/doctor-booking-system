@@ -10,7 +10,8 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctors = Doctor::paginate(2);
+        
+        $doctors = Doctor::with(['degree','specialist','addresses','country'])->with('addresses.doctor_times')->paginate(2);
         return $doctors;
     }
 

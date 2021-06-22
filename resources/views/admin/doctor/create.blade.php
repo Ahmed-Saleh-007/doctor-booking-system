@@ -108,10 +108,17 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
                 {!! Form::label('degree_id', trans('admin.doctorDegrees')) !!}
                 {!! Form::select('deg_id', App\Models\DoctorDegree::pluck('name_'.session('lang'), 'id'), old('deg_id'), ['class' => 'form-control', 'placeholder' => trans('admin.Choose One')]) !!}
             </div>
+
             <div class="form-group">
                 {!! Form::label('specialist', trans('doctor.specialists')) !!}
-                {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), old('spec_id'), ['class' => 'form-control', 'data-strength' => '']) !!}
+                {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), old('spec_id'), ['class' => 'form-control spec_id', 'data-strength' => '']) !!}
             </div>
+
+            <div class="form-group subspecdiv hidden">
+                {!! Form::label('subspecialist', trans('doctor.subspecialists')) !!}
+                {!! Form::select('subspec_id',[''], old('subspec_id'), ['class' => 'form-control subspec', 'data-strength' => '']) !!}
+            </div>
+
             <div class="form-group col-md-6 col-sm-12">
                 {!! Form::label('session_time',trans('admin.Session Time')) !!}
                 {!! Form::text('session_time',old('session_time'),['class'=>'form-control']) !!}
@@ -186,6 +193,34 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
 </div>
 <!-- /.box -->
 
+@push('js')
+    <script>
+    //==========Get cities which is related to a specific country========//
+    $(document).ready(function () {
+        
+        $(document).on('change','.spec_id',function(){
+            
+            var spec_id = $('.spec_id option:selected').val();
+            if(spec_id > 0){
+                $('.subspecdiv').removeClass('hidden');
+                $.ajax({
+                    url: "/admin/sub_specialists/get_subspecialists",
+                    type:'get',
+                    datatype:'html',
+                    data:{spec_id: spec_id, select:  '{{ isset($doctor) ? $doctor->spec_id : ''  }}' },
+                    success:function(data){
+                        $('.subspec').html(data);
+                    }
+                });
 
+            }else{
+            $('.subspec').html('');
+            }
+
+        });
+
+    });
+    </script> 
+@endpush
 
 @endsection

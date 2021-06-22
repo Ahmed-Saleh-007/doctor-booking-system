@@ -48,6 +48,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/sub-specialists', SubSpecialistController::class)->except(['create', 'update']);
         Route::post('/sub-specialists/{sub_specialist}/update', [SubSpecialistController::class, 'update'])->name('subspecialists.update');
         Route::delete('/sub-specialists/destroy/all', [SubSpecialistController::class, 'destroyAll'])->name('subspecialists.destroyAll');
+        Route::get('/sub_specialists/get_subspecialists',[SubSpecialistController::class, 'get_subSpecialists']);
         //==============================================================================================================================//
 
         //================================================doctor-degree crud routes=================================================//
