@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Doctor;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\District;
 use App\Models\Doctor;
 use App\Models\DoctorAddress;
 use App\Models\Specialist;
@@ -17,16 +18,21 @@ class DoctorController extends Controller
         $doctors = Doctor::with(['degree','specialist','subspecialists','addresses','country'])->with(['addresses.doctor_times','addresses.district','addresses.district.city'])->paginate(2);
         
         return $doctors;
-        
     }
 
     public function search(Request $request)
     {
         $doctorDistrictIDs=null;
+        $doctorCityIDs=null;
         $d=null;
         $doctor=null;
 
-        if (isset($request->district)) {
+        if (isset($request->city) && $request->city!=='null') {
+            $districtIDs = District::select('id')->where('city_id', $request->city)->get();
+            $doctorDistrictIDs = DoctorAddress::select('doctor_id')->whereIn('district_id', $districtIDs)->get();
+        }
+
+        if (isset($request->district) && $request->district!=='null') {
             $doctorDistrictIDs = DoctorAddress::select('doctor_id')->where('district_id', $request->district)->get();
         }
 
@@ -37,7 +43,7 @@ class DoctorController extends Controller
             $doctor = $d;
         }
 
-        if (isset($request->name)) {
+        if (isset($request->name) && $request->name!=='null') {
             if (isset($d)) {
                 $doctor = $d->
             where('name_en', $request->name)
@@ -49,7 +55,7 @@ class DoctorController extends Controller
                 ->where('name_en', $request->name);
             }
         }
-        if (isset($request->specialty)) {
+        if (isset($request->specialty) && $request->specialty!=='null') {
             if (isset($d)) {
                 $doctor = $d->
             where('spec_id', $request->specialty)
@@ -67,7 +73,6 @@ class DoctorController extends Controller
         } else {
             $result = ["response"=>"no Data"];
         }
-
         return $result;
     }
 }
