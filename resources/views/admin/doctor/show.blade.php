@@ -53,7 +53,7 @@
                     </li>
 
                     <li>
-                        <span>@lang('admin.Age') : </span> <span>{{$doctor->age()}}</span>
+                        <span>@lang('admin.Age') : </span> <span>{{$doctor->getAgeAttribute()}}</span>
                     </li>
 
                     <li>

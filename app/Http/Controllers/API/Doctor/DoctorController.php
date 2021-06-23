@@ -24,7 +24,7 @@ class DoctorController extends Controller
         // return $rates;
         return array_merge($doctors, $rates);
         return $doctors;
-        
+
     }
 
     public function search(Request $request)
