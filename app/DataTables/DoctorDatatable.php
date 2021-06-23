@@ -19,7 +19,7 @@ class DoctorDatatable extends DataTable
             ->addColumn('checkbox', 'admin.doctor.btn.checkbox')
             ->addColumn('actions', 'admin.doctor.btn.actions')
             ->addColumn('Rate', function(Doctor $doctor) {
-                return $doctor->totalRate();
+                return $doctor->getTotalRateAttribute();
             })
             ->rawColumns([
                 'checkbox',

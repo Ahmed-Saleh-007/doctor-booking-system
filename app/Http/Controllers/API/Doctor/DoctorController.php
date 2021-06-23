@@ -8,6 +8,7 @@ use App\Models\Doctor;
 use App\Models\DoctorAddress;
 use App\Models\Specialist;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DoctorController extends Controller
 {
@@ -15,6 +16,7 @@ class DoctorController extends Controller
     {
         $doctors = Doctor::with(['degree','specialist','subspecialists','addresses','country'])->with(['addresses.doctor_times','addresses.district','addresses.district.city'])->paginate(2);
         return $doctors;
+        
     }
 
     public function search(Request $request)
