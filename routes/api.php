@@ -39,7 +39,7 @@ Route::get('/cities/{countryCode}', [CityController::class,'index']);
 Route::get('/districts/{cityID}', [DistrictController::class,'index']);
 
 
-Route::put('update/{id}', [PatientProfileController::class,'update']);
+Route::put('update/{patient}', [PatientProfileController::class,'update']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
