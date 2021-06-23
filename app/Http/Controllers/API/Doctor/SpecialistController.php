@@ -10,7 +10,7 @@ class SpecialistController extends Controller
 {
     public function index()
     {
-        $specialist = Specialist::select('id', 'name_en')->paginate(5);
+        $specialist = Specialist::select('id', 'name_en')->get();
         return $specialist;
     }
 }
