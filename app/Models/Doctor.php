@@ -71,7 +71,7 @@ class Doctor extends Authenticatable
             return 0;
         }
         return $totalRates->sum/$rates_count->count;
-        
+
     }
 
     public function getAgeAttribute()

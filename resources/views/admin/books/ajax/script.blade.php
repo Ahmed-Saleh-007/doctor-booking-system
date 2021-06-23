@@ -1,6 +1,5 @@
 <script>
 
-
     //========================//
     // AJAX handler for store //
     //========================//
@@ -10,7 +9,7 @@
         $('#store_form').on('submit', function(event){
             event.preventDefault();
             $.ajax({
-                url:"{{route('admins.store')}}",
+                url:"{{route('books.store')}}",
                 method:"POST",
                 data: new FormData(this),
                 contentType: false,
@@ -43,15 +42,15 @@
     // Ajax handler for show//
     //////////////////////////
     $(document).ready(function () {
-      $(document).on('click', '.show-ajax', function () {
-        $.ajax({
-            url:  '{{aurl("")}}/admins/' + $(this).data('ajax'),
-            type: 'get',
-            success: function (data) {
-              $('#ajax_view_content').html(data);
-            }
+        $(document).on('click', '.show-ajax', function () {
+            $.ajax({
+                url:  '{{aurl("")}}/books/' + $(this).data('ajax'),
+                type: 'get',
+                success: function (data) {
+                    $('#ajax_view_content').html(data);
+                }
+            });
         });
-      });
     });
 
     //////////////////////////
@@ -61,7 +60,7 @@
         $(document).on('click', '.edit-ajax', function () {
             console.log($(this).data('ajax'));
             $.ajax({
-                url:  '{{aurl("")}}/admins/' + $(this).data('ajax') + '/edit',
+                url:  '{{aurl("")}}/books/' + $(this).data('ajax') + '/edit',
                 type: 'get',
                 success: function (data) {
                     $('#ajax_edit_content').html(data);
@@ -76,9 +75,8 @@
     $(document).ready(function(){
         $(document).on('submit', '#update_form', function(event){
             event.preventDefault();
-            console.log(new FormData(this));
             $.ajax({
-                url: '{{aurl("")}}/admins/' + $('#ajax_edit_content #id').val() + '/update',
+                url: '{{aurl("")}}/books/' +  $('#ajax_edit_content #id').val() + '/update',
                 method:"post",
                 data: new FormData(this),
                 contentType: false,
@@ -117,7 +115,7 @@
         });
         $(document).on('click', '#ajax_delete_content #delete', function () {
             $.ajax({
-                url:  '{{aurl("")}}/admins/' + _id,
+                url:  '{{aurl("")}}/books/' + _id,
                 type: 'delete',
                 data: {
                     _token: $('#ajax_delete_content [name=_token]').val(),
@@ -141,7 +139,7 @@
                 items.push($(this).val());
             });
             $.ajax({
-                url:  '{{route('admins.destroyAll')}}',
+                url:  '{{route('books.destroyAll')}}',
                 type: 'delete',
                 data: {
                     _token: $('#mutlipleDelete [name=_token]').val(),
@@ -159,13 +157,36 @@
 
     //=========clear fields function=========//
     function clearFields() {
-        $('#ajax_create_content #name_en').val('');
-        $('#ajax_create_content #name_ar').val('');
-        $('#ajax_create_content #email').val('');
-        $('#ajax_create_content #password').val('');
-        $('#ajax_create_content #imageUpload-create').val('');
-        //$('#ajax_create_content #imagePreview-create').css('backgroundImage', 'url({{ url("/design/adminlte/dist/img/avatar5.png")}});')
+        $('#ajax_create_content #doctor_id').val('');
+        $('#ajax_create_content #address_id').val('');
+        $('#ajax_create_content #patient_id').val('');
+        $('#ajax_create_content #day').val('');
+        $('#ajax_create_content #fees').val('');
+        $('#ajax_create_content #confirm').val('');
+        $('#ajax_create_content #date').val('');
+        $('#ajax_create_content #time').val('');
         $('#ajax_create_content #ajax_create_errors').html('');
     }
+
+    //==========Get addresses which is related to a specific doctor==========//
+    $(document).ready(function () {
+        $(document).on('change','.doctor_id',function(){
+            var doctor_id = $('.doctor_id option:selected').val();
+            if(doctor_id > 0){
+                $.ajax({
+                    url: "/admin/get_addresses",
+                    type:'get',
+                    datatype:'html',
+                    data:{doctor_id: doctor_id, select:  '{{ isset($book) ? $book->doctor_id : ''  }}' },
+                    success:function(data){
+                        $('.address').html(data);
+                    }
+                });
+            }else{
+            $('.address').html('');
+            }
+        });
+
+    });
 
 </script>

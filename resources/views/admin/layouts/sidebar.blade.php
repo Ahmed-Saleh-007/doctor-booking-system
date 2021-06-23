@@ -158,6 +158,7 @@
 
 
 
+
                             <!-- Doctors Dashboard -->
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link {{ request()->is('admin/doctors') || request()->is('admin/doctor-degree') ? 'active' : '' }}">
@@ -186,6 +187,15 @@
                                     </li>
 
                                 </ul>
+                            </li>
+
+
+                            <!-- Booking Dashboard -->
+                            <li class="nav-item has-treeview">
+                                <a href="{{aurl('books')}}" class="nav-link {{ request()->is('admin/books') ? 'active' : '' }}">
+                                    <i class="fas fa-chart-line nav-icon"></i>
+                                    <p>{{ trans('admin.books') }}</p>
+                                </a>
                             </li>
 
 

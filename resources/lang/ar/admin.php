@@ -137,6 +137,8 @@ return [
     'date_of_birth'                 =>'تاريخ الميلاد',
     'doctors_specialists'           =>'تخصصات الاطباء',
     'doctors_revenue'               =>'دخل الاطباء',
-    'statistics'                    =>'الاحصائيات'
+    'statistics'                    =>'الاحصائيات',
+    'confirmed'                     =>'تم التأكيد',
+
 
 ];
