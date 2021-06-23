@@ -23,6 +23,8 @@ class Doctor extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $appends = ['total_rate','age'];
+
     //Relationship of Doctor With Specialist
     public function specialist()
     {
@@ -61,17 +63,18 @@ class Doctor extends Authenticatable
     }
 
     //Total Rate of Doctor
-    public function totalRate()
+    public function getTotalRateAttribute()
     {
         $totalRates  = DB::select('SELECT SUM(rate) AS sum FROM feedbacks WHERE doc_id = ?', [$this->id])[0];
         $rates_count = DB::select('SELECT COUNT(rate) AS count FROM feedbacks WHERE doc_id = ?', [$this->id])[0];
         if ($totalRates->sum == 0 && $rates_count->count == 0) {
             return 0;
         }
-        return ($totalRates->sum/$rates_count->count);
+        return $totalRates->sum/$rates_count->count;
+
     }
 
-    public function age()
+    public function getAgeAttribute()
     {
         return Carbon::parse($this->date_of_birth)->age;
     }
