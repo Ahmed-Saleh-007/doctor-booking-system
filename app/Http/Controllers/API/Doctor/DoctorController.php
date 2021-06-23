@@ -10,8 +10,15 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        
         $doctors = Doctor::with(['degree','specialist','subspecialists','addresses','country'])->with(['addresses.doctor_times','addresses.district','addresses.district.city'])->paginate(2);
+        // return $doctors[0]->id;
+
+        $rates = [];
+        foreach ($doctors as $doctor){
+            $rates[$doctor->id] = $doctor->totalRate();
+        }
+        // return $rates;
+        return array_merge($doctors, $rates);
         return $doctors;
     }
 

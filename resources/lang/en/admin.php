@@ -154,11 +154,19 @@ return [
     'doctor'                        =>'Doctor',
     'day'                           =>'Day',
     'rate'                          =>'Rate',
-    'time_table'                    => 'Time Table',
+    'time_table'                    =>'Time Table',
     'date_of_birth'                 =>'Date Of Birth',
     'doctors_specialists'           =>'Doctors Specialists',
     'doctors_revenue'               =>'Doctors Revenue',
-    'statistics'                    =>'Statistics'
+    'statistics'                    =>'Statistics',
+    'confirmed'                     =>'Confirmed',
+    'address_id'                    =>'Address',
+    'patient_id'                    =>'Patient',
+    'date'                          =>'Date',
+    'time'                          =>'Time',
+    'books'                         =>'Books',
+    'patient'                       =>'Patient',
+
 
 
 

@@ -68,7 +68,7 @@ class Doctor extends Authenticatable
         if ($totalRates->sum == 0 && $rates_count->count == 0) {
             return 0;
         }
-        return $this->rate = $totalRates->sum/$rates_count->count;
+        return ($totalRates->sum/$rates_count->count);
     }
 
     public function age()
