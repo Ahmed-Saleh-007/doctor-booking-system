@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AdminAuth;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\SpecialistController;
@@ -88,6 +89,14 @@ Route::prefix('admin')->group(function () {
         Route::delete('/doctor_times/destroy/all', [DoctorTimeController::class, 'destroyAll'])->name('doctor_times.destroyAll');
         //================================================================================================================//
 
+        //=================================================Book Routes===============================================//
+        Route::resource('/books', BookController::class)->except(['create', 'update']);
+        Route::post('/books/{book}/update', [BookController::class, 'update'])->name('books.update');
+        Route::delete('/books/destroy/all', [BookController::class, 'destroyAll'])->name('books.destroyAll');
+        // Get addresses related to specific doctor
+        Route::get('/get_addresses', [BookController::class, 'get_addresses'])->name('books.get_addresses');
+        //================================================================================================================//
+
         //=================================================Settings Routes===============================================//
         Route::get('settings', [SettingController::class, 'setting']);
         Route::post('settings', [SettingController::class, 'settingSave']);
@@ -118,7 +127,6 @@ Route::prefix('admin')->group(function () {
         Route::delete('doctor-addresses/delete/{address}', [DoctorAddressController::class,'destroy'])->name('deleteDoctorAddress');
         //==========================================================================================================================//
 
-
         //================================================ Statistics Routes ====================================================================================//
         Route::get('statistics', [StatisticsController::class,'index'])->name('statistics');
 
@@ -127,8 +135,6 @@ Route::prefix('admin')->group(function () {
         Route::get('statistics/doctor_revenue/{year}', [StatisticsController::class,'doctor_revenue'])->name('statistics.doctor_revenue');
         //
         //==========================================================================================================================//
-
-
 
         Route::get('/', function () {
             return view('admin.dashboard');
