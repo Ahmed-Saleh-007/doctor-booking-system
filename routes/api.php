@@ -9,6 +9,7 @@ use App\Http\Controllers\API\Doctor\DoctorController;
 use App\Http\Controllers\API\Doctor\SpecialistController;
 use App\Http\Controllers\API\Patient\PatientAuthController;
 use App\Http\Controllers\API\Patient\PatientProfileController;
+use App\Http\Controllers\API\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,19 @@ Route::get('doctors', [DoctorController::class,'index']);
 Route::get('search', [DoctorController::class,'search']);
 Route::get('/specialists', [SpecialistController::class,'index']);
 Route::get('/cities/{countryCode}', [CityController::class,'index']);
+Route::get('doctors/{id}',[DoctorController::class,'show']);
 Route::get('/districts/{cityID}', [DistrictController::class,'index']);
+
+##########################Feedback API##############################
+Route::post('feedbacks', [FeedbackController::class,'store']);
+Route::get('feedbacks/{id}', [FeedbackController::class,'index']);
+Route::put('feedbacks', [FeedbackController::class,'update']);
+####################################################################
+
+##########################Doctor Time Table#####################
+// Route::get('available-times')
+################################################################
+
 
 
 Route::put('update/{patient}', [PatientProfileController::class,'update']);

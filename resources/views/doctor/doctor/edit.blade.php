@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     {!! Form::label('date_of_birth', trans('admin.date_of_birth')) !!}
-                    {!! Form::date('date_of_birth', old('date_of_birth'), ['class'=>'form-control','required'=>'required']) !!}
+                    {!! Form::date('date_of_birth', $doctor->date_of_birth, ['class'=>'form-control','required'=>'required']) !!}
 
                 </div>
 
