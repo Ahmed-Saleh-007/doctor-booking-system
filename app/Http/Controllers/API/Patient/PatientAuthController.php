@@ -16,41 +16,51 @@ class PatientAuthController extends Controller
 {
     public function register(RegisterRequest $request)
     {
-        $pic_name = time().$request->file('image')->getClientOriginalName();
+        if($request->file('image'))
+        {
+            $pic_name = time().$request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs(
+                'patients',$pic_name
+            );
+        }
         
-        $path = $request->file('image')->storeAs(
-            'patients',$pic_name
-        );
+        $patient = new Patient();
+        $patient->name_en = $request->input('name_en');
+        $patient->name_ar = $request->input('name_ar');
+        $patient->email = $request->input('email');
+        $patient->password = Hash::make($request->input('password'));
+        $patient->mobile = $request->input('mobile');
+        $patient->date_of_birth = $request->input('date_of_birth');
+        $patient->gender = $request->input('gender');
 
-        $patient = Patient::create([
-        'name_en' => $request->input('name_en'),
-        'name_ar' => $request->input('name_ar'),
-        'email' => $request->input('email'),
-        'password' => Hash::make($request->input('password')),
-        'mobile' => $request->input('mobile'),
-        'date_of_birth' => $request->input('date_of_birth'),
-        'gender' => $request->input('gender'),
-        'image' => $pic_name
-        ]);
+        if($request->file('image'))
+        {
+            $patient->image = $pic_name;
+        }
+        if($patient->save())
+        {
+            return response()->json([
+                "success" => "Patient registered successfully",
+                "status" => 201,
+                "user" => $patient,
+            ], Response::HTTP_CREATED);
+        }
+        else
+        {
+            return response()->json([
+                "fail" => "Patient failed to register",
+                "status" => 400,
+            ], Response::HTTP_BAD_REQUEST);
+        }
+        
 
-        return response()->json([
-            "success" => "Patient registered successfully",
-            "status" => 201,
-            "user" => $patient,
-        ], Response::HTTP_CREATED);
+        
     }
 
 
     public function login(LoginRequest $request)
     {
-        // if(!Auth::attempt($request->only('email','password'))) {
-        //     return response()->json([
-        //     "error" => "Invalid credentials",
-        //     ],Response::HTTP_UNAUTHORIZED);
-        // }
-        //$patient = Auth::user();
-
-
+        
         $patient = Patient::where('email', $request->email)->first();
         if (!$patient || !Hash::check($request->password, $patient->password)) {
             return response()->json([

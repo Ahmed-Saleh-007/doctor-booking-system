@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\API\City\CityController;
 use App\Http\Controllers\API\District\DistrictController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PasswordController;
 use App\Http\Controllers\API\Doctor\DoctorController;
 use App\Http\Controllers\API\Doctor\SpecialistController;
+use App\Http\Controllers\API\Patient\BookController;
 use App\Http\Controllers\API\Patient\PatientAuthController;
 use App\Http\Controllers\API\Patient\PatientProfileController;
 
@@ -39,8 +39,10 @@ Route::get('/cities/{countryCode}', [CityController::class,'index']);
 Route::get('/districts/{cityID}', [DistrictController::class,'index']);
 
 
-Route::put('update/{id}', [PatientProfileController::class,'update']);
+Route::put('update/{patient}', [PatientProfileController::class,'update']);
 
+Route::get('/books', [BookController::class, 'index']);
+Route::post('/books/test', [BookController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('patientUser', [PatientAuthController::class,'patientUser']);
