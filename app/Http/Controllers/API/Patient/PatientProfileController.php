@@ -15,17 +15,24 @@ class PatientProfileController extends Controller
 {
     public function update(Request $request, $id)
     {
-        
-        $request->validate([
-            'email' => 'required|email',
+        $rules = [
+            'email' => "required|email|unique:patients,email,$id",
             'password' => 'required|min:8',
             'password_confirm' => 'required|same:password',
             'name_en'  => 'required',
             'name_ar'  => 'required',
-            'mobile'  => 'required',
+            'mobile'  => "required|numeric|unique:patients,mobile,$id",
             'date_of_birth' => 'required|date',
             'gender' => 'required',
-        ]);
+        ];
+
+        if ($request->hasfile('image')) {
+            $rules += [
+                'image'    => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
+            ];
+        } 
+
+        $request->validate($rules);
           
         
         
@@ -38,24 +45,24 @@ class PatientProfileController extends Controller
         }
 
         $patient = Patient::find($id);
-        if ($request->filled('name_en'))
-            $patient->name_en = $request->input('name_en');
-        if ($request->filled('name_ar'))
-            $patient->name_ar = $request->input('name_ar');
-        if ($request->filled('email'))
-            $patient->email = $request->input('email');
-        if ($request->filled('password'))
+        
+        $patient->name_en = $request->input('name_en');
+        
+        $patient->name_ar = $request->input('name_ar');
+        
+        $patient->email = $request->input('email');
+        
         $patient->password = Hash::make($request->input('password'));
-        if ($request->filled('mobile'))
-            $patient->mobile = $request->input('mobile');
-        if ($request->filled('date_of_birth'))
+        
+        $patient->mobile = $request->input('mobile');
+        
         $patient->date_of_birth = $request->input('date_of_birth');
-        if ($request->filled('gender'))
+        
         $patient->gender = $request->input('gender');
         if($request->file('image'))
         {
-            if (!empty($patient->image)) {
-                Storage::delete($patient->image);
+            if ($patient->image != 'default.png') {
+                unlink(storage_path('app/public/patients/'.$patient->image));
             }
             $patient->image = $pic_name;
         }

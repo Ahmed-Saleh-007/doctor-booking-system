@@ -22,6 +22,8 @@
         <link rel="stylesheet" href="{{url('')}}/design/adminlte/dist/css/adminlte.min.css">
         <link rel="stylesheet" href="{{url('')}}/design/adminlte/dist/css/custom_style.css">
         <link rel="stylesheet" href="{{url('')}}/design/adminlte/dist/css/custom.css">
+        <link rel="stylesheet" href="{{url('')}}/design/adminlte/dist/css/bootstrap-select.css" />
+
 
         <!-- rtl Theme style -->
         

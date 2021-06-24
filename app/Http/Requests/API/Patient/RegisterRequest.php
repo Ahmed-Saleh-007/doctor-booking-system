@@ -23,15 +23,22 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules= [
+            'email' => "required|email|unique:patients",
+            'password' => 'required|min:8',
+            'password_confirm' => 'required|same:password',
             'name_en'  => 'required',
             'name_ar'  => 'required',
-            'email'    => ['required', 'email', 'unique:patients'],
-            'password' => ['required', 'min:8'],
-            'password_confirm' => ['required', 'same:password'],
-            'mobile'  => ['required','unique:patients'],
-            'date_of_birth' => ['required','date'],
+            'mobile'  => "required|numeric|unique:patients",
+            'date_of_birth' => 'required|date',
             'gender' => 'required',
         ];
+
+        if ($this->hasfile('image')) {
+            $rules += [
+                'image'    => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
+            ];
+        } 
+        return $rules;
     }
 }
