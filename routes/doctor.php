@@ -42,6 +42,7 @@ Route::prefix('doctor')->group(function () {
         Route::get('sub-specialists/add', [DoctorSubSpecialistController::class,'create'])->name('doctor.addDoctorSubSpecialist');
         Route::post('sub-specialists/add', [DoctorSubSpecialistController::class, 'store'])->name('doctor.storeDoctorSubSpecialist');
         Route::delete('sub-specialists/delete/{subspecialist}', [DoctorSubSpecialistController::class, 'destroy'])->name('doctor.deleteDoctorSubSpecialist');
+        Route::post('sub-specialists/delete/all', [DoctorSubspecialistController::class, 'destroyAll'])->name('doctor.deleteAllSubSpecialists');
         //====================================================================================================================================================//
         
         Route::get('/', function () {

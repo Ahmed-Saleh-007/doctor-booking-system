@@ -40,7 +40,7 @@ class PatientAuthController extends Controller
         if($patient->save())
         {
             return response()->json([
-                "success" => "Patient registered successfully",
+                "message" => "Patient registered successfully",
                 "status" => 201,
                 "user" => $patient,
             ], Response::HTTP_CREATED);
@@ -48,7 +48,7 @@ class PatientAuthController extends Controller
         else
         {
             return response()->json([
-                "fail" => "Patient failed to register",
+                "message" => "Patient failed to register",
                 "status" => 400,
             ], Response::HTTP_BAD_REQUEST);
         }
@@ -64,7 +64,8 @@ class PatientAuthController extends Controller
         $patient = Patient::where('email', $request->email)->first();
         if (!$patient || !Hash::check($request->password, $patient->password)) {
             return response()->json([
-                    "error" => "Invalid credentials",
+                    "message" => "Invalid credentials",
+                    "status" => 401,
                     ],Response::HTTP_UNAUTHORIZED);
         }
         
@@ -74,6 +75,7 @@ class PatientAuthController extends Controller
 
         return response()->json([
             "jwt" => $token,
+            "status" => 200,
             ])->withCookie($cookie);
     }
 

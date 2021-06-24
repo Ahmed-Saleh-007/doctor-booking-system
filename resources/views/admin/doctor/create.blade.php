@@ -42,26 +42,26 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     {!! Form::label('name_en',trans('admin.name_en')) !!}
-                    {!! Form::text('name_en',old('name_en'),['class'=>'form-control','required'=>'required']) !!}
+                    {!! Form::text('name_en',null,['class'=>'form-control','required'=>'required']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('name_ar',trans('admin.name_ar')) !!}
-                    {!! Form::text('name_ar',old('name_ar'),['class'=>'form-control','required'=>'required']) !!}
+                    {!! Form::text('name_ar',null,['class'=>'form-control','required'=>'required']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('email',trans('admin.email')) !!}
-                    {!! Form::email('email',old('email'),['class'=>'form-control','required'=>'required']) !!}
+                    {!! Form::email('email',null,['class'=>'form-control','required'=>'required']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('mobile', trans('admin.mobile')) !!}
-                    {!! Form::text('mobile', old('mobile'), ['class'=>'form-control']) !!}
+                    {!! Form::text('mobile', null, ['class'=>'form-control']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('date_of_birth', trans('admin.date_of_birth')) !!}
-                    {!! Form::date('date_of_birth', old('date_of_birth'), ['class'=>'form-control','required'=>'required']) !!}
+                    {!! Form::date('date_of_birth', null, ['class'=>'form-control','required'=>'required']) !!}
                 </div>
 
                 <div class="form-group">
@@ -105,18 +105,18 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
             </div>
 
             <div class="form-group col-md-6 col-sm-12">
-                {!! Form::label('degree_id', trans('admin.doctorDegrees')) !!}
-                {!! Form::select('deg_id', App\Models\DoctorDegree::pluck('name_'.session('lang'), 'id'), old('deg_id'), ['class' => 'form-control', 'placeholder' => trans('admin.Choose One')]) !!}
-            </div>
-
-            <div class="form-group">
                 {!! Form::label('specialist', trans('doctor.specialists')) !!}
                 {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), old('spec_id'), ['class' => 'form-control spec_id', 'data-strength' => '']) !!}
             </div>
 
-            <div class="form-group subspecdiv hidden">
+            <div class="form-group subspecdiv col-md-6 col-sm-12">
                 {!! Form::label('subspecialist', trans('doctor.subspecialists')) !!}
                 {!! Form::select('subspec_id',[''], old('subspec_id'), ['class' => 'form-control subspec', 'data-strength' => '']) !!}
+            </div>
+
+            <div class="form-group col-md-6 col-sm-12">
+                {!! Form::label('degree_id', trans('admin.doctorDegrees')) !!}
+                {!! Form::select('deg_id', App\Models\DoctorDegree::pluck('name_'.session('lang'), 'id'), old('deg_id'), ['class' => 'form-control', 'placeholder' => trans('admin.Choose One')]) !!}
             </div>
 
             <div class="form-group col-md-6 col-sm-12">
