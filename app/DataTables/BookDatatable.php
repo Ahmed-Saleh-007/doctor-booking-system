@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Models\Doctor;
+use App\Models\Book;
 use Yajra\DataTables\Services\DataTable;
 
-class DoctorDatatable extends DataTable
+class BookDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,11 +16,8 @@ class DoctorDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('checkbox', 'admin.doctor.btn.checkbox')
-            ->addColumn('actions', 'admin.doctor.btn.actions')
-            ->addColumn('Rate', function(Doctor $doctor) {
-                return $doctor->getTotalRateAttribute();
-            })
+            ->addColumn('checkbox', 'admin.districts.btn.checkbox')
+            ->addColumn('actions', 'admin.districts.btn.actions')
             ->rawColumns([
                 'checkbox',
                 'actions',
@@ -36,12 +33,12 @@ class DoctorDatatable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Country $model
+     * @param \App\Models\Book $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query()
     {
-        return Doctor::query()->with(['degree', 'specialist',]);
+        return Book::query()->with('doctor')->with('address')->with('patient');
     }
 
     /**
@@ -58,7 +55,7 @@ class DoctorDatatable extends DataTable
                         'dom'        => 'Blfrtip',
                         'lengthMenu' => [[10, 25, 50, 100], [10, 25, 50, 100]],
                         'buttons'    => [
-                            ['text'   => '<i class="fa fa-plus" style="margin-right:2px;"></i> '.trans('admin.add'), 'className' => 'btn btn-info', 'action' => 'function() {window.location.href = "' . aurl('doctors/create') .'";}'],
+                            ['text'   => '<i class="fa fa-plus" style="margin-right:2px;"></i> '.trans('admin.add'), 'className' => 'btn btn-info ajax-create'],
                             ['text'   => '<i class="fa fa-trash"></i>', 'className' => 'btn btn-danger delBtn'],
                             ['extend' => 'csv', 'className' => 'btn btn-info', 'text' => '<i class="fas fa-file-csv" style="margin:0 2px;"></i> '.trans('admin.ex_csv')],
                             ['extend' => 'excel', 'className' => 'btn btn-success', 'text' => '<i class="fas fa-file-excel" style="margin:0 2px;"></i> '.trans('admin.ex_excel')],
@@ -90,58 +87,72 @@ class DoctorDatatable extends DataTable
      */
     protected function getColumns()
     {
+
         return [
             [
-                'name'          => 'checkbox',
-                'data'          => 'checkbox',
-                'title'         => '<input type="checkbox" class="check_all" onclick="check_all()" style="width:20px"/>',
-                'exportable'    => false,
-                'printable'     => false,
-                'orderable'     => false,
+				'name'          => 'checkbox',
+				'data'          => 'checkbox',
+				'title'         => '<input type="checkbox" class="check_all" onclick="check_all()" style="width:20px"/>',
+				'exportable'    => false,
+				'printable'     => false,
+				'orderable'     => false,
                 'searchable'    => false,
-            ], [
-                'name'  => 'id',
-                'data'  => 'id',
-                'title' => trans('admin.admin_id'),
-            ], [
-                'name'  => 'name_' . session('lang'),
-                'data'  => 'name_' . session('lang'),
-                'title' => trans('admin.name'),
-            ], [
-                'name'  => 'spec_id',
-                'data'  => 'specialist.'.'name_'.session('lang'),
-                'title' => 'Specialist',
-            ], [
-                'name'  => 'deg_id',
-                'data'  => 'degree.name_'.session('lang'),
-                'title' => 'Degree',
-            ], [
-                'name'  => 'gender',
-                'data'  => 'gender',
-                'title' => trans('admin.gender'),
-            ], [
-                'name'  => 'rate',
-                'data'  => 'Rate',
-                'title' => trans('admin.rate'),
-            ], [
-                'name'  => 'created_at',
-                'data'  => 'created_at',
-                'title' => trans('admin.created_at'),
-            ], [
-                'name'  => 'updated_at',
-                'data'  => 'updated_at',
-                'title' => trans('admin.updated_at'),
-            ], [
-                'name'       => 'actions',
-                'data'       => 'actions',
-                'title'      => trans('admin.actions'),
-                'exportable' => false,
-                'printable'  => false,
-                'orderable'  => false,
-                'searchable' => false,
-            ],
+			], [
+				'name'  => 'id',
+				'data'  => 'id',
+				'title' => trans('admin.admin_id'),
+			], [
+				'name'  => 'doctor_id',
+				'data'  => 'doctor.name_' . session('lang'),
+				'title' => trans('admin.doctor'),
+			], [
+				'name'  => 'address_id',
+				'data'  => 'address.address_' . session('lang'),
+				'title' => trans('admin.address'),
+			], [
+				'name'  => 'patient_id',
+				'data'  => 'patient.name_' . session('lang'),
+				'title' => trans('admin.patient'),
+			], [
+				'name'  => 'day',
+				'data'  => 'day',
+				'title' => trans('admin.day'),
+			], [
+				'name'  => 'fees',
+				'data'  => 'fees',
+				'title' => trans('admin.fees'),
+			], [
+				'name'  => 'confirm',
+				'data'  => 'confirm',
+				'title' => trans('admin.confirmed'),
+			], [
+				'name'  => 'date',
+				'data'  => 'date',
+				'title' => trans('admin.date'),
+			], [
+				'name'  => 'time',
+				'data'  => 'time',
+				'title' => trans('admin.time'),
+			]
+            , [
+				'name'  => 'created_at',
+				'data'  => 'created_at',
+				'title' => trans('admin.created_at'),
+			], [
+				'name'  => 'updated_at',
+				'data'  => 'updated_at',
+				'title' => trans('admin.updated_at'),
+			], [
+				'name'       => 'actions',
+				'data'       => 'actions',
+				'title'      => trans('admin.actions'),
+				'exportable' => false,
+				'printable'  => false,
+				'orderable'  => false,
+				'searchable' => false,
+			],
 
-        ];
+		];
     }
 
     /**
@@ -151,6 +162,6 @@ class DoctorDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Doctors_' . date('YmdHis');
+        return 'Book_' . date('YmdHis');
     }
 }

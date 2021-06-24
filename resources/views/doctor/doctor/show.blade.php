@@ -59,8 +59,8 @@
 
                     <li>
                         <span>@lang('admin.age') : </span>
-                        @if ($doctor->age())
-                            <span>{{$doctor->age()}}</span>
+                        @if ($doctor->getAgeAttribute())
+                            <span>{{$doctor->getAgeAttribute()}}</span>
                         @else
                             <span>Not Specified</span>
                         @endif

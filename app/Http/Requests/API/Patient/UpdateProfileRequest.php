@@ -4,7 +4,7 @@ namespace App\Http\Requests\API\Patient;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,22 +23,36 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-        $rules= [
-            'email' => "required|email|unique:patients",
-            'password' => 'required|min:8',
-            'password_confirm' => 'required|same:password',
+        $rules = [
             'name_en'  => 'required',
             'name_ar'  => 'required',
-            'mobile'  => "required|numeric|unique:patients",
-            'date_of_birth' => 'required|date',
+            'password' => ['required', 'min:8'],
+            'password_confirm' => ['required', 'same:password'],
+            'date_of_birth' => ['required','date'],
             'gender' => 'required',
+            
         ];
+
+        if ($this->getMethod() == 'POST') {
+            $rules += [
+                'email'    => 'required|email|unique:patients',
+                'mobile'  => 'required','unique:patients'
+            ];
+        } 
+        else {   //PUT
+            $rules += [
+                'email'    => 'required|email|unique:patients,id,' . $this->patient->id,
+                'mobile'  => 'required','unique:patients,id,'. $this->patient->id
+            ];
+        }
 
         if ($this->hasfile('image')) {
             $rules += [
                 'image'    => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png'],
             ];
-        } 
+        }   
+        
+
         return $rules;
     }
 }
