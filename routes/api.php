@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PasswordController;
 use App\Http\Controllers\API\Doctor\DoctorController;
 use App\Http\Controllers\API\Doctor\SpecialistController;
+use App\Http\Controllers\API\Doctor\SupSpecialistController;
+
+use App\Http\Controllers\API\Doctor\DoctorDegreeController;
 use App\Http\Controllers\API\Patient\PatientAuthController;
 use App\Http\Controllers\API\Patient\PatientProfileController;
 
@@ -34,9 +37,15 @@ Route::post('forgot', [PasswordController::class,'forgot']);
 Route::post('reset', [PasswordController::class,'reset']);
 Route::get('doctors', [DoctorController::class,'index']);
 Route::get('search', [DoctorController::class,'search']);
+Route::get('filter', [DoctorController::class,'filter']);
+
 Route::get('/specialists', [SpecialistController::class,'index']);
+Route::get('/sub-specialist', [SupSpecialistController::class,'index']);
+
+
 Route::get('/cities/{countryCode}', [CityController::class,'index']);
 Route::get('/districts/{cityID}', [DistrictController::class,'index']);
+Route::get('/doctor-degree', [DoctorDegreeController::class,'index']);
 
 
 Route::put('update/{patient}', [PatientProfileController::class,'update']);
