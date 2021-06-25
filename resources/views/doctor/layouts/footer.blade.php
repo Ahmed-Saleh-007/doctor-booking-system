@@ -70,9 +70,8 @@
         <script src="{{ url('design/adminlte/jstree/jstree.js') }}"></script>
 		<script src="{{ url('design/adminlte/jstree/jstree.wholerow.js') }}"></script>
 		<script src="{{ url('design/adminlte/jstree/jstree.checkbox.js') }}"></script>
-        <!-- include Chart JS -->
-        <script src="{{ url('') }}/vendor/Chart.min.js"></script>
-        <script src="{{ url('') }}/vendor/create-charts.js"></script>
+        
+        
 
         <script>
             function check_all() {

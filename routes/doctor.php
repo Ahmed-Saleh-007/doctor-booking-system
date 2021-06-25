@@ -60,10 +60,10 @@ Route::prefix('doctor')->group(function () {
             return view('doctor.dashboard');
         })->name('doctor.dashboard');
         Route::get('logout', [DoctorAuth::class, 'logout'])->name('doctor.logout');
-    });
-    
-    Route::get('/auth/google/redirect', [SocialiteController::class , 'redirect_to_google'])->name('doctor.google_redirect');
-    Route::get('/auth/google/callback', [SocialiteController::class , 'callback_from_google']);
+
+        Route::get('/auth/google/redirect', [SocialiteController::class , 'redirect_to_google'])->name('doctor.google_redirect');
+        Route::get('/auth/google/callback', [SocialiteController::class , 'callback_from_google']);
+    }); 
 });
 
 

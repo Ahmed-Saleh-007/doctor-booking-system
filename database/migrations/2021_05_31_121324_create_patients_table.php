@@ -22,7 +22,7 @@ class CreatePatientsTable extends Migration
             $table->string('mobile')->unique();
             $table->date('date_of_birth');
             $table->enum('gender', ['male', 'female']);
-            $table->string('image')->default('default.png');
+            $table->string('image')->default('images/patients/default.png');
             $table->rememberToken();
             $table->timestamps();
         });
