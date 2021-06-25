@@ -15,7 +15,7 @@ class BookController extends Controller
     }
 
     public function store(Request $request)
-    {   
+    {
         $data = $request->all();
         $data['date'] = now();
         Book::create($data);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Doctor\DoctorAppointmentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\Doctor\DoctorAuth;
@@ -23,28 +24,37 @@ Route::prefix('doctor')->group(function () {
     //=========================================================================================//
 
     Route::middleware(['doctor:doctor'])->group(function () {
-    
+
         //=======================================Doctor Profile Routes=======================================//
         Route::get('profile', [DoctorController::class, 'show'])->name('doctor.profile');
         Route::get('profile/edit', [DoctorController::class, 'edit'])->name('doctor.editInfo');
         Route::put('profile/update/{doctor}', [DoctorController::class, 'update'])->name('doctor.updateInfo');
         //===================================================================================================//
-        
+
         //=====================================================Doctor Address Routes============================================//
         Route::get('doctor-address/create/{doctor}', [DoctorAddressController::class, 'create'])->name('doctor.addDoctorAddress');
         Route::post('doctor-address/create/{doctor}', [DoctorAddressController::class, 'store'])->name('doctor.storeDoctorAddress');
-        Route::get('doctor-address/edit/{address}', [DoctorAddressController::class,'edit'])->name('doctor.editDoctorAddress');
-        Route::put('doctor-address/edit/{address}', [DoctorAddressController::class,'update'])->name('doctor.updateDoctorAddress');
+        Route::get('doctor-address/edit/{address}', [DoctorAddressController::class, 'edit'])->name('doctor.editDoctorAddress');
+        Route::put('doctor-address/edit/{address}', [DoctorAddressController::class, 'update'])->name('doctor.updateDoctorAddress');
         Route::delete('doctor-address/delete/{address}', [DoctorAddressController::class, 'destroy'])->name('doctor.deleteDoctorAddress');
         //=======================================================================================================================//
-        
+
+        //================================================doctor-appointment crud routes=================================================//
+        Route::get('/doctor_appointments', [DoctorAppointmentController::class, 'index'])->name('doctor.doctor_appointments');
+        // Route::resource('/doctor_appointments', DoctorAppointmentController::class)->except(['create', 'update']);
+        Route::get('/doctor_appointments/{book_id}', [DoctorAppointmentController::class, 'show']);
+        Route::post('/doctor_appointments/confirm/{book_id}', [DoctorAppointmentController::class, 'confirm'])->name('doctor.doctor_appointments.confirm');
+        // Route::resource('/doctor_appointments', DoctorAppointmentController::class)->except(['create', 'update'])->name('doctor_appointments');
+        Route::delete('/doctor_appointments/destroy/all', [DoctorAppointmentController::class, 'destroyAll'])->name('doctor_appointments.destroyAll');
+        //==========================================================================================================================//
+
         //=================================================Doctor SubSpecialist Routes=========================================================================//
-        Route::get('sub-specialists/add', [DoctorSubSpecialistController::class,'create'])->name('doctor.addDoctorSubSpecialist');
+        Route::get('sub-specialists/add', [DoctorSubSpecialistController::class, 'create'])->name('doctor.addDoctorSubSpecialist');
         Route::post('sub-specialists/add', [DoctorSubSpecialistController::class, 'store'])->name('doctor.storeDoctorSubSpecialist');
         Route::delete('sub-specialists/delete/{subspecialist}', [DoctorSubSpecialistController::class, 'destroy'])->name('doctor.deleteDoctorSubSpecialist');
         Route::post('sub-specialists/delete/all', [DoctorSubspecialistController::class, 'destroyAll'])->name('doctor.deleteAllSubSpecialists');
         //====================================================================================================================================================//
-        
+
         Route::get('/', function () {
             return view('doctor.dashboard');
         })->name('doctor.dashboard');
