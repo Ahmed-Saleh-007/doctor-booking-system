@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\DoctorAddressController;
 use App\Http\Controllers\Admin\DoctorTimeController;
 use App\Http\Controllers\Admin\StatisticsController;
+use App\Http\Controllers\Doctor\DoctorSubSpecialistController;
+
 
 Route::prefix('admin')->group(function () {
     Config::set('auth.defines', 'admin');
@@ -133,8 +135,14 @@ Route::prefix('admin')->group(function () {
         Route::get('statistics/doctor_specialist', [StatisticsController::class,'doctor_specialist'])->name('statistics.doctor_specialist');
 
         Route::get('statistics/doctor_revenue/{year}', [StatisticsController::class,'doctor_revenue'])->name('statistics.doctor_revenue');
-        //
         //==========================================================================================================================//
+
+        //================================================ Doctor SubSpecialist=================================================================================//
+        Route::get('doctors/{id}/sub-specialists/add', [DoctorSubSpecialistController::class,'createByAdmin'])->name('addDoctorSubSpecialist');
+        Route::post('doctors/{id}/sub-specialists/add', [DoctorSubSpecialistController::class, 'storeByAdmin'])->name('storeDoctorSubSpecialist');
+        Route::delete('doctors/{id}/sub-specialists/delete/{subspecialist}', [DoctorSubSpecialistController::class, 'destroyByAdmin'])->name('deleteDoctorSubSpecialist');
+        Route::post('doctors/{id}/sub-specialists/delete/all', [DoctorSubspecialistController::class, 'destroyAllByAdmin'])->name('deleteAllSubSpecialists');
+        //======================================================================================================================================================//
 
         Route::get('/', function () {
             return view('admin.dashboard');

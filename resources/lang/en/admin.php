@@ -166,6 +166,10 @@ return [
     'time'                          =>'Time',
     'books'                         =>'Books',
     'patient'                       =>'Patient',
+    'my_appointments'               =>'My Appointments',
+    'confirm_this'                  =>'Do You Want To Confirm This Appointment?',
+    'confirmed_successfully'        =>'Appointment confirmed successfully',
+    'is_confirmed'                  =>'Confirmed?'
 
 
 

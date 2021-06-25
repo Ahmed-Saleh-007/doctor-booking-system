@@ -60,6 +60,14 @@
                                             <p>{{ trans('admin.Profile') }}</p>
                                         </a>
                                     </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{ url('doctor/doctor_appointments') }}" class="nav-link">
+                                            <i class="fas fa-file nav-icon"></i>
+                                            <p>{{ trans('admin.my_appointments') }}</p>
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </li>
 

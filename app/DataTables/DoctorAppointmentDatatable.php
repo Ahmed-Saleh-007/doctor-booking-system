@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Models\Doctor;
+use App\Models\Book;
 use Yajra\DataTables\Services\DataTable;
 
-class DoctorDatatable extends DataTable
+class DoctorAppointmentDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,16 +16,12 @@ class DoctorDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('checkbox', 'admin.doctor.btn.checkbox')
-            ->addColumn('actions', 'admin.doctor.btn.actions')
-            ->addColumn('Rate', function(Doctor $doctor) {
-                return $doctor->getTotalRateAttribute();
-            })
+            ->addColumn('checkbox', 'doctor.doctor_appointments.btn.checkbox')
+            ->addColumn('actions', 'doctor.doctor_appointments.btn.actions')
             ->rawColumns([
                 'checkbox',
                 'actions',
-            ])
-            ->editColumn('created_at', function ($request) {
+            ])->editColumn('created_at', function ($request) {
                 return $request->created_at->toDayDateTimeString();
             })
             ->editColumn('updated_at', function ($request) {
@@ -36,12 +32,12 @@ class DoctorDatatable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Country $model
+     * @param \App\Models\DoctorTime $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query()
     {
-        return Doctor::query()->with(['degree', 'specialist']);
+        return Book::query()->where('doctor_id', doctor()->user()->id)->with(['address', 'patient'])->latest();
     }
 
     /**
@@ -58,8 +54,6 @@ class DoctorDatatable extends DataTable
                         'dom'        => 'Blfrtip',
                         'lengthMenu' => [[10, 25, 50, 100], [10, 25, 50, 100]],
                         'buttons'    => [
-                            ['text'   => '<i class="fa fa-plus" style="margin-right:2px;"></i> '.trans('admin.add'), 'className' => 'btn btn-info', 'action' => 'function() {window.location.href = "' . aurl('doctors/create') .'";}'],
-                            ['text'   => '<i class="fa fa-trash"></i>', 'className' => 'btn btn-danger delBtn'],
                             ['extend' => 'csv', 'className' => 'btn btn-info', 'text' => '<i class="fas fa-file-csv" style="margin:0 2px;"></i> '.trans('admin.ex_csv')],
                             ['extend' => 'excel', 'className' => 'btn btn-success', 'text' => '<i class="fas fa-file-excel" style="margin:0 2px;"></i> '.trans('admin.ex_excel')],
                             ['extend' => 'pdfHtml5', 'className' => 'btn btn-warning', 'text' => '<i class="fas fa-file-pdf" style="margin:0 2px;"></i> '.trans('admin.ex_pdf')],
@@ -90,67 +84,61 @@ class DoctorDatatable extends DataTable
      */
     protected function getColumns()
     {
-        return [
-            [
-                'name'          => 'checkbox',
-                'data'          => 'checkbox',
-                'title'         => '<input type="checkbox" class="check_all" onclick="check_all()" style="width:20px"/>',
-                'exportable'    => false,
-                'printable'     => false,
-                'orderable'     => false,
-                'searchable'    => false,
-            ], [
-                'name'  => 'id',
-                'data'  => 'id',
-                'title' => trans('admin.admin_id'),
-            ], [
-                'name'  => 'name_' . session('lang'),
-                'data'  => 'name_' . session('lang'),
-                'title' => trans('admin.name'),
-            ], [
-                'name'  => 'spec_id',
-                'data'  => 'specialist.'.'name_'.session('lang'),
-                'title' => 'Specialist',
-            ], [
-                'name'  => 'deg_id',
-                'data'  => 'degree.name_'.session('lang'),
-                'title' => 'Degree',
-            ], [
-                'name'  => 'gender',
-                'data'  => 'gender',
-                'title' => trans('admin.gender'),
-            ], [
-                'name'  => 'rate',
-                'data'  => 'Rate',
-                'title' => trans('admin.rate'),
-            ], [
-                'name'  => 'created_at',
-                'data'  => 'created_at',
-                'title' => trans('admin.created_at'),
-            ], [
-                'name'  => 'updated_at',
-                'data'  => 'updated_at',
-                'title' => trans('admin.updated_at'),
-            ], [
-                'name'       => 'actions',
-                'data'       => 'actions',
-                'title'      => trans('admin.actions'),
-                'exportable' => false,
-                'printable'  => false,
-                'orderable'  => false,
-                'searchable' => false,
-            ],
 
-        ];
+        return [
+
+            [
+				'name'  => 'id',
+				'data'  => 'id',
+				'title' => trans('admin.admin_id'),
+			],[
+				'name'  => 'address_id',
+				'data'  => 'address.address_' .session('lang'),
+				'title' => trans('admin.address_id'),
+			],[
+				'name'  => 'patient_id',
+				'data'  => 'patient.name_'. session('lang'),
+				'title' => trans('admin.patient_id'),
+			],[
+				'name'  => 'fees',
+				'data'  => 'fees',
+				'title' => trans('admin.fees'),
+			],[
+				'name'  => 'date',
+				'data'  => 'date',
+				'title' => trans('admin.date'),
+			], [
+				'name'  => 'day',
+				'data'  => 'day',
+				'title' => trans('admin.day'),
+			],
+            [
+				'name'  => 'time',
+				'data'  => 'time',
+				'title' => trans('admin.time'),
+			], [
+				'name'  => 'created_at',
+				'data'  => 'created_at',
+				'title' => trans('admin.created_at'),
+			], [
+				'name'  => 'updated_at',
+				'data'  => 'updated_at',
+				'title' => trans('admin.updated_at'),
+			], [
+				'name'       => 'actions',
+				'data'       => 'actions',
+				'title'      => trans('admin.is_confirmed'),
+				'exportable' => false,
+				'printable'  => false,
+				'orderable'  => false,
+				'searchable' => false,
+			],
+
+		];
     }
 
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
     protected function filename()
     {
-        return 'Doctors_' . date('YmdHis');
+        return 'DoctorAppointments_' . date('YmdHis');
     }
 }
