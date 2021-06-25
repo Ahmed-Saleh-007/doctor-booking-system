@@ -18,17 +18,25 @@ class FeedbackController extends Controller
 
 
     // Create Feedback of Patient on Doctor
-    public function store(StoreFeedbackRequest $request) {
+    public function store( StoreFeedbackRequest $request) {
         $feedback = Feedback::create([
             'doc_id'     => $request->input('doc_id'),
             'patient_id' => $request->input('patient_id'),
             'comment'    => $request->input('comment'),
             'rate'       => $request->input('rate'),
         ]);
-        return response()->json([
-            "success" => "Feedback Added Successfully",
-            "status" => 201,
-        ]);
+        if ($feedback){
+            return response()->json([
+                "success" => "Feedback Added Successfully",
+                "status" => 201,
+            ]);
+        }else{
+            return response()->json([
+                "error" => "Something Went Wrong!!",
+                "status" => 400,
+            ]);
+        }
+        
     }
 
     // // Update Feedback of Patient on Doctor
