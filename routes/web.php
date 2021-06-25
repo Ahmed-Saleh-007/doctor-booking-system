@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['maintenance'])->group(function () {
     Route::get('/', function () {
-        return view('welcome');
+        return redirect('admin/login');
     });
 });
 
 Route::get('maintenance', function () {
-    
+
     if (setting()->status == 'open') {
         return redirect('/');
     } else {
