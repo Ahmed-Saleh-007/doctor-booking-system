@@ -45,6 +45,7 @@ class DoctorController extends Controller
             }
             $data['image'] = savePhoto('images/doctors/', $request->image);
         }
+        $doctor->subspecialists()->sync($data['subspec_id']);
         $doctor->update($data);
         session()->flash('success', trans('admin.updated_record'));
         return redirect()->route('doctor.profile');

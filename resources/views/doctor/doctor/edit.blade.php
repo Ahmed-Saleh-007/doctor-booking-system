@@ -4,7 +4,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">@lang('admin.Edit Info')</h3>
+    <h3 class="card-title">@lang('admin.Edit Doctor')</h3>
   </div>
     <!-- /.box-header -->
     <div class="card-body">
@@ -26,12 +26,6 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('password', trans('admin.password')) !!}
-                    {!! Form::password('password', ['class'=>'form-control', 'data-strength' => '']) !!}
-                    <h6 id="pass-msg" style="display:none; color:#dd4b39;">{{ trans('admin.password_massage') }}</h6>
-                </div>
-
-                <div class="form-group">
                     {!! Form::label('mobile', trans('admin.mobile')) !!}
                     {!! Form::text('mobile', $doctor->mobile, ['class'=>'form-control']) !!}
                 </div>
@@ -49,25 +43,36 @@
                 </div>
 
                 <div class="form-group">
-                    {{ Form::label('gender',trans('admin.gender'),['class' => 'control-label col-sm-3']) }}
+                    {!! Form::label('password', trans('admin.password')) !!}
+                    {!! Form::password('password', ['class'=>'form-control', 'data-strength' => '']) !!}
+                    <h6 id="pass-msg" style="display:none; color:#dd4b39;">{{ trans('admin.password_massage') }}</h6>
+                </div>
+
+                <div class="form-group">
+                    {{ Form::label('gender',trans('admin.Gender'),['class' => 'control-label col-sm-3']) }}
                     <div class="">
                         <select name="gender" class="form-control" required>
                             <option value="male" {{($doctor->gender == "male")? 'selected' : ''}}>@lang('admin.Male')</option>
                             <option value="female" {{($doctor->gender == "female")? 'selected' : ''}}>@lang('admin.Female')</option>
                         </select>
-                     </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('spec_id', trans('admin.specialists')) !!}
-                    {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), $doctor->spec_id, ['class' => 'form-control', 'placeholder' => trans('admin.Choose One')]) !!}
-                </div>
-
-                <div class="form-group">
-                    {!! Form::label('deg_id', trans('admin.doctorDegrees')) !!}
+                    {!! Form::label('degree_id', trans('admin.doctorDegrees')) !!}
                     {!! Form::select('deg_id', App\Models\DoctorDegree::pluck('name_'.session('lang'), 'id'), $doctor->deg_id, ['class' => 'form-control', 'placeholder' => trans('admin.Choose One')]) !!}
                 </div>
 
+                <div class="form-group">
+                    {!! Form::label('specialist', trans('doctor.specialists')) !!}
+                    {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), $doctor->spec_id, ['class' => 'form-control spec_id', 'data-strength' => '']) !!}
+                </div>
+    
+                <div class="form-group subspecdiv">
+                    {!! Form::label('subspecialist[]', trans('doctor.subspecialists')) !!}
+                    {!! Form::select('subspec_id[]', App\Models\SubSpecialist::where('spec_id', $doctor->spec_id)->pluck('name_'.session('lang'), 'id'), $doctor->subspecialists, ['multiple' => 'multiple','class' => 'form-control subspec', 'data-strength' => '']) !!}
+                </div>
+    
                 <div class="form-group">
                     {!! Form::label('session_time',trans('admin.Session Time')) !!}
                     {!! Form::text('session_time',$doctor->session_time,['class'=>'form-control']) !!}
@@ -96,13 +101,40 @@
                 </div>
             </div>
         </div>
-        {!! Form::submit(trans('admin.edit'), ['class'=>'btn btn-primary']) !!}
+        {!! Form::submit(trans('admin.Edit'), ['class'=>'btn btn-primary']) !!}
         {!! Form::close() !!}
+        </div>
     </div>
     <!-- /.box-body -->
 </div>
 <!-- /.box -->
+@push('js')
+    <script>
+        //==========Get cities which is related to a specific country========//
+        $(document).ready(function () {
+            
+            $(document).on('change','.spec_id',function(){
+                
+                var spec_id = $('.spec_id option:selected').val();
+                if(spec_id > 0){
+                    $('.subspecdiv').removeClass('hidden');
+                    $.ajax({
+                        url: "/admin/sub_specialists/get_subspecialists",
+                        type:'get',
+                        datatype:'html',
+                        data:{spec_id: spec_id, select:  '{{ isset($doctor) ? $doctor->spec_id : ''  }}' },
+                        success:function(data){
+                            $('.subspec').html(data);
+                        }
+                    });
 
+                }else{
+                $('.subspec').html('');
+                }
 
+            });
 
+        });
+    </script> 
+@endpush
 @endsection

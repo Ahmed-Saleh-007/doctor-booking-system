@@ -47,7 +47,7 @@ class DoctorSubSpecialistController extends Controller
 		$doctor = Doctor::find($id);
 		$doctor->subspecialists()->attach($request->subspecialist_id);
 		session()->flash('success', trans('admin.record_added'));
-		return view('admin.doctor.show', compact('doctor')); 
+		return redirect()->route('doctors.show',compact('doctor'));
 	}
 
 	//Store New SubSpecialist to Doctor
@@ -74,7 +74,7 @@ class DoctorSubSpecialistController extends Controller
 		$doctor = Doctor::find($id);
 		$doctor->subspecialists()->detach($subspecialist);
 		session()->flash('success', trans('admin.deleted_record'));
-    	return back();
+		return redirect()->route('doctors.show',compact('doctor'));
 	}
 
 	//Destroy All Subspecialists for Doctor By Admin 
@@ -83,13 +83,13 @@ class DoctorSubSpecialistController extends Controller
 		$doctor = Doctor::find($id);
 		$doctor->subspecialists()->wherePivot('doc_id', '=', $doctor->id)->detach();
         session()->flash('success', trans('admin.deleted_record'));
-		return  back();
+		return redirect()->route('doctors.show',compact('doctor'));
 	}
 
 	//Destroy all SubSpecialist of Doctor
 	public function destroyAll()
 	{		
-		$doctor = Doctor::find($id);
+		$doctor = Doctor::find(doctor()->id());
 		$doctor->subspecialists()->wherePivot('doc_id', '=', $doctor->id)->detach();
 		return redirect()->route('doctor.profile');
 	}

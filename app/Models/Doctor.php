@@ -23,7 +23,7 @@ class Doctor extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $appends = ['total_rate','age'];
+    protected $appends = ['total_rate','age',];
 
     //Relationship of Doctor With Specialist
     public function specialist()
@@ -78,4 +78,5 @@ class Doctor extends Authenticatable
     {
         return Carbon::parse($this->date_of_birth)->age;
     }
+
 }

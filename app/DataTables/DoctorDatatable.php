@@ -41,7 +41,7 @@ class DoctorDatatable extends DataTable
      */
     public function query()
     {
-        return Doctor::query()->with(['degree', 'specialist',]);
+        return Doctor::query()->with(['degree', 'specialist']);
     }
 
     /**
