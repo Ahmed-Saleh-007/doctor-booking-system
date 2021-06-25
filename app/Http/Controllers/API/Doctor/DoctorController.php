@@ -20,6 +20,12 @@ class DoctorController extends Controller
         return $doctors;
     }
 
+    public function show($id)
+    {
+        $doctor = Doctor::where('id', $id)->with(['degree','specialist','subspecialists','addresses','country'])->with(['addresses.doctor_times','addresses.district','addresses.district.city'])->get();
+        return $doctor;
+    }
+
     public function search(Request $request)
     {
         $doctorDistrictIDs=null;

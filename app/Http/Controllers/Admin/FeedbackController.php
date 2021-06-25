@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreFeedbackRequest;
 use App\Http\Requests\Admin\UpdateFeedbackRequest;
 use App\Models\Feedback;
-use Illuminate\Http\Request;
-
 class FeedbackController extends Controller
 {
     //Show All Feedbacks

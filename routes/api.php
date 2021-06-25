@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Doctor\DoctorTimeController;
 use App\Http\Controllers\API\City\CityController;
 use App\Http\Controllers\API\District\DistrictController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,7 @@ Route::get('/cities/{countryCode}', [CityController::class,'index']);
 Route::get('doctors/{id}',[DoctorController::class,'show']);
 Route::get('/districts/{cityID}', [DistrictController::class,'index']);
 
+
 ##########################Feedback API##############################
 Route::post('feedbacks', [FeedbackController::class,'store']);
 Route::get('feedbacks/{id}', [FeedbackController::class,'index']);
@@ -47,8 +49,9 @@ Route::put('feedbacks', [FeedbackController::class,'update']);
 ####################################################################
 
 ##########################Doctor Time Table#####################
-// Route::get('available-times')
+Route::get('available-time/{doc_id}/{address_id}', [DoctorTimeController::class,'index']);
 ################################################################
+Route::post('book/store', [BookController::class, 'store']);
 
 
 
