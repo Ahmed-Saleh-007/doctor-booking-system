@@ -110,8 +110,8 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
             </div>
 
             <div class="form-group subspecdiv col-md-6 col-sm-12">
-                {!! Form::label('subspecialist', trans('doctor.subspecialists')) !!}
-                {!! Form::select('subspec_id',[''], old('subspec_id'), ['class' => 'form-control subspec', 'data-strength' => '']) !!}
+                {!! Form::label('subspecialist[]', trans('doctor.subspecialists')) !!}
+                {!! Form::select('subspec_id[]',[''], old('subspecialist'), ['multiple' => 'multiple','class' => 'form-control subspec', 'data-strength' => '']) !!}
             </div>
 
             <div class="form-group col-md-6 col-sm-12">

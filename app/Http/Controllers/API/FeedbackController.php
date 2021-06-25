@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Feedback;
-use App\Http\Requests\Admin\StoreFeedbackRequest;
+// use App\Http\Requests\Admin\StoreFeedbackResquest;
 use App\Http\Requests\Admin\UpdateFeedbackRequest;
 
 class FeedbackController extends Controller
@@ -18,7 +18,7 @@ class FeedbackController extends Controller
 
 
     // Create Feedback of Patient on Doctor
-    public function store(StoreFeedbackRequest $request) {
+    public function store(Request $request) {
         $feedback = Feedback::create([
             'doc_id'     => $request->input('doc_id'),
             'patient_id' => $request->input('patient_id'),

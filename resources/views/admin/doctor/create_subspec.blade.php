@@ -1,4 +1,4 @@
-@extends('doctor.index')
+@extends('admin.index')
 @section('content')
 
 <div class="card">
@@ -11,7 +11,7 @@
     </div>
     <!-- /.box-header -->
     <div class="card-body">
-        {!! Form::open(['route'=>'doctor.storeDoctorSubSpecialist','method'=>'Post']) !!}
+        {!! Form::open(['route'=>['storeDoctorSubSpecialist', $doctor->id],'method'=>'Post']) !!}
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                  <label for="specialist_id" class="control-label">@lang('doctor.subspecialist')</label>

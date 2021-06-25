@@ -163,6 +163,14 @@
         @endif
         <div class="mt-3">
             <a href="{{ route('doctor.addDoctorSubSpecialist') }}" class="btn btn-primary">@lang('doctor.new_subspecialist')</a>
+            @if(count($doctor->subspecialists) > 0)
+                <a  onclick="return confirm('Are you sure?')" href="#" id="delete">
+                    <form style="display: inline;" action="{{ route('doctor.deleteAllSubSpecialists') }}" method="post">
+                        {{ csrf_field() }}
+                        <button class='btn btn-danger float-right'>Delete All SubSpecialists</button>
+                    </form>
+                </a>
+            @endif
         </div>
     </div>
 </div>

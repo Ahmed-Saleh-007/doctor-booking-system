@@ -37,7 +37,7 @@ class DoctorController extends Controller
 
     //Store A New Doctor Info
     public function store(StoreDoctorRequest $request)
-    {
+    {        
         if (($request->filled('address_en')) || ($request->filled('address_ar'))) {
             $request->validate([
                 'address_en'  => 'required',
@@ -49,18 +49,15 @@ class DoctorController extends Controller
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
         $data['image'] = $request->hasFile('image') ? savePhoto('images/doctors/', $request->image) : null;
-
         $isFound = Doctor::find(request('email'));
-
         if (!$isFound) {
             $doctor = Doctor::create($data);
+            $doctor->subspecialists()->attach($data['subspec_id']);
         }
-
         //insert the address if exist
         if (($request->filled('address_en')) || ($request->filled('address_ar'))) {
             DoctorAddressController::saveDoctorAddress($request, $doctor->id);
         }
-
         session()->flash('success', trans('admin.record_added'));
         return redirect()->route('doctors.index');
     }
@@ -106,7 +103,7 @@ class DoctorController extends Controller
         Storage::delete('images/'.$doctor->image);
         $doctor->delete();
         session()->flash('success', trans('admin.deleted_record'));
-        return redirect()->route('doctors.index');
+        return back();
     }
 
     //Destroy All Doctors
@@ -118,6 +115,6 @@ class DoctorController extends Controller
         }
         Doctor::destroy(request('item'));
         session()->flash('success', trans('admin.deleted_record'));
-        return redirect()->route('doctors.index');
+        return back();
     }
 }

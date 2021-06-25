@@ -64,10 +64,15 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('specialist', trans('admin.specialist')) !!}
-                    {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), $doctor->spec_id, ['class' => 'form-control', 'data-strength' => '']) !!}
+                    {!! Form::label('specialist', trans('doctor.specialists')) !!}
+                    {!! Form::select('spec_id', App\Models\Specialist::pluck('name_'.session('lang'), 'id'), $doctor->spec_id, ['class' => 'form-control spec_id', 'data-strength' => '']) !!}
                 </div>
-
+    
+                <div class="form-group subspecdiv">
+                    {!! Form::label('subspecialist[]', trans('doctor.subspecialists')) !!}
+                    {!! Form::select('subspec_id[]',[''], old('subspecialist'), ['multiple' => 'multiple','class' => 'form-control subspec', 'data-strength' => '']) !!}
+                </div>
+    
                 <div class="form-group">
                     {!! Form::label('session_time',trans('admin.Session Time')) !!}
                     {!! Form::text('session_time',$doctor->session_time,['class'=>'form-control']) !!}
@@ -96,6 +101,8 @@
                 </div>
             </div>
         </div>
+        {!! Form::submit(trans('admin.Edit'), ['class'=>'btn btn-primary']) !!}
+        {!! Form::close() !!}
 
         <!-- Sub Specialist Table -->
         <div class="card">
@@ -121,7 +128,7 @@
                             <td>{{$subspecialist->name_ar}}</td>
                             <td>
                                 <a  onclick="return confirm('Are you sure?')" href="#" id="delete">
-                                    <form style="display: inline;" class="delete-ajax" action="{{route('doctor.deleteDoctorSubSpecialist', $subspecialist->id)}}" method="POST">
+                                    <form style="display: inline;" class="delete-ajax" action="{{route('deleteDoctorSubSpecialist', [$doctor->id, $subspecialist->id])}}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button class='label label-danger label-rounded label-icon' type='submit' value='submit' style="border:none;background:none">
@@ -142,10 +149,18 @@
                 </tr>
                 @endif
                 <div class="mt-3">
-                    <a href="{{ route('doctor.addDoctorSubSpecialist') }}" class="btn btn-primary">@lang('doctor.new_subspecialist')</a>
+                    @if(count($doctor->subspecialists) > 0)
+                    <a  onclick="return confirm('Are you sure?')" href="#" id="delete">
+                        <form style="display: inline;" action="{{ route('deleteAllSubSpecialists', $doctor->id) }}" method="post">
+                            {{ csrf_field() }}
+                            <button class='btn btn-danger float-right'>Delete All SubSpecialists</button>
+                        </form>
+                    </a>
+                    @endif
                 </div>
             </div>
         </div>
+
 
         <!-- Addresses Table -->
         <!-- /.box -->
@@ -211,10 +226,37 @@
                     </div>
                 </div>
         </div>
-        {!! Form::submit(trans('admin.Edit'), ['class'=>'btn btn-primary']) !!}
-        {!! Form::close() !!}
     </div>
     <!-- /.box-body -->
 </div>
 <!-- /.box -->
+@push('js')
+    <script>
+        //==========Get cities which is related to a specific country========//
+        $(document).ready(function () {
+            
+            $(document).on('change','.spec_id',function(){
+                
+                var spec_id = $('.spec_id option:selected').val();
+                if(spec_id > 0){
+                    $('.subspecdiv').removeClass('hidden');
+                    $.ajax({
+                        url: "/admin/sub_specialists/get_subspecialists",
+                        type:'get',
+                        datatype:'html',
+                        data:{spec_id: spec_id, select:  '{{ isset($doctor) ? $doctor->spec_id : ''  }}' },
+                        success:function(data){
+                            $('.subspec').html(data);
+                        }
+                    });
+
+                }else{
+                $('.subspec').html('');
+                }
+
+            });
+
+        });
+    </script> 
+@endpush
 @endsection

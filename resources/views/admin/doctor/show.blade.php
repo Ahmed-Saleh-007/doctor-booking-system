@@ -97,6 +97,62 @@
     <!-- /.box-body -->
 </div>
 <!-- /.box -->
+<!-- Sub Specialist Table -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@lang('admin.subspecialists')</h3>
+    </div>
+    <div class="card-body">
+        @if(count($doctor->subspecialists) > 0)
+        <table class="table table-bordered table-hover datatable-highlight">
+            <thead>
+                <tr>
+                    <th>@lang('admin.Id')</th>
+                    <th> @lang('admin.name_en') </th>
+                    <th> @lang('admin.name_ar') </th>
+                    <th> @lang('admin.actions') </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($doctor->subspecialists as $subspecialist)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{$subspecialist->name_en}}</td>
+                    <td>{{$subspecialist->name_ar}}</td>
+                    <td>
+                        <a onclick="return confirm('Are you sure?')" href="#" id="delete">
+                            <form style="display: inline;" class="delete-ajax" action="{{route('doctor.deleteDoctorSubSpecialist', $subspecialist->id)}}" method="POST">
+                                {{ csrf_field() }}
+                                <button class='label label-danger label-rounded label-icon' type='submit' value='submit' style="border:none;background:none">
+                                    <i class='fa fa-trash' style="opacity: 0.9;font-size: 16px;margin: 0 5px;margin: 0 5px;color: #F44336;"> </i>
+                                </button>
+                            </form>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        @else
+        <tr>
+            <p class="text-center">
+                @lang('doctor.no_subspecialist')
+            </p>
+        </tr>
+        @endif
+        <div class="mt-3">
+            <a href="{{ route('addDoctorSubSpecialist', $doctor->id) }}" class="btn btn-primary">@lang('doctor.new_subspecialist')</a>
+            @if(count($doctor->subspecialists) > 0)
+                <a  onclick="return confirm('Are you sure?')" href="#" id="delete">
+                    <form style="display: inline;" action="{{ route('deleteAllSubSpecialists', $doctor->id) }}" method="post">
+                        {{ csrf_field() }}
+                        <button class='btn btn-danger float-right'>Delete All SubSpecialists</button>
+                    </form>
+                </a>
+            @endif
+        </div>
+    </div>
+</div>
 
 <div class="card">
     <div class="card-header">
