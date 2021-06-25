@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 
 class SupSpecialistController extends Controller
 {
-    public function index()
+    public function index($spec_id)
     {
-        $subSpecialist = SubSpecialist::select('id', 'name_en')->get();
+        if (isset($spec_id) && $spec_id !== 'null') {
+            $subSpecialist = SubSpecialist::select('id', 'name_en')->where('spec_id', $spec_id)->get();
+        } elseif (isset($spec_id) && $spec_id == 'null') {
+            $subSpecialist = SubSpecialist::select('id', 'name_en')->get();
+        }
         return $subSpecialist;
     }
 }

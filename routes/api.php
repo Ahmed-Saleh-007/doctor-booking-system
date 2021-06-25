@@ -42,11 +42,11 @@ Route::get('search', [DoctorController::class,'search']);
 Route::get('filter', [DoctorController::class,'filter']);
 
 Route::get('/specialists', [SpecialistController::class,'index']);
-Route::get('/sub-specialist', [SupSpecialistController::class,'index']);
+Route::get('/sub-specialist/{spec_id}', [SupSpecialistController::class,'index']);
 
 
 Route::get('/cities/{countryCode}', [CityController::class,'index']);
-Route::get('doctors/{id}',[DoctorController::class,'show']);
+Route::get('doctors/{id}', [DoctorController::class,'show']);
 Route::get('/districts/{cityID}', [DistrictController::class,'index']);
 Route::get('/doctor-degree', [DoctorDegreeController::class,'index']);
 

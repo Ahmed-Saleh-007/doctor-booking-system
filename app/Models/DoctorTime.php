@@ -54,12 +54,10 @@ class DoctorTime extends Model
     }
 
     public function getBlockedTimesAttribute(){
-        
-        $blocked_times = Book::where('address_id', $this->doctor_address_id)->get();
+
+        $blocked_times = Book::where('address_id', $this->doctor_address_id)->where('doctor_id', $this->doctor_id)->where('day', $this->day)->pluck('time');
 
         return $blocked_times;
     }
 
-    
-    
 }
