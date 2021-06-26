@@ -26,7 +26,6 @@ class UpdateFeedbackRequest extends FormRequest
         return [
             'patient_id' => 'required',
             'doc_id'  => 'required',
-            'comment' => ['required', 'min:15','max:255'],
         ];
     }
 }
