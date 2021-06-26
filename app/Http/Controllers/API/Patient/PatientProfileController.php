@@ -40,7 +40,7 @@ class PatientProfileController extends Controller
         {
             $pic_name = time().$request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs(
-                'patients',$pic_name
+                'images/patients',$pic_name
             );
         }
 
@@ -61,10 +61,10 @@ class PatientProfileController extends Controller
         $patient->gender = $request->input('gender');
         if($request->file('image'))
         {
-            if ($patient->image != 'default.png') {
+            if ($patient->image != 'images/patients/default.png') {
                 unlink(storage_path('app/public/patients/'.$patient->image));
             }
-            $patient->image = $pic_name;
+            $patient->image = 'images/patients/' . $pic_name;
         }
         if($patient->save())
         {
