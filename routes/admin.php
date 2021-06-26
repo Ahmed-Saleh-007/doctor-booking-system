@@ -64,7 +64,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/countries', CountryController::class)->except(['create', 'update']);
         Route::post('/countries/{country}/update', [CountryController::class, 'update'])->name('countries.update');
         Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
-        
+
         //================================================================================================================//
 
         //====================================================Cities Routes===============================================//
@@ -74,7 +74,7 @@ Route::prefix('admin')->group(function () {
         Route::delete('/cities/destroy/all', [CityController::class, 'destroyAll'])->name('cities.destroyAll');
         //================================================================================================================//
 
-        
+
         //================================================================================================================//
 
         //=================================================Districts Routes===============================================//
@@ -147,6 +147,7 @@ Route::prefix('admin')->group(function () {
         })->name('admin.dashboard');
 
         Route::get('logout', [AdminAuth::class, 'logout'])->name('admin.logout');
+        Route::post('edit-profile/{admin}', [AdminAuth::class, 'edit_profile'])->name('admins.edit-profile');
     });
 
     // Get cities related to country

@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UpdateAdminRequest;
 use App\Mail\AdminResetPassword;
 use App\Models\Admin;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Mail;
 
 class AdminAuth extends Controller
@@ -69,7 +72,7 @@ class AdminAuth extends Controller
 			return view('admin.auth.reset_password', ['data' => $check_token]);
 		} else {
 			return redirect(aurl('forgot/password'));
-		}    
+		}
     }
 
     //reset password opearation and update data
@@ -96,5 +99,25 @@ class AdminAuth extends Controller
 		} else {
 			return redirect(aurl('forgot/password'));
         }
+    }
+
+    public function edit_profile(UpdateAdminRequest $request, Admin $admin)
+    {
+
+        $data = $request->all();
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($data['password']);
+        }else {
+            $data['password'] = $admin->password;
+        }
+        if ($request->hasFile('image')) {
+            if (!empty($admin->image)) {
+                Storage::delete($admin->image);
+            }
+            $data['image'] = savePhoto('images/admins/', $request->image);
+        }
+        $admin->update($data);
+        session()->flash('success', trans('admin.updated_record'));
+        return back();
     }
 }

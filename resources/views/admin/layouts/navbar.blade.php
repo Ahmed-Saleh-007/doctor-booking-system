@@ -59,7 +59,7 @@
                             <li class="user-footer">
                                 <div class="row">
                                     <div class="col-sm-4 text-center">
-                                        <button class="edit-ajax btn btn-primary btn-sm btn-flat" style="border-radius: 3px;" data-toggle="modal" data-target="#ajax_edit" data-ajax="{{ admin()->user()->id }}">Profile</button>
+                                        <button type="button" class="btn btn-primary btn-sm btn-flat" style="border-radius: 3px;" data-toggle="modal" data-target="#exampleModal">Profile</button>
                                     </div>
                                     <div class="col-sm-4 text-center">
                                         <a href="{{aurl('logout')}}" class="btn btn-primary btn-flat">@lang('admin.Logout')</a>
@@ -77,3 +77,71 @@
                 </ul>
             </nav>
             <!-- /.navbar -->
+
+        {{-- edit profile modal --}}
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div id="ajax_edit_errors"></div>
+
+                        {!! Form::open(['route' => ['admins.edit-profile','admin' => admin()->user()], 'files' => true]) !!}
+                        @method('post')
+                        <input type="text" name="id" class="hidden" id="id" value="{{isset($admin) ? $admin->id : admin()->user()->id}}">
+
+                        <div class="form-group">
+                            {!! Form::label('name_en', trans('admin.name_en')) !!}
+                            {!! Form::text('name_en', isset($admin) ? $admin->name_en : admin()->user()->name_en, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('name_ar', trans('admin.name_ar')) !!}
+                            {!! Form::text('name_ar', isset($admin) ? $admin->name_ar : admin()->user()->name_ar, ['class' => 'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('email', trans('admin.email')) !!}
+                            {!! Form::email('email', isset($admin) ? $admin->email : admin()->user()->email, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('password', trans('admin.password')) !!}
+                            {!! Form::password('password', ['class' => 'form-control', 'data-strength' => '']) !!}
+                            <h6 id="pass-msg" style="display:none; color:#dd4b39;">{{ trans('admin.password_massage') }}</h6>
+                        </div>
+                        <div class="form-group">
+                            <h4>{{trans('admin.image')}}</h4>
+                            <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                    <input type='file' id="imageUpload-edit" name="image"/>
+                                    <label for="imageUpload-edit">
+                                        <i class="fa fa-pencil-alt"></i>
+                                    </label>
+                                </div>
+                                <div class="avatar-preview">
+                                    @if(!empty(isset($admin) ? $admin->image : admin()->user()->image))
+                                    <div id="imagePreview-edit" style="background-image: url({{ url('storage/' . (isset($admin) ? $admin->image : admin()->user()->image )) }});"></div>
+                                    @else
+                                    <div id="imagePreview-edit" style="background-image: url({{ url('/design/adminlte/dist/img/avatar5.png')}});"></div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        {!! Form::submit(trans('admin.edit'), ['class' => 'btn btn-primary']) !!}
+                        {!! Form::close() !!}
+
+
+                    </div>
+
+                </div>
+                </div>
+            </div>
+            {{-- end of edit profilr modal --}}
