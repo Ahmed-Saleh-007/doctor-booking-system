@@ -44,7 +44,7 @@
                                 @if (!empty(admin()->user()->image))
                                     <img src="{{ url('storage/' . admin()->user()->image) }}" style="width: 35px; height: 35px;" class="img-circle" alt="User Image"/>
                                 @else
-                                    <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                                    <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" style="width: 35px; height: 35px;" class="img-circle" alt="User Image">
                                 @endif
                                 <p>
                                     @if (lang() == 'en')
