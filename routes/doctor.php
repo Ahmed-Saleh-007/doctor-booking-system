@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Doctor\DoctorTimeController;
 use App\Http\Controllers\Doctor\DoctorAppointmentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
@@ -49,6 +50,18 @@ Route::prefix('doctor')->group(function () {
         Route::delete('/doctor_appointments/destroy/all', [DoctorAppointmentController::class, 'destroyAll'])->name('doctor_appointments.destroyAll');
         //==========================================================================================================================//
 
+
+        //=================================================Doctor Time Routes===============================================//
+        Route::resource('/times', DoctorTimeController::class)->except(['create', 'update', 'show']);
+        // Route::resource('/times', DoctorTimeController::class)->except(['create', 'update']);
+        Route::get('/times/{id}', [DoctorTimeController::class, 'show'])->name('times.show');
+        Route::get('/times/{id}/edit', [DoctorTimeController::class, 'edit'])->name('times.edit');
+        Route::delete('/times/delete/{id}', [DoctorTimeController::class, 'destroy'])->name('times.destroy');
+        Route::delete('/times/destroy/all', [DoctorTimeController::class, 'destroyAll'])->name('times.destroyAll');
+        //================================================================================================================//
+
+
+
         //=================================================Doctor SubSpecialist Routes=========================================================================//
         Route::get('sub-specialists/add', [DoctorSubSpecialistController::class, 'create'])->name('doctor.addDoctorSubSpecialist');
         Route::post('sub-specialists/add', [DoctorSubSpecialistController::class, 'store'])->name('doctor.storeDoctorSubSpecialist');
@@ -61,9 +74,7 @@ Route::prefix('doctor')->group(function () {
         })->name('doctor.dashboard');
         Route::get('logout', [DoctorAuth::class, 'logout'])->name('doctor.logout');
 
-        Route::get('/auth/google/redirect', [SocialiteController::class , 'redirect_to_google'])->name('doctor.google_redirect');
-        Route::get('/auth/google/callback', [SocialiteController::class , 'callback_from_google']);
-    }); 
+        Route::get('/auth/google/redirect', [SocialiteController::class, 'redirect_to_google'])->name('doctor.google_redirect');
+        Route::get('/auth/google/callback', [SocialiteController::class, 'callback_from_google']);
+    });
 });
-
-

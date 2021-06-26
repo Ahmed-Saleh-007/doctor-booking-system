@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('doctor.index')
 @section('content')
 
 <div class="card">
@@ -109,7 +109,7 @@
                 <div id="ajax_create_errors"></div>
 
                 {!! Form::open(['id' => 'store_form']) !!}
-                <input type="hidden" name="doctor_id" id="doctor_id" value="{{ request('doctor_id') }}">
+                <input type="hidden" name="doctor_id" id="doctor_id" value="{{doctor()->user()->id}}">
                 <input type="hidden" name="doctor_address_id" value="{{ request('doctor_address_id') }}">
                 <div class="form-group">
                     {!! Form::label('day', trans('admin.day')) !!}
@@ -125,7 +125,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('from', trans('admin.from')) !!}
-                    {!! Form::time('from', old('from'), ['class' => 'form-control']) !!}
+                    {!! Form::time('from', old('from'), ['class' => 'form-control', 'pattern' => "[0-9]{2}:[0-9]{2}", 'max' => '23:59']) !!}
                 </div>
 
                 <div class="form-group">
@@ -143,6 +143,13 @@
                     {!! Form::text('fees', old('fees'), ['class' => 'form-control']) !!}
                 </div>
 
+                {{-- <div class="form-group">
+                    {!! Form::label('doctor_id', trans('admin.doctor')) !!}
+                    <div class="form-group">
+                        {!! Form::select('doctor_id', App\Models\Doctor::pluck('name_' . session('lang'), 'id'), old('doctor_id'), ['placeholder' => trans('admin.doctor') . '...', 'class' => 'form-control']) !!}
+                    </div>
+                </div> --}}
+
                 {!! Form::submit(trans('admin.add'), ['class' => 'btn btn-primary']) !!}
                 {!! Form::close() !!}
 
@@ -155,7 +162,24 @@
 
 {!! $dataTable->scripts() !!}
 
-@include('admin.doctor_times.ajax.script')
+@include('doctor.doctor_times.ajax.script')
+
+<script>
+    $(document).ready(function(){
+        var timepicker = new TimePicker('time', {
+    lang: 'en',
+    theme: 'dark'
+    });
+    timepicker.on('change', function(evt) {
+        alert('test');
+
+    var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+    evt.element.value = value;
+
+});
+    });
+
+</script>
 
 @endpush
 

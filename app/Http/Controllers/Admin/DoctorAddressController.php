@@ -54,7 +54,7 @@ class DoctorAddressController extends Controller
         $doctor_address = DoctorAddress::find($id);
 
         if ($doctor_address) {
-            return view('admin.doctor.doctor-addresses.ajax.show', ['doctor_address'=>$doctor_address]);
+            return view('admin.doctor.doctor-addresses.ajax.show', ['doctor_address' => $doctor_address]);
         } else {
             return redirect()->route('doctor-address.index');
         }
@@ -118,6 +118,6 @@ class DoctorAddressController extends Controller
             'longitude'     => $doctor_address['longitude'],
             'latitude'      => $doctor_address['latitude'],
             'fees'          => $doctor_address['fees'],
-         ]);
+        ]);
     }
 }

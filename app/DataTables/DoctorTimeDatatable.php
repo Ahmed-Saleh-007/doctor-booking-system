@@ -15,9 +15,23 @@ class DoctorTimeDatatable extends DataTable
      */
     public function dataTable($query)
     {
+        if($this->level == 'doctor'){
+            return datatables($query)
+            ->addColumn('checkbox', 'doctor.doctor_times.btn.checkbox')
+            ->addColumn('actions', 'doctor.doctor_times.btn.actions')
+            ->rawColumns([
+                'checkbox',
+                'actions',
+            ])->editColumn('created_at', function ($request) {
+                return $request->created_at->toDayDateTimeString();
+            })
+            ->editColumn('updated_at', function ($request) {
+                return $request->updated_at->toDayDateTimeString();
+            });
+        }
         return datatables($query)
-            ->addColumn('checkbox', 'admin.countries.btn.checkbox')
-            ->addColumn('actions', 'admin.countries.btn.actions')
+            ->addColumn('checkbox', 'admin.doctor_times.btn.checkbox')
+            ->addColumn('actions', 'admin.doctor_times.btn.actions')
             ->rawColumns([
                 'checkbox',
                 'actions',
@@ -37,7 +51,12 @@ class DoctorTimeDatatable extends DataTable
      */
     public function query()
     {
+        if($this->level == 'doctor'){
+
+            return DoctorTime::query()->where('doctor_id', doctor()->user()->id)->with('doctor')->where('doctor_id', $this->doctor_id)->where('doctor_address_id', $this->doctor_address_id);
+        }
         return DoctorTime::query()->with('doctor')->where('doctor_id', $this->doctor_id)->where('doctor_address_id', $this->doctor_address_id);
+
     }
 
     /**

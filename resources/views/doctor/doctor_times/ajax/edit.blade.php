@@ -1,8 +1,8 @@
 <div id="ajax_edit_errors"></div>
 
 {!! Form::open(['id' => 'update_form']) !!}
-    <input type="hidden" name="doctor_id" id="doctor_id" value="{{ $doctor_time->doctor_id }}">
     <input type="hidden" name="id" id="id" value="{{$doctor_time->id}}">
+    <input type="hidden" name="doctor_id" id="doctor_id" value="{{$doctor_time->doctor_id}}">
     <input type="hidden" name="doctor_address_id" value="{{ $doctor_time->doctor_address_id }}">
     <div class="form-group">
         {!! Form::label('day', trans('admin.day')) !!}
@@ -35,8 +35,6 @@
         {!! Form::label('fees', trans('admin.fees')) !!}
         {!! Form::text('fees', $doctor_time->fees, ['class' => 'form-control']) !!}
     </div>
-
-
 
     {!! Form::submit(trans('admin.edit'), ['class' => 'btn btn-primary']) !!}
 {!! Form::close() !!}

@@ -192,6 +192,7 @@
                         <th> @lang('admin.address_ar') </th>
                         <th> @lang('admin.District') </th>
                         <th> @lang('admin.Fees') </th>
+                        <th> @lang('admin.time_table') </th>
                         <th> @lang('admin.Actions') </th>
                     </tr>
                 </thead>
@@ -209,7 +210,15 @@
                             @endif
                         </td>
                             <td>{{$address->fees}}</td>
+                            <td>
+                                <form style="display: inline;" action="{{durl('times')}}">
+                                    <input type="hidden" name="doctor_id" value="{{ $doctor->id }}">
+                                    <input type="hidden" name="doctor_address_id" value="{{ $address->id }}">
+                                    <button class="btn btn-info btn-sm">Show<i class="fa fa-eye" style="opacity: 0.9;font-size: 16px;margin: 0 5px;color: #f8f8f8;"></i></button>
+                                </form>
+                            </td>
                         <td>
+
                             {{-- edit doctor Address --}}
                             <a href="{{route('doctor.editDoctorAddress',$address->id) }}" >
                                 <span class="label label-primary label-rounded label-icon" data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-alt" style="opacity: 0.9;font-size: 16px;margin: 0 5px;color: #FFC107;"></i></span>

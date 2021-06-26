@@ -23,7 +23,6 @@ class DoctorTime extends Model
 
     protected $appends = ['time_slot', 'blocked_times'];
 
-
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
@@ -37,14 +36,10 @@ class DoctorTime extends Model
         $start = strtotime($this->from);
         $end   = strtotime($this->to);
         $slot  = $this->session_number * 60;
-
+        $intervals = [];
         while($start < $end)
         {
             if( ($slot !== null) && ($start + $slot <= $end) )
-            {
-                $intervals[] = array( 'starts' => date("H:i:s",$start), 'ends' => date("H:i:s",($start += $slot)) );
-            }
-            else if( $start + $slot <= $end )
             {
                 $intervals[] = array( 'starts' => date("H:i:s",$start), 'ends' => date("H:i:s",($start += $slot)) );
             }
