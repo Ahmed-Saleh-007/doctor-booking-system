@@ -52,15 +52,12 @@ Route::prefix('doctor')->group(function () {
 
 
         //=================================================Doctor Time Routes===============================================//
-        Route::resource('/times', DoctorTimeController::class)->except(['create', 'update', 'show']);
-        // Route::resource('/times', DoctorTimeController::class)->except(['create', 'update']);
+        Route::resource('/times', DoctorTimeController::class)->except(['create', 'update', 'show','edit', 'destroy']);
         Route::get('/times/{id}', [DoctorTimeController::class, 'show'])->name('times.show');
         Route::get('/times/{id}/edit', [DoctorTimeController::class, 'edit'])->name('times.edit');
         Route::delete('/times/delete/{id}', [DoctorTimeController::class, 'destroy'])->name('times.destroy');
         Route::delete('/times/destroy/all', [DoctorTimeController::class, 'destroyAll'])->name('times.destroyAll');
         //================================================================================================================//
-
-
 
         //=================================================Doctor SubSpecialist Routes=========================================================================//
         Route::get('sub-specialists/add', [DoctorSubSpecialistController::class, 'create'])->name('doctor.addDoctorSubSpecialist');
