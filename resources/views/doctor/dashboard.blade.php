@@ -1,85 +1,67 @@
 @extends('doctor.index')
 @section('content')
-    
+
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>150</h3>
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ count(doctor()->user()->addresses) }}</h3>
 
-                            <p>Doctors</p>
+                                <p>My Clinics</p>
+                            </div>
+                            <div class="icon">
+                                <i class="nav-icon fas fa-user-md"></i>
+                            </div>
+                            <a href="{{ durl('profile') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="nav-icon fas fa-user-md"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>530</h3>
+                        <!-- ./col -->
 
-                            <p>Patients</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>44</h3>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{ App\Models\Book::where('doctor_id', doctor()->user()->id)->count() }}</h3>
 
-                            <p>Reservations</p>
+                                <p>My Reservations</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-calendar-alt"></i>
+                            </div>
+                            <a href="{{ durl('doctor_appointments') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="fa fa-calendar-alt"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>5</h3>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{ App\Models\Book::where('doctor_id', doctor()->user()->id)->where('confirm', 1)->count() }}</h3>
 
-                            <p>Active reservation</p>
+                                <p>My Confirmed Reservations</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-calendar-check"></i>
+                            </div>
+                            <a href="{{ durl('doctor_appointments') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="fa fa-calendar-check"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
+                        <!-- ./col -->
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
-                    <div class="row">
-                    <!-- Left col -->
-                    <section class="col-lg-7 connectedSortable">
-                        
-                    </section>
-                    <!-- /.Left col -->
-                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                    <section class="col-lg-5 connectedSortable">
+                    <div class=" text-center">
+                        <!--col-->
+                        <section class="col-12">
+                            <img src="{{url('/design/adminlte')}}/dist/img/doctor.gif"  class="img-circle"width="270"  alt="User Image">
+                        </section>
+                        <!--col-->
 
-                        
-                    </section>
-                    <!-- right col -->
-                    </div>
+                        </div>
                     <!-- /.row (main row) -->
                 </div><!-- /.container-fluid -->
 

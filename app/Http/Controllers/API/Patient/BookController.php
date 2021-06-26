@@ -13,11 +13,13 @@ class BookController extends Controller
         $books = Book::with('doctor')->with('patient')->with('address')->with('address.district')->with('address.district.city')->with('address.district.city.country')->get();
         return $books;
     }
-    
+
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['date'] = now();
+        //sat   26    tu     29      time_table     book
+                                                            
+        $data['date'] = now();       //logic
         Book::create($data);
         return response()->json([
             "message" => "Reservation Successfully:) ",
