@@ -97,7 +97,7 @@ class DoctorAppointmentDatatable extends DataTable
 				'title' => trans('admin.address_id'),
 			],[
 				'name'  => 'patient_id',
-				'data'  => 'patient.name_'. session('lang'),
+				'data'  => 'patient.name_' . session('lang'),
 				'title' => trans('admin.patient_id'),
 			],[
 				'name'  => 'fees',

@@ -23,7 +23,7 @@ class PatientAuthController extends Controller
                 'patients',$pic_name
             );
         }
-        
+
         $patient = new Patient();
         $patient->name_en = $request->input('name_en');
         $patient->name_ar = $request->input('name_ar');
@@ -52,15 +52,15 @@ class PatientAuthController extends Controller
                 "status" => 400,
             ], Response::HTTP_BAD_REQUEST);
         }
-        
 
-        
+
+
     }
 
 
     public function login(LoginRequest $request)
     {
-        
+
         $patient = Patient::where('email', $request->email)->first();
         if (!$patient || !Hash::check($request->password, $patient->password)) {
             return response()->json([
@@ -68,9 +68,9 @@ class PatientAuthController extends Controller
                     "status" => 401,
                     ],Response::HTTP_UNAUTHORIZED);
         }
-        
+
         $token = $patient->createToken('token')->plainTextToken;
-        
+
         $cookie = cookie('jwt',$token,60*24, null, null, false, false);
 
         return response()->json([
@@ -87,13 +87,14 @@ class PatientAuthController extends Controller
     public function patientUser(Request $request)
     {
         if (Auth::check()) {
-            return $request->user();
+            $patient = Patient::with('books')->with('books.doctor')->with('books.address')->where('id', $request->user()->id)->first();
+            return $patient;
         }else {
             return response()->json([
                 "error" => "Not authenticated",
                 ],Response::HTTP_UNAUTHORIZED);
         }
-        
+
     }
 
 

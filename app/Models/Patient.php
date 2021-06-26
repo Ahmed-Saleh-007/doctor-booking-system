@@ -10,11 +10,18 @@ use Illuminate\Notifications\Notifiable;
 class Patient extends Model
 {
     use HasFactory, HasApiTokens, Notifiable;
-    
+
     protected $table = 'patients';
 
     protected $fillable = [
-        'name_en', 'name_ar', 'email', 'password', 'mobile', 'date_of_birth', 'gender', 'image'
+        'name_en',
+        'name_ar',
+        'email',
+        'password',
+        'mobile',
+        'date_of_birth',
+        'gender',
+        'image'
     ];
 
     protected $hidden = [
@@ -23,7 +30,11 @@ class Patient extends Model
     ];
 
     //Relationship of Patient with Feedback
-    public function feedbacks () {
+    public function feedbacks() {
         return $this->hasMany(Feedback::class);
+    }
+
+    public function books() {
+        return $this->hasMany(Book::class);
     }
 }
