@@ -64,7 +64,7 @@ class BookDatatable extends DataTable
                             ['extend' => 'reload', 'className' => 'btn btn-default', 'text' => '<i class="fas fa-sync-alt"></i>'],
                         ],
                         'initComplete' => ' function () {
-                            this.api().columns([1,2,3,4,5]).every(function () {
+                            this.api().columns([1,2,3,4,5,6,7]).every(function () {
                                 var column = this;
                                 var input = document.createElement("input");
                                 $(input).appendTo($(column.footer()).empty())

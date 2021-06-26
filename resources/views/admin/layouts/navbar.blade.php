@@ -31,18 +31,21 @@
                     <!-- User Account -->
                     <li class="nav-item dropdown user user-menu">
                         <a class="nav-link" data-toggle="dropdown" href="#">
-                            {{-- @if (!empty(admin()->user()->image))
-                            <img src="{{ Storage::url(admin()->user()->image) }}" style="width: 35px; height: 35px;" class="user-image" alt="User Image"/>
+                            @if (!empty(admin()->user()->image))
+                                <img src="{{ url('storage/' . admin()->user()->image) }}" style="width: 35px; height: 35px;" class="img-circle" alt="User Image"/>
                             @else
-                            <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="user-image" alt="User Image">
-                            @endif --}}
-                            <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="user-image" alt="User Image">
+                                <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                            @endif
                         <span class="hidden-xs"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                                @if (!empty(admin()->user()->image))
+                                    <img src="{{ url('storage/' . admin()->user()->image) }}" style="width: 35px; height: 35px;" class="img-circle" alt="User Image"/>
+                                @else
+                                    <img src="{{url('/design/adminlte')}}/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                                @endif
                                 <p>
                                     @if (lang() == 'en')
                                     {{ admin()->user()->name_en }}
