@@ -36,7 +36,7 @@ class PatientAuthController extends Controller
 
         if($request->file('image'))
         {
-            $patient->image = 'images/patients/'.$pic_name;
+            $patient->image = 'images/patients/' . $pic_name;
         }
         if($patient->save())
         {
