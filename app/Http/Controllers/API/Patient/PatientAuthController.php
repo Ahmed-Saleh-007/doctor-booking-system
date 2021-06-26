@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Patient;
 
 use App\Models\Patient;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -25,13 +26,13 @@ class PatientAuthController extends Controller
         }
 
         $patient = new Patient();
-        $patient->name_en = $request->input('name_en');
-        $patient->name_ar = $request->input('name_ar');
-        $patient->email = $request->input('email');
-        $patient->password = Hash::make($request->input('password'));
-        $patient->mobile = $request->input('mobile');
+        $patient->name_en       = $request->input('name_en');
+        $patient->name_ar       = $request->input('name_ar');
+        $patient->email         = $request->input('email');
+        $patient->password      = Hash::make($request->input('password'));
+        $patient->mobile        = $request->input('mobile');
         $patient->date_of_birth = $request->input('date_of_birth');
-        $patient->gender = $request->input('gender');
+        $patient->gender        = $request->input('gender');
 
         if($request->file('image'))
         {
@@ -41,22 +42,18 @@ class PatientAuthController extends Controller
         {
             return response()->json([
                 "message" => "Patient registered successfully",
-                "status" => 201,
-                "user" => $patient,
+                "status"  => 201,
+                "user"    => $patient,
             ], Response::HTTP_CREATED);
         }
         else
         {
             return response()->json([
                 "message" => "Patient failed to register",
-                "status" => 400,
+                "status"  => 400,
             ], Response::HTTP_BAD_REQUEST);
         }
-
-
-
     }
-
 
     public function login(LoginRequest $request)
     {
@@ -64,8 +61,8 @@ class PatientAuthController extends Controller
         $patient = Patient::where('email', $request->email)->first();
         if (!$patient || !Hash::check($request->password, $patient->password)) {
             return response()->json([
-                    "message" => "Invalid credentials",
-                    "status" => 401,
+                    "message"  => "Invalid credentials",
+                    "status"   => 401,
                     ],Response::HTTP_UNAUTHORIZED);
         }
 
@@ -74,7 +71,7 @@ class PatientAuthController extends Controller
         $cookie = cookie('jwt',$token,60*24, null, null, false, false);
 
         return response()->json([
-            "jwt" => $token,
+            "jwt"    => $token,
             "status" => 200,
             ])->withCookie($cookie);
     }
@@ -94,16 +91,22 @@ class PatientAuthController extends Controller
                 "error" => "Not authenticated",
                 ],Response::HTTP_UNAUTHORIZED);
         }
-
     }
 
+    public function cancelAppointment($id)
+    {
+        Book::find($id)->delete();
+        return response()->json([
+            "message" => "Appointment canceled successfully",
+            "status"  => 203,
+        ], Response::HTTP_OK);
+    }
 
     public function logout()
     {
         $cookie= Cookie::forget('jwt');
-
         return response()->json([
             "message" => 'Logout successfully',
-            ])->withCookie($cookie);
+        ])->withCookie($cookie);
     }
 }

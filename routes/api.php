@@ -73,3 +73,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('patientUser', [PatientAuthController::class,'patientUser']);
     Route::post('logout', [PatientAuthController::class,'logout']);
 });
+Route::get('cancelAppointment/{id}', [PatientAuthController::class,'cancelAppointment']);

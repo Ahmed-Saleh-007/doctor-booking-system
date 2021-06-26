@@ -13,7 +13,7 @@ class BookController extends Controller
         $books = Book::with('doctor')->with('patient')->with('address')->with('address.district')->with('address.district.city')->with('address.district.city.country')->get();
         return $books;
     }
-
+    
     public function store(Request $request)
     {
         $data = $request->all();
@@ -25,5 +25,4 @@ class BookController extends Controller
             ,
         ],Response::HTTP_CREATED);
     }
-
 }

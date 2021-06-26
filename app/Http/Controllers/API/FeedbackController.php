@@ -16,7 +16,6 @@ class FeedbackController extends Controller
         return response()->json($feedbacks);
     }
 
-
     // Create Feedback of Patient on Doctor
     public function store( StoreFeedbackRequest $request) {
         $feedback = Feedback::create([
@@ -38,39 +37,5 @@ class FeedbackController extends Controller
         }
         
     }
-
-    // // Update Feedback of Patient on Doctor
-    // public function update(UpdateFeedbackRequest $request) {
-    //     $feedback = Feedback::where('id', $id);
-    //     $feedback->([
-    //         'comment' => $request->input('comment'),
-    //         'rate'    => $request->input('rate'),
-    //     ]);
-    //     $feedback->save();
-    //     return response()->json([
-    //         "success"  => "Feedback updated successfully",
-    //         "status"   => 200,
-    //         "feedback" => $feedback,
-    //     ], Response::HTTP_OK);
-    // }
-
-    // // Delete Feedback of Patient on Doctor
-    // public function destroy($id)
-    // {
-    //     $feedback = Feedback::where('id', $id);
-        
-    //     if ($feedback) {
-    //         $feedback->destroy;
-    //         return response()->json([
-    //             "success"  => "Feedback updated successfully",
-    //             "status"   => 200,
-    //             "feedback" => $feedback,
-    //         ], Response::HTTP_NOT_FOUND);
-    //     } else {
-    //         return response()->json([
-    //             "success"  => "Feedback Not Found",
-    //             "status"   => 404,
-    //         ], Response::HTTP_NOT_FOUND);
-    //     }
-    // }
+    
 }
