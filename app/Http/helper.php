@@ -84,3 +84,12 @@ if (!function_exists('savePhoto')) {
         return $image->storeAs($fullPath , $newName);
     }
 }
+
+if (!function_exists('savePatientPhoto')) {
+
+    function savePatientPhoto($path, $image)
+    {
+        $newName = time() . '.' . $image->getClientOriginalExtension();
+        return $image->storeAs($path , $newName);
+    }
+}

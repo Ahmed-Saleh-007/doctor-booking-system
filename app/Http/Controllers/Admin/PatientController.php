@@ -21,7 +21,7 @@ class PatientController extends Controller
     {
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-        $data['image'] = $request->hasFile('image') ? savePhoto('images/patients/', $request->image) : null;
+        $data['image'] = $request->hasFile('image') ? savePatientPhoto('images/patients', $request->image) : null;
         Patient::create($data);
         return response()->json(['success' => trans('admin.record_added')]);
     }
@@ -48,7 +48,7 @@ class PatientController extends Controller
             if (!empty($patient->image)) {
                 Storage::delete($patient->image);
             }
-            $data['image'] = savePhoto('images/admins/', $request->image);
+            $data['image'] = savePatientPhoto('images/patients/', $request->image);
         }
         $patient->update($data);
         return response()->json(['success' => trans('admin.updated_record')]);

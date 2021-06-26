@@ -144,6 +144,7 @@
                         <a onclick="return confirm('Are you sure?')" href="#" id="delete">
                             <form style="display: inline;" class="delete-ajax" action="{{route('doctor.deleteDoctorSubSpecialist', $subspecialist->id)}}" method="POST">
                                 {{ csrf_field() }}
+                                @method('DELETE')
                                 <button class='label label-danger label-rounded label-icon' type='submit' value='submit' style="border:none;background:none">
                                     <i class='fa fa-trash' style="opacity: 0.9;font-size: 16px;margin: 0 5px;margin: 0 5px;color: #F44336;"> </i>
                                 </button>

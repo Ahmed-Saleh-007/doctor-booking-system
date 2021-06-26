@@ -20,7 +20,7 @@ class PatientAuthController extends Controller
         {
             $pic_name = time().$request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs(
-                'patients',$pic_name
+                'images/patients',$pic_name
             );
         }
 
@@ -35,7 +35,7 @@ class PatientAuthController extends Controller
 
         if($request->file('image'))
         {
-            $patient->image = $pic_name;
+            $patient->image = 'images/patients/'.$pic_name;
         }
         if($patient->save())
         {

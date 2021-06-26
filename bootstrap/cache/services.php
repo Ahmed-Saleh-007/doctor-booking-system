@@ -28,22 +28,23 @@
     24 => 'Fruitcake\\Cors\\CorsServiceProvider',
     25 => 'Laravel\\Sail\\SailServiceProvider',
     26 => 'Laravel\\Sanctum\\SanctumServiceProvider',
-    27 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    28 => 'Collective\\Html\\HtmlServiceProvider',
-    29 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
-    30 => 'Carbon\\Laravel\\ServiceProvider',
-    31 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    32 => 'Yajra\\DataTables\\ButtonsServiceProvider',
-    33 => 'Yajra\\DataTables\\EditorServiceProvider',
-    34 => 'Yajra\\DataTables\\FractalServiceProvider',
-    35 => 'Yajra\\DataTables\\HtmlServiceProvider',
-    36 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    27 => 'Laravel\\Socialite\\SocialiteServiceProvider',
+    28 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    29 => 'Collective\\Html\\HtmlServiceProvider',
+    30 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    31 => 'Carbon\\Laravel\\ServiceProvider',
+    32 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    33 => 'Yajra\\DataTables\\ButtonsServiceProvider',
+    34 => 'Yajra\\DataTables\\EditorServiceProvider',
+    35 => 'Yajra\\DataTables\\FractalServiceProvider',
+    36 => 'Yajra\\DataTables\\HtmlServiceProvider',
     37 => 'Yajra\\DataTables\\DataTablesServiceProvider',
-    38 => 'Yajra\\DataTables\\ButtonsServiceProvider',
-    39 => 'App\\Providers\\AppServiceProvider',
-    40 => 'App\\Providers\\AuthServiceProvider',
-    41 => 'App\\Providers\\EventServiceProvider',
-    42 => 'App\\Providers\\RouteServiceProvider',
+    38 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    39 => 'Yajra\\DataTables\\ButtonsServiceProvider',
+    40 => 'App\\Providers\\AppServiceProvider',
+    41 => 'App\\Providers\\AuthServiceProvider',
+    42 => 'App\\Providers\\EventServiceProvider',
+    43 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -196,6 +197,7 @@
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'Laravel\\Sail\\Console\\InstallCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'Laravel\\Sail\\Console\\PublishCommand' => 'Laravel\\Sail\\SailServiceProvider',
+    'Laravel\\Socialite\\Contracts\\Factory' => 'Laravel\\Socialite\\SocialiteServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
     'html' => 'Collective\\Html\\HtmlServiceProvider',
     'form' => 'Collective\\Html\\HtmlServiceProvider',
@@ -241,6 +243,9 @@
     array (
     ),
     'Laravel\\Sail\\SailServiceProvider' => 
+    array (
+    ),
+    'Laravel\\Socialite\\SocialiteServiceProvider' => 
     array (
     ),
     'Laravel\\Tinker\\TinkerServiceProvider' => 

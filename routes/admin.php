@@ -64,8 +64,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/countries', CountryController::class)->except(['create', 'update']);
         Route::post('/countries/{country}/update', [CountryController::class, 'update'])->name('countries.update');
         Route::delete('/countries/destroy/all', [CountryController::class, 'destroyAll'])->name('countries.destroyAll');
-        // Get cities related to country
-        Route::get('country/{country}/city_name', [CountryController::class, 'getCity']);
+        
         //================================================================================================================//
 
         //====================================================Cities Routes===============================================//
@@ -75,8 +74,7 @@ Route::prefix('admin')->group(function () {
         Route::delete('/cities/destroy/all', [CityController::class, 'destroyAll'])->name('cities.destroyAll');
         //================================================================================================================//
 
-        //==============================Get Districts related to country==================================================//
-        Route::get('city/{city}/district_name', [CityController::class, 'getDistrict']);
+        
         //================================================================================================================//
 
         //=================================================Districts Routes===============================================//
@@ -150,4 +148,9 @@ Route::prefix('admin')->group(function () {
 
         Route::get('logout', [AdminAuth::class, 'logout'])->name('admin.logout');
     });
+
+    // Get cities related to country
+    Route::get('country/{country}/city_name', [CountryController::class, 'getCity']);
+    //==============================Get Districts related to country==================================================//
+    Route::get('city/{city}/district_name', [CityController::class, 'getDistrict']);
 });

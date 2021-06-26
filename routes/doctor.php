@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\Doctor\DoctorAuth;
 use App\Http\Controllers\Doctor\DoctorController;
-use App\Http\Controllers\Doctor\DoctorSubSpecialistController;
+use App\Http\Controllers\Doctor\SocialiteController;
 use App\Http\Controllers\Doctor\DoctorAddressController;
+use App\Http\Controllers\Doctor\DoctorSubSpecialistController;
 
 Route::prefix('doctor')->group(function () {
 
@@ -59,5 +60,10 @@ Route::prefix('doctor')->group(function () {
             return view('doctor.dashboard');
         })->name('doctor.dashboard');
         Route::get('logout', [DoctorAuth::class, 'logout'])->name('doctor.logout');
-    });
+
+        Route::get('/auth/google/redirect', [SocialiteController::class , 'redirect_to_google'])->name('doctor.google_redirect');
+        Route::get('/auth/google/callback', [SocialiteController::class , 'callback_from_google']);
+    }); 
 });
+
+

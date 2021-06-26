@@ -29,4 +29,4 @@
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
-@include('admin.layouts.footer')
+@include('doctor.layouts.footer')
