@@ -19,7 +19,7 @@ class CreateDoctorsTable extends Migration
             $table->string('name_ar')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('gender', ['male', 'female']);
+            $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('mobile')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->integer('session_time')->nullable();

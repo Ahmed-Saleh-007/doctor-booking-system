@@ -92,13 +92,13 @@ $latitude  = !empty(old('latitude'))  ? old('latitude')  :'30.034024628931657';
                     </h1>
                     <div class="avatar-upload">
                         <div class="avatar-edit">
-                            <input type='file' id="imageUpload" name="image"/>
-                            <label for="imageUpload">
+                            <input type='file' id="imageUpload-create" name="image"/>
+                            <label for="imageUpload-create">
                                 <i class="fa fa-pencil-alt"></i>
                             </label>
                         </div>
                         <div class="avatar-preview">
-                            <div id="imagePreview" style="background-image: url({{ url('/design/adminlte/dist/img/avatar5.png')}});"></div>
+                            <div id="imagePreview-create" style="background-image: url({{ url('/design/adminlte/dist/img/avatar5.png')}});"></div>
                         </div>
                     </div>
                 </div>
