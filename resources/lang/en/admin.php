@@ -169,7 +169,9 @@ return [
     'my_appointments'               =>'My Appointments',
     'confirm_this'                  =>'Do You Want To Confirm This Appointment?',
     'confirmed_successfully'        =>'Appointment confirmed successfully',
-    'is_confirmed'                  =>'Confirmed?'
+    'is_confirmed'                  =>'Confirmed?',
+    'Address Fees'                  =>'Fees',
+    'new_doctor'                    =>'Add'
 
 
 

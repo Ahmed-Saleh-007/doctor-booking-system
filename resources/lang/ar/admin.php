@@ -140,6 +140,8 @@ return [
     'statistics'                    =>'الاحصائيات',
     'confirmed'                     =>'تم التأكيد',
     'my_appointments'               =>'مواعيدى',
+    'Address Fees'                  =>'الاتعاب',
+    'new_doctor'                    =>'اضافة'
 
 
 

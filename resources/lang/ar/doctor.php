@@ -17,4 +17,6 @@ return [
     'new_doctor'        => 'اضف',
     'new_subspecialist' => 'اضف تخصص فرعي',
     'no_subspecialist'  => 'لم يتم تحديد تخصص فرعي',
+    'new_doctor'        =>'اضافة'
+
 ];

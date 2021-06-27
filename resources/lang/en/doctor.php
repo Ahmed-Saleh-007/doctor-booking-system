@@ -27,4 +27,5 @@ return [
     'create_doctor'     => 'Add New Doctor',
     'new_subspecialist' => 'Add New Sub Specialist',
     'no_subspecialist'  => 'No Sub Specialist Specified',
+    'new_doctor'        =>'Add'
 ];
