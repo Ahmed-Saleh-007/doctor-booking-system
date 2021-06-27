@@ -41,7 +41,7 @@ class Doctor extends Authenticatable
     //Relationship of Doctor with Feedback
     public function feedbacks()
     {
-        return $this->hasMany(Feedback::class);
+        return $this->hasMany(Feedback::class, 'doc_id');
     }
 
     //Relationship of Doctor with Degree
@@ -65,13 +65,12 @@ class Doctor extends Authenticatable
     //Total Rate of Doctor
     public function getTotalRateAttribute()
     {
-        $totalRates  = DB::select('SELECT SUM(rate) AS sum FROM feedbacks WHERE doc_id = ?', [$this->id])[0];
-        $rates_count = DB::select('SELECT COUNT(rate) AS count FROM feedbacks WHERE doc_id = ?', [$this->id])[0];
-        if ($totalRates->sum == 0 && $rates_count->count == 0) {
+        $totalRates  = $this->feedbacks->sum('rate');
+        $rates_count = $this->feedbacks->count('*');
+        if ($totalRates == 0 && $rates_count == 0) {
             return 0;
         }
-        return $totalRates->sum/$rates_count->count;
-
+        return $totalRates/$rates_count;
     }
 
     public function getAgeAttribute()

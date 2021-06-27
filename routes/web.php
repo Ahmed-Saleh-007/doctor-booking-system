@@ -34,3 +34,7 @@ Route::get('lang/{lang}', function ($lang) {
     return back();
 });
 
+Route::get('/doc', function(){
+    $doctor = App\Models\Doctor::find(1);
+    return($doctor->feedbacks->sum('rate'));
+});
